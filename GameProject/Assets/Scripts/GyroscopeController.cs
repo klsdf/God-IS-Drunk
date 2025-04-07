@@ -7,10 +7,10 @@ public class GyroscopeController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5.0f;    // 移动速度
     [SerializeField] private bool invertX = false;     // 是否反转X轴
     [SerializeField] private bool invertY = false;     // 是否反转Y轴
-    
+
     [Header("平滑设置")]
     [SerializeField] private float smoothSpeed = 10f;  // 平滑速度
-    
+
     private Gamepad gamepad;
     private Vector3 initialPosition;
     private Vector3 targetPosition;
@@ -24,7 +24,7 @@ public class GyroscopeController : MonoBehaviour
             gamepad = Gamepad.current;
             isControllerConnected = true;
             Debug.Log($"检测到手柄: {gamepad.name}");
-            
+
             // 保存初始位置
             initialPosition = transform.position;
         }
@@ -34,26 +34,35 @@ public class GyroscopeController : MonoBehaviour
         }
     }
 
+
+
+    public Vector2 leftStick; // 新增：左摇杆输入变量
+    public Vector2 rightStick;
+
     private void Update()
     {
         if (!isControllerConnected) return;
 
         // 获取手柄右摇杆数据作为移动输入
-        Vector2 rightStick = gamepad.rightStick.ReadValue();
-        
+        rightStick = gamepad.rightStick.ReadValue();
+
+        // 获取左摇杆输入（新增）
+        leftStick = gamepad.leftStick.ReadValue();
+
+
         // 打印摇杆数据
-        Debug.Log($"右摇杆数据 - X: {rightStick.x:F2}, Y: {rightStick.y:F2}");
-        
+        // Debug.Log($"右摇杆数据 - X: {rightStick.x:F2}, Y: {rightStick.y:F2}");
+
         // 计算目标位置
         Vector3 movement = new Vector3(
             rightStick.x * moveSpeed * (invertX ? -1 : 1),
             rightStick.y * moveSpeed * (invertY ? -1 : 1),
             0
         );
-        
+
         // 计算目标位置
         targetPosition = initialPosition + movement;
-        
+
         // 平滑插值到目标位置
         transform.position = Vector3.Lerp(
             transform.position,
@@ -62,7 +71,7 @@ public class GyroscopeController : MonoBehaviour
         );
 
         // 打印当前位置
-        Debug.Log($"当前位置 - X: {transform.position.x:F2}, Y: {transform.position.y:F2}, Z: {transform.position.z:F2}");
+        // Debug.Log($"当前位置 - X: {transform.position.x:F2}, Y: {transform.position.y:F2}, Z: {transform.position.z:F2}");
     }
 
     // 重置位置
@@ -88,4 +97,4 @@ public class GyroscopeController : MonoBehaviour
             Debug.LogWarning("手柄已断开连接");
         }
     }
-} 
+}
