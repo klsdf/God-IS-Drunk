@@ -144,8 +144,16 @@ public class DistortableRawImage : RawImage
 
     void OnTriggerEnter(Collider other)
     {
-         print("碰撞了"+other.gameObject.name);
-         GameManager.Instance.LoseHP(1);
+
+        if(other.tag == "障碍物")
+        {
+            print("碰撞了"+other.gameObject.name);
+            GameManager.Instance.LoseHP(1);
+        }else if(other.tag == "酒")
+        {
+            print("碰撞了"+other.gameObject.name);
+            GameManager.Instance.GainHP(1);
+        }
         
     }
 

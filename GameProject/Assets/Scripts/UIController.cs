@@ -27,13 +27,18 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void UpdateHP(float hp,float maxHP)
+    public void UpdateHP(float hp, float maxHP)
     {
-        hpText.text = "酒量："+hp.ToString();
+        hpText.text = "酒量：" + hp.ToString();
         hpSlider.value = hp / maxHP;
+
+        float hpPercentage = hp / maxHP;
+
+        Color hpColor = Color.Lerp(Color.red, Color.green, hpPercentage);
+        hpSlider.fillRect.GetComponent<Image>().color = hpColor;
     }
 
-    public void UpdateTime(float time,float maxTime)
+    public void UpdateTime(float time, float maxTime)
     {
         float percentage = (time / maxTime) * 100;
         timeText.text = "关卡进度：" + percentage.ToString("F2") + "%";

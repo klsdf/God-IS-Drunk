@@ -1,8 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
+    // 单例实例
+    public static PlayerController Instance { get; private set; }
+
     [SerializeField] private bool invertX = false;     // 是否反转X轴
     [SerializeField] private bool invertY = false;     // 是否反转Y轴
 
@@ -18,6 +22,26 @@ public class PlayerController : MonoBehaviour
     public float moveDistanceX = 6.0f;    // 移动距离X
     [Header("移动距离Y")]
     public float moveDistanceY = 4.0f;    // 移动距离Y
+
+    private DistortableRawImage spriteRenderer; // 用于改变颜色的SpriteRenderer
+    private Color originalColor; // 原始颜色
+    private float damageFlashDuration = 0.25f; // 受伤时颜色变化的持续时间
+
+    private bool isFlashing = false; // 是否正在闪烁
+
+    private void Awake()
+    {
+        // 检查是否已经有一个实例存在
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // 在场景切换时不销毁
+        }
+        else
+        {
+            Destroy(gameObject); // 如果已经有一个实例，销毁这个新的
+        }
+    }
 
     private void Start()
     {
@@ -35,9 +59,14 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogWarning("未检测到手柄！");
         }
+
+        // 获取SpriteRenderer组件
+        spriteRenderer = GetComponent<DistortableRawImage>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color; // 保存原始颜色
+        }
     }
-
-
 
     public Vector2 leftStick;
     public Vector2 rightStick;
@@ -52,19 +81,15 @@ public class PlayerController : MonoBehaviour
         // 获取左摇杆输入（新增）
         leftStick = gamepad.leftStick.ReadValue();
 
-
-        // 打印摇杆数据
-        // Debug.Log($"右摇杆数据 - X: {rightStick.x:F2}, Y: {rightStick.y:F2}");
-
         // 计算目标位置
         Vector3 movementDirection = new Vector3(
-            rightStick.x  * (invertX ? -1 : 1),
-            rightStick.y  * (invertY ? -1 : 1),
+            rightStick.x * (invertX ? -1 : 1),
+            rightStick.y * (invertY ? -1 : 1),
             0
         ).normalized;
 
         // 计算目标位置，并增加x和y的距离
-        targetPosition = initialPosition +  new Vector3(movementDirection.x*moveDistanceX, movementDirection.y*moveDistanceY, 0);
+        targetPosition = initialPosition + new Vector3(movementDirection.x * moveDistanceX, movementDirection.y * moveDistanceY, 0);
 
         // 平滑插值到目标位置
         transform.position = Vector3.Lerp(
@@ -72,11 +97,45 @@ public class PlayerController : MonoBehaviour
             targetPosition,
             smoothSpeed * Time.deltaTime
         );
-
-        // 打印当前位置
-        // Debug.Log($"当前位置 - X: {transform.position.x:F2}, Y: {transform.position.y:F2}, Z: {transform.position.z:F2}");
     }
 
+    // 受伤时调用此方法
+    public void TakeDamage()
+    {
+        // 如果spriteRenderer不为空且当前没有在闪烁
+        if (spriteRenderer != null && !isFlashing)
+        {
+            StartCoroutine(FlashRed());
+        }
+    }
+
+
+    public void GainHP()
+    {
+        StartCoroutine(FlashGreen());
+    }
+
+    
+
+    // 颜色闪烁协程
+    private IEnumerator FlashRed()
+    {
+        isFlashing = true; // 设置为正在闪烁
+        spriteRenderer.color = Color.red; // 变为红色
+        yield return new WaitForSeconds(damageFlashDuration); // 等待一段时间
+        spriteRenderer.color = originalColor; // 恢复原始颜色
+        isFlashing = false; // 闪烁结束
+    }
+
+    private IEnumerator FlashGreen()
+    {
+        isFlashing = true; // 设置为正在闪烁
+        spriteRenderer.color = Color.green; // 变为绿色
+        yield return new WaitForSeconds(damageFlashDuration); // 等待一段时间
+        spriteRenderer.color = originalColor; // 恢复原始颜色
+        isFlashing = false; // 闪烁结束
+    }
+    
     // 重置位置
     public void ResetPosition()
     {

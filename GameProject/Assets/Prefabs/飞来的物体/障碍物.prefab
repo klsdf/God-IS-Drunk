@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2525269749433121070}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: "\u969C\u788D\u7269"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,8 +203,8 @@ GameObject:
   - component: {fileID: 7623172838016177752}
   - component: {fileID: -7253283549272844587}
   m_Layer: 0
-  m_Name: Enemy
-  m_TagString: Untagged
+  m_Name: "\u969C\u788D\u7269"
+  m_TagString: "\u969C\u788D\u7269"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

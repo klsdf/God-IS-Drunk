@@ -5,9 +5,8 @@ public class GameManager : MonoBehaviour
     // 单例实例
     public static GameManager Instance { get; private set; }
 
-    [Header("血量")]
-    public float hp = 100;
-    public float MaxHP { get; private set; } = 100f;
+    private float hp;
+    public float MaxHP { get; private set; } = 3000f;
     public float MinHP { get; private set; } = 0f;
 
 
@@ -15,6 +14,8 @@ public class GameManager : MonoBehaviour
     public float targetTime = 0;
 
     private float currentTime = 0;
+
+    //每隔多少秒减少1点血
     private float hpDecreaseInterval = 1.0f;
     private float hpDecreaseTimer = 0;
 
@@ -32,6 +33,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    private void Start()
+    {
+        hp = MaxHP;
+    }
+
     private void Update()
     {
         currentTime += Time.deltaTime;
@@ -47,18 +54,19 @@ public class GameManager : MonoBehaviour
         hpDecreaseTimer += Time.deltaTime;
         if (hpDecreaseTimer >= hpDecreaseInterval)
         {
-            LoseHP(1);
+            LoseHPByTime();
             if(hp<=0)
             {
-            GameLose();
+                GameLose();
             }
             hpDecreaseTimer = 0;
         }
     }
 
-    public float GainHP(float amount)
+
+    private float LoseHPByTime()
     {
-        hp = Mathf.Min(hp + amount, MaxHP);
+        hp = Mathf.Max(hp - 1, MinHP);
         UIController.Instance.UpdateHP(hp,MaxHP);
         return hp;
     }
@@ -67,8 +75,20 @@ public class GameManager : MonoBehaviour
     {
         hp = Mathf.Max(hp - amount, MinHP);
         UIController.Instance.UpdateHP(hp,MaxHP);
+        PlayerController.Instance.TakeDamage();
         return hp;
     }
+
+    
+    public float GainHP(float amount)
+    {
+        hp = Mathf.Min(hp + amount, MaxHP);
+        UIController.Instance.UpdateHP(hp,MaxHP);
+        PlayerController.Instance.GainHP();
+        return hp;
+    }
+
+
 
     public void Pause()
     {

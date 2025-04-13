@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class EnemyCreator : MonoBehaviour
 {
-    [Header("敌人生成器")]
+    [Header("敌人预制体")]
     public GameObject enemyPrefab; // 敌人预制体
+    [Header("酒预制体")]
+    public GameObject winePrefab; // 酒预制体
 
     [Header("最小的X坐标")]
     public float minX = -10f; // 最小 X 坐标（生成范围）
@@ -41,6 +43,7 @@ public class EnemyCreator : MonoBehaviour
         if (Time.time >= nextSpawnTime)
         {
             SpawnEnemy(); // 生成敌人
+            SpawnWine(); // 生成酒
             nextSpawnTime = Time.time + spawnInterval; // 更新下一次生成时间
         }
     }
@@ -57,6 +60,19 @@ public class EnemyCreator : MonoBehaviour
         
         // 在指定位置实例化敌人，并将其设置为当前对象的子节点
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
+    }
+
+    void SpawnWine()
+    {
+            // 在指定范围内随机生成 X 坐标
+        float randomX = Random.Range(minX, maxX);
+
+        float randomY = Random.Range(minY, maxY);
+        // 在 Y 位置生成敌人（根据需要，可以增加高度变化或其他随机性）
+        Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
+        
+        // 在指定位置实例化敌人，并将其设置为当前对象的子节点
+        Instantiate(winePrefab, spawnPosition, Quaternion.identity, transform);
     }
 
     // 在编辑器中绘制 Gizmos
