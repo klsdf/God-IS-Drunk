@@ -24,9 +24,6 @@ public class DistortableRawImage : RawImage
     private Mesh mesh;  // 自定义 Mesh
 
 
-
-    public TMP_Text tMP_Text;
-
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -39,7 +36,7 @@ public class DistortableRawImage : RawImage
         meshCollider = gameObject.GetComponent<MeshCollider>();
         mesh = new Mesh();
         meshCollider.sharedMesh = mesh; // 初始化 MeshCollider 使用自定义 Mesh
-        UpdateUI();
+        // UpdateUI();
     }
 
     void Update()
@@ -144,17 +141,12 @@ public class DistortableRawImage : RawImage
 
 
 
-    private int hp = 10;
+
     void OnTriggerEnter(Collider other)
     {
          print("碰撞了"+other.gameObject.name);
-         hp--;
-         UpdateUI();
-    }
-
-
-    private void  UpdateUI () {
-           tMP_Text.text="HP:"+hp;
+         GameManager.Instance.LoseHP(1);
+        
     }
 
 

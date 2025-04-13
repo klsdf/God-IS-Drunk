@@ -13,21 +13,19 @@ public class Enemy : MonoBehaviour
         // 在给定的区间内生成一个随机速度
         shrinkSpeed = Random.Range(minShrinkSpeed, maxShrinkSpeed);
         currentZ = transform.position.z; // 获取当前的 Z 坐标
+
+        // 5秒后销毁敌人
+        Destroy(gameObject, 5f);
     }
 
     // Update is called once per frame
     void Update()
     {
         // 更新 Z 轴的值
-        currentZ -= shrinkSpeed * Time.deltaTime;
+        currentZ += shrinkSpeed * Time.deltaTime;
 
         // 更新敌人的位置
         transform.position = new Vector3(transform.position.x, transform.position.y, currentZ);
 
-        // 如果 Z 坐标小于 -10，就销毁该敌人
-        if (currentZ < -10f)
-        {
-            Destroy(gameObject); // 销毁敌人对象
-        }
     }
 }
