@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 敌人，或者说碰到后会掉血的障碍物
+/// </summary>
 public class Enemy : MonoBehaviour
 {
     public float minShrinkSpeed = 0.5f; // 最小的缩小速度
@@ -7,7 +10,7 @@ public class Enemy : MonoBehaviour
     private float shrinkSpeed = 1f; // 每秒减少的 z 轴速度
     private float currentZ; // 当前的 Z 坐标
 
-    // Start is called before the first frame update
+
     void Start()
     {
         // 在给定的区间内生成一个随机速度
@@ -18,7 +21,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, 5f);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         // 更新 Z 轴的值

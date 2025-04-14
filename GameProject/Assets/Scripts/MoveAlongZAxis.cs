@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// 沿Z轴移动
+/// </summary>
 public class MoveAlongZAxis : MonoBehaviour
 {
     public float speed = 5.0f; // 移动速度

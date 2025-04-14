@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using YanGameFrameWork.CoreCodes;
 
-public class PlayerController : MonoBehaviour
+
+/// <summary>
+/// 玩家控制器，就是控制三个哥们移动的，只能xy移动，不能z移动
+/// </summary>
+public class PlayerController : Singleton<PlayerController>
 {
-    // 单例实例
-    public static PlayerController Instance { get; private set; }
 
     [SerializeField] private bool invertX = false;     // 是否反转X轴
     [SerializeField] private bool invertY = false;     // 是否反转Y轴
@@ -29,19 +32,6 @@ public class PlayerController : MonoBehaviour
 
     private bool isFlashing = false; // 是否正在闪烁
 
-    private void Awake()
-    {
-        // 检查是否已经有一个实例存在
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 在场景切换时不销毁
-        }
-        else
-        {
-            Destroy(gameObject); // 如果已经有一个实例，销毁这个新的
-        }
-    }
 
     private void Start()
     {

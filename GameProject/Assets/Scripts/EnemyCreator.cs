@@ -29,14 +29,14 @@ public class EnemyCreator : MonoBehaviour
 
     private float nextSpawnTime; // 下一次生成敌人的时间
 
-    // Start is called before the first frame update
+
     void Start()
     {
         nextSpawnTime = Time.time + spawnInterval; // 初始化第一次生成时间
         zPosition = transform.position.z;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         // 如果到了生成敌人的时间
@@ -48,7 +48,9 @@ public class EnemyCreator : MonoBehaviour
         }
     }
 
-    // 生成敌人的方法
+    /// <summary>
+    /// 生成敌人
+    /// </summary>
     void SpawnEnemy()
     {
         // 在指定范围内随机生成 X 坐标
@@ -62,9 +64,12 @@ public class EnemyCreator : MonoBehaviour
         Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
     }
 
+    /// <summary>
+    /// 生成酒
+    /// </summary>
     void SpawnWine()
     {
-            // 在指定范围内随机生成 X 坐标
+        // 在指定范围内随机生成 X 坐标
         float randomX = Random.Range(minX, maxX);
 
         float randomY = Random.Range(minY, maxY);
@@ -75,7 +80,7 @@ public class EnemyCreator : MonoBehaviour
         Instantiate(winePrefab, spawnPosition, Quaternion.identity, transform);
     }
 
-    // 在编辑器中绘制 Gizmos
+
     void OnDrawGizmos()
     {
         // 设置 Gizmos 的颜色

@@ -1,11 +1,20 @@
 using UnityEngine;
+using YanGameFrameWork.CoreCodes;
 
-public class GameManager : MonoBehaviour
+[System.Serializable]
+public struct GameData
 {
-    // 单例实例
-    public static GameManager Instance { get; private set; }
+    public float hp;
+}
 
-    private float hp;
+public class GameManager : Singleton<GameManager>
+{
+
+
+    [SerializeField]
+    private GameData gameData;
+
+
     public float MaxHP { get; private set; } = 3000f;
     public float MinHP { get; private set; } = 0f;
 
@@ -19,24 +28,11 @@ public class GameManager : MonoBehaviour
     private float hpDecreaseInterval = 1.0f;
     private float hpDecreaseTimer = 0;
 
-    private void Awake()
-    {
-        // 检查是否已经有一个实例存在
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 在场景切换时不销毁
-        }
-        else
-        {
-            Destroy(gameObject); // 如果已经有一个实例，销毁这个新的
-        }
-    }
 
 
     private void Start()
     {
-        hp = MaxHP;
+        gameData.hp = MaxHP;
     }
 
     private void Update()
@@ -48,14 +44,14 @@ public class GameManager : MonoBehaviour
             Pause();
             GameWin();
         }
-        UIController.Instance.UpdateTime(currentTime,targetTime);
+        UIController.Instance.UpdateTime(currentTime, targetTime);
 
         // 每秒减少1点血
         hpDecreaseTimer += Time.deltaTime;
         if (hpDecreaseTimer >= hpDecreaseInterval)
         {
             LoseHPByTime();
-            if(hp<=0)
+            if (gameData.hp <= 0)
             {
                 GameLose();
             }
@@ -66,26 +62,26 @@ public class GameManager : MonoBehaviour
 
     private float LoseHPByTime()
     {
-        hp = Mathf.Max(hp - 1, MinHP);
-        UIController.Instance.UpdateHP(hp,MaxHP);
-        return hp;
+        gameData.hp = Mathf.Max(gameData.hp - 1, MinHP);
+        UIController.Instance.UpdateHP(gameData.hp, MaxHP);
+        return gameData.hp;
     }
 
     public float LoseHP(float amount)
     {
-        hp = Mathf.Max(hp - amount, MinHP);
-        UIController.Instance.UpdateHP(hp,MaxHP);
+        gameData.hp = Mathf.Max(gameData.hp - amount, MinHP);
+        UIController.Instance.UpdateHP(gameData.hp, MaxHP);
         PlayerController.Instance.TakeDamage();
-        return hp;
+        return gameData.hp;
     }
 
-    
+
     public float GainHP(float amount)
     {
-        hp = Mathf.Min(hp + amount, MaxHP);
-        UIController.Instance.UpdateHP(hp,MaxHP);
+        gameData.hp = Mathf.Min(gameData.hp + amount, MaxHP);
+        UIController.Instance.UpdateHP(gameData.hp, MaxHP);
         PlayerController.Instance.GainHP();
-        return hp;
+        return gameData.hp;
     }
 
 
@@ -102,11 +98,19 @@ public class GameManager : MonoBehaviour
 
     public void GameWin()
     {
+        var panel = YanGF.UI.PushPanel<GameOverPanel>();
+        panel.GetComponent<GameOverPanel>().OnInit("游戏胜利");
         print("游戏胜利");
     }
 
     public void GameLose()
     {
+        var panel = YanGF.UI.PushPanel<GameOverPanel>();
+        panel.GetComponent<GameOverPanel>().OnInit("游戏失败");
         print("游戏失败");
     }
+
+
+
+
 }
