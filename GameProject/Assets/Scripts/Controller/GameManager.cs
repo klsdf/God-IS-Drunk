@@ -1,10 +1,44 @@
 using UnityEngine;
 using YanGameFrameWork.CoreCodes;
+using YanGameFrameWork.ModelControlSystem;
+
 
 [System.Serializable]
-public struct GameData
+public class GameData : YanModelBase
 {
     public float hp;
+
+    public float HP{
+        get{
+            return hp;
+        }
+        set{
+            hp = Mathf.Clamp(value, MinHP, MaxHP);
+        }
+    }
+    
+    public float MaxHP { get; private set; } = 3000f;
+    public float MinHP { get; private set; } = 0f;
+
+
+    [Header("目标时间，单位是秒")]
+    public float targetTime = 0;
+
+    public float currentTime = 0;
+
+    //每隔多少秒减少1点血
+    public float hpDecreaseInterval = 1.0f;
+    public float hpDecreaseTimer = 0;
+
+    public GameData(float maxHP, float minHP, float targetTime, float hpDecreaseInterval)
+    {
+        MaxHP = maxHP;
+        MinHP = minHP;
+        hp = MaxHP;
+
+        this.targetTime = targetTime;
+        this.hpDecreaseInterval = hpDecreaseInterval;
+    }
 }
 
 public class GameManager : Singleton<GameManager>
@@ -15,62 +49,47 @@ public class GameManager : Singleton<GameManager>
     private GameData gameData;
 
 
-    public float MaxHP { get; private set; } = 3000f;
-    public float MinHP { get; private set; } = 0f;
-
-
-    [Header("目标时间，单位是秒")]
-    public float targetTime = 0;
-
-    private float currentTime = 0;
-
-    //每隔多少秒减少1点血
-    private float hpDecreaseInterval = 1.0f;
-    private float hpDecreaseTimer = 0;
-
-
-
     private void Start()
     {
-        gameData.hp = MaxHP;
+        YanGF.Model.RegisterModule<GameData>(gameData);
     }
 
     private void Update()
     {
-        currentTime += Time.deltaTime;
-        if (currentTime >= targetTime)
+        gameData.currentTime += Time.deltaTime;
+        if (gameData.currentTime >= gameData.targetTime)
         {
-            currentTime = 0;
+            gameData.currentTime = 0;
             Pause();
             GameWin();
         }
-        UIController.Instance.UpdateTime(currentTime, targetTime);
+        UIController.Instance.UpdateTime(gameData.currentTime, gameData.targetTime);
 
         // 每秒减少1点血
-        hpDecreaseTimer += Time.deltaTime;
-        if (hpDecreaseTimer >= hpDecreaseInterval)
+        gameData.hpDecreaseTimer += Time.deltaTime;
+        if (gameData.hpDecreaseTimer >= gameData.hpDecreaseInterval)
         {
             LoseHPByTime();
             if (gameData.hp <= 0)
             {
                 GameLose();
             }
-            hpDecreaseTimer = 0;
+            gameData.hpDecreaseTimer = 0;
         }
     }
 
 
     private float LoseHPByTime()
     {
-        gameData.hp = Mathf.Max(gameData.hp - 1, MinHP);
-        UIController.Instance.UpdateHP(gameData.hp, MaxHP);
+        gameData.hp = Mathf.Max(gameData.hp - 1, gameData.MinHP);
+        UIController.Instance.UpdateHP(gameData.hp, gameData.MaxHP);
         return gameData.hp;
     }
 
     public float LoseHP(float amount)
     {
-        gameData.hp = Mathf.Max(gameData.hp - amount, MinHP);
-        UIController.Instance.UpdateHP(gameData.hp, MaxHP);
+        gameData.hp = Mathf.Max(gameData.hp - amount, gameData.MinHP);
+        UIController.Instance.UpdateHP(gameData.hp, gameData.MaxHP);
         PlayerController.Instance.TakeDamage();
         return gameData.hp;
     }
@@ -78,8 +97,8 @@ public class GameManager : Singleton<GameManager>
 
     public float GainHP(float amount)
     {
-        gameData.hp = Mathf.Min(gameData.hp + amount, MaxHP);
-        UIController.Instance.UpdateHP(gameData.hp, MaxHP);
+        gameData.hp = Mathf.Min(gameData.hp + amount, gameData.MaxHP);
+        UIController.Instance.UpdateHP(gameData.hp, gameData.MaxHP);
         PlayerController.Instance.GainHP();
         return gameData.hp;
     }
