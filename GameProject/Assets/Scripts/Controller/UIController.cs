@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using YanGameFrameWork.CoreCodes;
 
-public class UIController : MonoBehaviour
+public class UIController : Singleton<UIController>
 {
-    // 单例实例
-    public static UIController Instance { get; private set; }
 
     public TMP_Text hpText;
     public Slider hpSlider;
@@ -13,19 +12,6 @@ public class UIController : MonoBehaviour
     public TMP_Text timeText;
     public Slider timeSlider;
 
-    private void Awake()
-    {
-        // 检查是否已经有一个实例存在
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // 在场景切换时不销毁
-        }
-        else
-        {
-            Destroy(gameObject); // 如果已经有一个实例，销毁这个新的
-        }
-    }
 
     public void UpdateHP(float hp, float maxHP)
     {

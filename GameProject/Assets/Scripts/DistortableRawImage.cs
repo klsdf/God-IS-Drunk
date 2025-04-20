@@ -2,6 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+
+/// <summary>
+/// 可变形RawImage，可以被摇杆控制变形，也就是哥们三人那个图
+/// </summary>
 public class DistortableRawImage : RawImage
 {
     [Header("偏移距离")]
