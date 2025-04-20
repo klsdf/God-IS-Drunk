@@ -5,30 +5,42 @@ using UnityEngine;
 /// </summary>
 public class Enemy : MonoBehaviour
 {
-    public float minShrinkSpeed = 0.5f; // 最小的缩小速度
-    public float maxShrinkSpeed = 2f;   // 最大的缩小速度
-    private float shrinkSpeed = 1f; // 每秒减少的 z 轴速度
-    private float currentZ; // 当前的 Z 坐标
 
+    public float currentZ; // 当前的 Z 坐标
+
+    // 新增变量
+    public float angle; // 当前的角度
+    public float radius = 5f; // 圆周运动的半径
+    public float rotationSpeed = 1f; // 旋转速度
+
+    private IMovementCommand movementCommand; // 移动命令
 
     void Start()
     {
         // 在给定的区间内生成一个随机速度
-        shrinkSpeed = Random.Range(minShrinkSpeed, maxShrinkSpeed);
+
         currentZ = transform.position.z; // 获取当前的 Z 坐标
 
-        // 5秒后销毁敌人
-        Destroy(gameObject, 5f);
-    }
+        // 初始化角度
+        angle = 0f;
 
+
+        movementCommand = new NoMovementCommand();
+
+        // 初始化弹力球运动命令
+        // Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
+        // movementCommand = new BouncingBallMovementCommand(randomDirection, 1f, EnemyCreator.Instance);
+
+        // 5秒后销毁敌人
+        Destroy(gameObject, 40f);
+    }
 
     void Update()
     {
+        // 执行移动命令
+        movementCommand.Execute(this);
+
         // 更新 Z 轴的值
-        currentZ += shrinkSpeed * Time.deltaTime;
-
-        // 更新敌人的位置
-        transform.position = new Vector3(transform.position.x, transform.position.y, currentZ);
-
+        currentZ -= shrinkSpeed * Time.deltaTime;
     }
 }
