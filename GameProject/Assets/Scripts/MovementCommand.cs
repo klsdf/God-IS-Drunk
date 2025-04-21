@@ -20,14 +20,24 @@ public interface IMovementCommand
 /// </remarks>
 public class CircularMovementCommand : IMovementCommand
 {
+    private float radius;
+    private float speed;
+    private float angle;
+    public CircularMovementCommand(float radius, float speed, float angle)
+    {
+        this.radius = radius;
+        this.speed = speed;
+        this.angle = angle;
+    }
+
     public void Execute(Enemy enemy)
     {
         // 更新角度
-        enemy.angle += enemy.rotationSpeed * Time.deltaTime;
+        angle += speed * Time.deltaTime;
 
         // 计算新的位置
-        float x = enemy.radius * Mathf.Cos(enemy.angle);
-        float y = enemy.radius * Mathf.Sin(enemy.angle);
+        float x = radius * Mathf.Cos(angle);
+        float y = radius * Mathf.Sin(angle);
 
         // 更新敌人的位置
         enemy.transform.position = new Vector3(x, y, enemy.transform.position.z);
@@ -124,25 +134,29 @@ public class ZigzagMovementCommand : IMovementCommand
 /// </remarks>
 public class SpiralMovementCommand : IMovementCommand
 {
+    private float radius; // 螺旋半径
     private float spiralSpeed; // 螺旋速度
+    private float angle; // 螺旋角度
 
     /// <summary>
     /// 构造函数，初始化螺旋速度
     /// </summary>
     /// <param name="spiralSpeed">螺旋速度</param>
-    public SpiralMovementCommand(float spiralSpeed)
+    public SpiralMovementCommand(float radius, float spiralSpeed, float angle)
     {
+        this.radius = radius;
         this.spiralSpeed = spiralSpeed;
+        this.angle = angle;
     }
 
     public void Execute(Enemy enemy)
     {
         // 更新角度
-        enemy.angle += enemy.rotationSpeed * Time.deltaTime;
+        angle += spiralSpeed * Time.deltaTime;
 
         // 计算新的位置
-        float x = enemy.radius * Mathf.Cos(enemy.angle) * Mathf.Exp(spiralSpeed * Time.time);
-        float y = enemy.radius * Mathf.Sin(enemy.angle) * Mathf.Exp(spiralSpeed * Time.time);
+        float x = radius * Mathf.Cos(angle) * Mathf.Exp(spiralSpeed * Time.time);
+        float y = radius * Mathf.Sin(angle) * Mathf.Exp(spiralSpeed * Time.time);
 
         // 更新敌人的位置
         enemy.transform.position = new Vector3(x, y, enemy.transform.position.z);
