@@ -30,7 +30,7 @@ public class CircularMovementCommand : IMovementCommand
         float y = enemy.radius * Mathf.Sin(enemy.angle);
 
         // 更新敌人的位置
-        enemy.transform.position = new Vector3(x, y, enemy.currentZ);
+        enemy.transform.position = new Vector3(x, y, enemy.transform.position.z);
     }
 }
 
@@ -40,12 +40,21 @@ public class CircularMovementCommand : IMovementCommand
 /// <remarks>
 /// 敌人保持在 X 和 Y 轴上的位置不变，仅在 Z 轴上移动。
 /// </remarks>
-public class NoMovementCommand : IMovementCommand
+public class ZMovementCommand : IMovementCommand
 {
+
+    public float speed;
+
+    public ZMovementCommand(float speed)
+    {
+        this.speed = speed;
+    }
+
     public void Execute(Enemy enemy)
     {
+        float newZ = enemy.transform.position.z -speed * Time.deltaTime;
         // 仅更新 Z 轴的值，保持 X 和 Y 不变
-        enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y, enemy.currentZ);
+        enemy.transform.position = new Vector3(enemy.transform.position.x, enemy.transform.position.y, newZ);
     }
 }
 
@@ -58,20 +67,21 @@ public class NoMovementCommand : IMovementCommand
 public class LinearMovementCommand : IMovementCommand
 {
     private Vector3 direction; // 移动方向
-
+    private float speed; // 移动速度
     /// <summary>
     /// 构造函数，初始化移动方向
     /// </summary>
     /// <param name="direction">移动方向向量</param>
-    public LinearMovementCommand(Vector3 direction)
+    public LinearMovementCommand(Vector3 direction, float speed)
     {
         this.direction = direction.normalized; // 确保方向是单位向量
+        this.speed = speed;
     }
 
     public void Execute(Enemy enemy)
     {
         // 沿着指定方向移动
-        enemy.transform.position += direction * enemy.shrinkSpeed * Time.deltaTime;
+        enemy.transform.position += direction * speed * Time.deltaTime;
     }
 }
 
@@ -102,7 +112,7 @@ public class ZigzagMovementCommand : IMovementCommand
         // 计算新的 X 位置
         float x = Mathf.Sin(Time.time * frequency) * amplitude;
         // 更新敌人的位置
-        enemy.transform.position = new Vector3(x, enemy.transform.position.y, enemy.currentZ);
+        enemy.transform.position = new Vector3(x, enemy.transform.position.y, enemy.transform.position.z);
     }
 }
 
@@ -135,7 +145,7 @@ public class SpiralMovementCommand : IMovementCommand
         float y = enemy.radius * Mathf.Sin(enemy.angle) * Mathf.Exp(spiralSpeed * Time.time);
 
         // 更新敌人的位置
-        enemy.transform.position = new Vector3(x, y, enemy.currentZ);
+        enemy.transform.position = new Vector3(x, y, enemy.transform.position.z);
     }
 }
 
@@ -180,6 +190,6 @@ public class BouncingBallMovementCommand : IMovementCommand
         }
 
         // 更新敌人的位置
-        enemy.transform.position = new Vector3(newPosition.x, newPosition.y, enemy.currentZ);
+        enemy.transform.position = new Vector3(newPosition.x, newPosition.y, enemy.transform.position.z);
     }
 }

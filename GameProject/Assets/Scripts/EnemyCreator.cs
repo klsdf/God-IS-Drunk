@@ -1,5 +1,6 @@
 using UnityEngine;
 using YanGameFrameWork.CoreCodes;
+using System.Collections; // 引入命名空间
 
 public class EnemyCreator : Singleton<EnemyCreator>
 {
@@ -67,9 +68,13 @@ public class EnemyCreator : Singleton<EnemyCreator>
         }
         else
         {
-            // 生成敌人
-            // SpawnEnemy();
-            SpawnEnemiesInCircle(5f, 10);
+            // // 生成3圈的螺旋形敌人，总共生成15个敌人，每圈半径增加1单位，每个敌人生成间隔0.5秒
+            // SpawnEnemiesInSpiral(3, 15, 1f, 0.5f);
+
+            // // 生成一个半径为5的圆形敌人，总共生成20个敌人
+            // SpawnEnemiesInCircle(5f, 20);
+            // 生成5个波纹，每个波纹有10个敌人，每个波纹的半径增加2单位，每个波纹生成间隔1秒
+            SpawnEnemiesInWave(5, 10, 2f, 1f);
         }
     }
 
@@ -142,6 +147,78 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
             // 在指定位置实例化敌人，并将其设置为当前对象的子节点
             Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
+        }
+    }
+
+    /// <summary>
+    /// 生成螺旋形状的敌人
+    /// </summary>
+    /// <param name="spiralTurns">螺旋的圈数</param>
+    /// <param name="enemyCount">要生成的敌人数量</param>
+    /// <param name="radiusIncrement">每圈半径的增量</param>
+    /// <param name="spawnDelay">每个敌人生成的延迟时间</param>
+    public void SpawnEnemiesInSpiral(int spiralTurns, int enemyCount, float radiusIncrement, float spawnDelay)
+    {
+        StartCoroutine(SpawnEnemiesInSpiralCoroutine(spiralTurns, enemyCount, radiusIncrement, spawnDelay));
+    }
+
+    /// <summary>
+    /// 协程：逐个生成螺旋形状的敌人
+    /// </summary>
+    private IEnumerator SpawnEnemiesInSpiralCoroutine(int spiralTurns, int enemyCount, float radiusIncrement, float spawnDelay)
+    {
+        for (int i = 0; i < enemyCount; i++)
+        {
+            // 计算每个敌人的角度
+            float angle = i * Mathf.PI * 2 * spiralTurns / enemyCount;
+
+            // 计算当前敌人的半径
+            float radius = radiusIncrement * angle / (Mathf.PI * 2);
+
+            // 计算敌人的位置
+            float x = Mathf.Cos(angle) * radius;
+            float y = Mathf.Sin(angle) * radius;
+
+            // 使用当前对象的 Z 坐标
+            Vector3 spawnPosition = new Vector3(x, y, transform.position.z);
+
+            // 在指定位置实例化敌人，并将其设置为当前对象的子节点
+            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
+
+            // 等待一段时间后再生成下一个敌人
+            yield return new WaitForSeconds(spawnDelay);
+        }
+    }
+
+    /// <summary>
+    /// 生成圆形波纹形状的敌人
+    /// </summary>
+    /// <param name="waveCount">波纹的数量</param>
+    /// <param name="enemiesPerWave">每个波纹的敌人数量</param>
+    /// <param name="radiusIncrement">每个波纹的半径增量</param>
+    /// <param name="spawnDelay">每个波纹生成的延迟时间</param>
+    public void SpawnEnemiesInWave(int waveCount, int enemiesPerWave, float radiusIncrement, float spawnDelay)
+    {
+        StartCoroutine(SpawnEnemiesInWaveCoroutine(waveCount, enemiesPerWave, radiusIncrement, spawnDelay));
+    }
+
+    /// <summary>
+    /// 协程：逐个生成圆形波纹形状的敌人
+    /// </summary>
+    private IEnumerator SpawnEnemiesInWaveCoroutine(int waveCount, int enemiesPerWave, float radiusIncrement, float spawnDelay)
+    {
+        for (int wave = 0; wave < waveCount; wave++)
+        {
+            float radius = wave * radiusIncrement;
+            for (int i = 0; i < enemiesPerWave; i++)
+            {
+                float angle = i * Mathf.PI * 2 / enemiesPerWave;
+                float x = Mathf.Cos(angle) * radius;
+                float y = Mathf.Sin(angle) * radius;
+                Vector3 spawnPosition = new Vector3(x, y, transform.position.z);
+                Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
+            }
+            yield return new WaitForSeconds(spawnDelay);
         }
     }
 }
