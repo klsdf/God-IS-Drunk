@@ -8,17 +8,24 @@ public class GameData : YanModelBase
 {
     public float hp;
 
-    public float HP{
-        get{
+    public float HP
+    {
+        get
+        {
             return hp;
         }
-        set{
+        set
+        {
             hp = Mathf.Clamp(value, MinHP, MaxHP);
         }
     }
-    
-    public float MaxHP { get; private set; } = 3000f;
-    public float MinHP { get; private set; } = 0f;
+
+    public readonly float MaxHP = 3000f;
+
+    public readonly float MinHP = 0f;
+   
+
+
 
 
     [Header("目标时间，单位是秒")]
@@ -51,7 +58,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        YanGF.Model.RegisterModule<GameData>(gameData);
+        gameData = YanGF.Model.RegisterModule(new GameData(3000f, 0f, 10f, 1f));
     }
 
     private void Update()
