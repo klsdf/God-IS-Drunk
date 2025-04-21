@@ -8,19 +8,22 @@ public class Enemy : MonoBehaviour
 
 
     // 新增变量
-    public float angle; // 当前的角度
-    public float radius = 5f; // 圆周运动的半径
-    public float rotationSpeed = 1f; // 旋转速度
+    // public float angle; // 当前的角度
+    // public float radius = 5f; // 圆周运动的半径
+    // public float rotationSpeed = 1f; // 旋转速度
 
     private IMovementCommand movementCommand; // 移动命令
 
+    public void Init(IMovementCommand movementCommand)
+    {
+        this.movementCommand = movementCommand;
+    }
+
+
     void Start()
     {
-        // 初始化角度
-        angle = 0f;
-
-
-        movementCommand = new ZMovementCommand(20f);
+ 
+        // movementCommand = new ZMovementCommand(20f);
 
         // 初始化弹力球运动命令
         // Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0).normalized;
@@ -33,6 +36,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         // 执行移动命令
-        movementCommand.Execute(this);
+        movementCommand?.Execute(this);
     }
 }

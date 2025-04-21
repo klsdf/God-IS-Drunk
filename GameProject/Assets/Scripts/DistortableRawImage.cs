@@ -152,7 +152,7 @@ public class DistortableRawImage : RawImage
         if(other.tag == "障碍物")
         {
             print("碰撞了"+other.gameObject.name);
-            GameManager.Instance.LoseHP(1);
+            GameManager.Instance.LoseHP(5);
         }else if(other.tag == "酒")
         {
             print("碰撞了"+other.gameObject.name);
