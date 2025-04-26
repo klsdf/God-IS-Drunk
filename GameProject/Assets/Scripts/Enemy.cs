@@ -19,6 +19,10 @@ public class Enemy : MonoBehaviour
         this.movementCommand = movementCommand;
     }
 
+    public GameObject notification;
+
+    // 射线检测的最大距离
+    private float raycastDistance = 100f;
 
     void Start()
     {
@@ -37,5 +41,37 @@ public class Enemy : MonoBehaviour
     {
         // 执行移动命令
         movementCommand?.Execute(this);
+
+        // 射线检测
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -transform.forward, out hit, raycastDistance))
+        {
+            // 检查是否碰到提示墙
+            if (hit.collider.gameObject.tag == "提示墙")
+            {
+                // 将notification移动到射线打在提示墙的地方
+                notification.transform.position = hit.point;
+
+                // 计算notification透明度，距离越近透明度越高
+                float distance = hit.distance;
+                // 使用平方根函数使透明度变化在距离较近时更明显
+                float alpha = Mathf.Clamp01(1 - Mathf.Sqrt(distance / raycastDistance));
+                // 获取SpriteRenderer组件并设置透明度
+                SpriteRenderer spriteRenderer = notification.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    Color color = spriteRenderer.color;
+                    color.a = alpha;
+                    spriteRenderer.color = color;
+                }
+            }
+        }
+    }
+
+    // 在场景视图中绘制射线
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * raycastDistance);
     }
 }
