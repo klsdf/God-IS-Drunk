@@ -24,5 +24,10 @@ public class ScoreManager :YanModelBase
     {
         score -= amount;
     }
+
+    public ScoreManager()
+    {
+        score = 0;
+    }
     
 }

@@ -17,13 +17,23 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        InitDatas();
+        AudioController.PlayBGM();
+    }
+
+
+
+    public void InitDatas()
+    {
         gameData = YanGF.Model.RegisterModule(new GameData(
             maxHP: 3000f,
             targetTime: 1000f,
             hpDecreaseInterval: 1f
             )
         );
-        AudioController.PlayBGM();
+
+        YanGF.Model.RegisterModule(new ScoreManager());
+
     }
 
     private void Update()
