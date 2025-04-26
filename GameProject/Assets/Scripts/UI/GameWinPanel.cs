@@ -27,7 +27,7 @@ public class GameWinPanel : UIPanelBase
     public override void OnEnter()
     {
         base.OnEnter();
-        title.text = "游戏成功了喵";
+        title.text = YanGF.Localization.Translate("游戏成功了喵");
     }
 
  

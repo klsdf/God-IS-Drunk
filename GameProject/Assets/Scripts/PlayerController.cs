@@ -97,8 +97,25 @@ public class PlayerController : Singleton<PlayerController>
         {
             StartCoroutine(FlashRed());
         }
+
+        // 调用手柄震动功能
+        if (isControllerConnected && gamepad != null)
+        {
+            StartCoroutine(VibrateGamepad(0.5f, 0.25f)); // 震动强度为0.5，持续0.25秒
+        }
     }
 
+    /// <summary>
+    /// 手柄震动协程
+    /// </summary>
+    /// <param name="intensity">震动强度</param>
+    /// <param name="duration">震动持续时间</param>
+    private IEnumerator VibrateGamepad(float intensity, float duration)
+    {
+        gamepad.SetMotorSpeeds(intensity, intensity); // 设置震动强度
+        yield return new WaitForSeconds(duration); // 等待震动持续时间
+        gamepad.SetMotorSpeeds(0, 0); // 停止震动
+    }
 
     public void GainHP()
     {
