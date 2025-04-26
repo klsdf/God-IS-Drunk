@@ -1,6 +1,6 @@
 using UnityEngine;
 using YanGameFrameWork.CoreCodes;
-
+using YanGameFrameWork.Editor;
 
 
 
@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
             hpDecreaseInterval: 1f
             )
         );
+        AudioController.PlayBGM();
     }
 
     private void Update()
@@ -84,17 +85,19 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
     }
 
+
+
+    [Button("测试游戏胜利")]
     public void GameWin()
     {
-        var panel = YanGF.UI.PushPanel<GameOverPanel>();
-        panel.GetComponent<GameOverPanel>().OnInit("游戏胜利");
+        var panel = YanGF.UI.PushPanel<GameWinPanel>();
         print("游戏胜利");
     }
 
+    [Button("测试游戏失败")]
     public void GameLose()
     {
         var panel = YanGF.UI.PushPanel<GameOverPanel>();
-        panel.GetComponent<GameOverPanel>().OnInit("游戏失败");
         print("游戏失败");
     }
 
