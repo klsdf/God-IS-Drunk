@@ -62,6 +62,7 @@ public class GameManager : Singleton<GameManager>
         UIController.Instance.UpdateHP(gameData.hp, gameData.MaxHP);
         PlayerController.Instance.TakeDamage();
         AudioController.PlayDamageAudio();
+        PostEffectController.Instance.SetBloomIntensity(gameData.hp / gameData.MaxHP);
         return gameData.hp;
     }
 
