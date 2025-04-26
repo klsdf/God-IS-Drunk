@@ -45,7 +45,8 @@ public class GameData : YanModelBase
         this.targetTime = targetTime;
         this.hpDecreaseInterval = hpDecreaseInterval;
     }
-      public GameData()
+      
+    public GameData()
     {
         MaxHP = 1000;
         MinHP = 0;

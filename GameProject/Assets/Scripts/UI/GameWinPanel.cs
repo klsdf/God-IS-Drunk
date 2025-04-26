@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using YanGameFrameWork.UISystem;
 
 
-public class GameOverPanel : UIPanelBase
+public class GameWinPanel : UIPanelBase
 {
     public TMP_Text title;
 
@@ -27,7 +27,7 @@ public class GameOverPanel : UIPanelBase
     public override void OnEnter()
     {
         base.OnEnter();
-        title.text = "游戏失败了喵";
+        title.text = "游戏成功了喵";
     }
 
  
@@ -42,5 +42,4 @@ public class GameOverPanel : UIPanelBase
         Application.Quit();
 
     }
-
 }
