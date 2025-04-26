@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameData gameData;
 
+    private bool isGameOver = false; // 游戏是否结束的标志
 
     private void Start()
     {
@@ -93,6 +94,9 @@ public class GameManager : Singleton<GameManager>
     [Button("测试游戏胜利")]
     public void GameWin()
     {
+        if (isGameOver) return; // 如果游戏已经结束，直接返回
+
+        isGameOver = true; // 设置游戏结束标志
         AudioController.PlayWinAudio();
         var panel = YanGF.UI.PushPanel<GameWinPanel>();
         print("游戏胜利");
@@ -101,6 +105,9 @@ public class GameManager : Singleton<GameManager>
     [Button("测试游戏失败")]
     public void GameLose()
     {
+        if (isGameOver) return; // 如果游戏已经结束，直接返回
+
+        isGameOver = true; // 设置游戏结束标志
         AudioController.PlayLoseAudio();
         var panel = YanGF.UI.PushPanel<GameOverPanel>();
         print("游戏失败");
