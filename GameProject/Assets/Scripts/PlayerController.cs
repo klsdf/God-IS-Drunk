@@ -63,18 +63,22 @@ public class PlayerController : Singleton<PlayerController>
 
     private void Update()
     {
-        if (!isControllerConnected) return;
+        if (!isControllerConnected && !Input.anyKey) return;
 
         // 获取手柄右摇杆数据作为移动输入
-        rightStick = gamepad.rightStick.ReadValue();
+        rightStick = gamepad != null ? gamepad.rightStick.ReadValue() : Vector2.zero;
 
         // 获取左摇杆输入（新增）
-        leftStick = gamepad.leftStick.ReadValue();
+        leftStick = gamepad != null ? gamepad.leftStick.ReadValue() : Vector2.zero;
 
-        // 计算目标位置
+        // 获取键盘输入
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        // 合并输入
         Vector3 movementDirection = new Vector3(
-            rightStick.x * (invertX ? -1 : 1),
-            rightStick.y * (invertY ? -1 : 1),
+            (rightStick.x + horizontalInput) * (invertX ? -1 : 1),
+            (rightStick.y + verticalInput) * (invertY ? -1 : 1),
             0
         ).normalized;
 
