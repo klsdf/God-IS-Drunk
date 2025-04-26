@@ -92,6 +92,8 @@ public class PlayerController : Singleton<PlayerController>
     // 受伤时调用此方法
     public void TakeDamage()
     {
+
+        //自身红色闪烁
         // 如果spriteRenderer不为空且当前没有在闪烁
         if (spriteRenderer != null && !isFlashing)
         {
@@ -103,6 +105,9 @@ public class PlayerController : Singleton<PlayerController>
         {
             StartCoroutine(VibrateGamepad(0.5f, 0.25f)); // 震动强度为0.5，持续0.25秒
         }
+
+        //播放受击音效
+        AudioController.PlayDamageAudio();
     }
 
     /// <summary>

@@ -61,6 +61,7 @@ public class GameManager : Singleton<GameManager>
         gameData.hp = Mathf.Max(gameData.hp - amount, gameData.MinHP);
         UIController.Instance.UpdateHP(gameData.hp, gameData.MaxHP);
         PlayerController.Instance.TakeDamage();
+        AudioController.PlayDamageAudio();
         return gameData.hp;
     }
 
@@ -70,6 +71,7 @@ public class GameManager : Singleton<GameManager>
         gameData.hp = Mathf.Min(gameData.hp + amount, gameData.MaxHP);
         UIController.Instance.UpdateHP(gameData.hp, gameData.MaxHP);
         PlayerController.Instance.GainHP();
+        AudioController.PlayDrinkAudio();
         return gameData.hp;
     }
 
@@ -90,6 +92,7 @@ public class GameManager : Singleton<GameManager>
     [Button("测试游戏胜利")]
     public void GameWin()
     {
+        AudioController.PlayWinAudio();
         var panel = YanGF.UI.PushPanel<GameWinPanel>();
         print("游戏胜利");
     }
@@ -97,6 +100,7 @@ public class GameManager : Singleton<GameManager>
     [Button("测试游戏失败")]
     public void GameLose()
     {
+        AudioController.PlayLoseAudio();
         var panel = YanGF.UI.PushPanel<GameOverPanel>();
         print("游戏失败");
     }
