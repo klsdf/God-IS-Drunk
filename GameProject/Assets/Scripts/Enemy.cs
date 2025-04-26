@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     public GameObject notification;
 
     // 射线检测的最大距离
-    private float raycastDistance = 100f;
+    private float raycastDistance = 20f;
 
     void Start()
     {
@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
 
         // 5秒后销毁敌人
         Destroy(gameObject, 40f);
+        notification.SetActive(false);
     }
 
     void Update()
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour
             // 检查是否碰到提示墙
             if (hit.collider.gameObject.tag == "提示墙")
             {
+                notification.SetActive(true);
                 // 将notification移动到射线打在提示墙的地方
                 notification.transform.position = hit.point;
 

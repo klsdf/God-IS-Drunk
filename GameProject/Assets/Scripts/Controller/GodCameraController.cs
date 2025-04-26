@@ -23,7 +23,7 @@ public class GodCameraController : MonoBehaviour
     /// <summary>
     /// 摄像头移动的比例因子。
     /// </summary>
-    private const float moveFactor = 0.5f; 
+    private const float moveFactor = 0.7f; 
 
     /// <summary>
     /// 初始化摄像头的偏移量和玩家的初始位置。
