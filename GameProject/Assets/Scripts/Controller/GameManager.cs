@@ -5,6 +5,7 @@ using YanGameFrameWork.Editor;
 
 
 
+
 public class GameManager : Singleton<GameManager>
 {
 
@@ -17,8 +18,8 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         gameData = YanGF.Model.RegisterModule(new GameData(
-            maxHP: 3000f, 
-            targetTime: 1000f, 
+            maxHP: 3000f,
+            targetTime: 1000f,
             hpDecreaseInterval: 1f
             )
         );
@@ -36,11 +37,15 @@ public class GameManager : Singleton<GameManager>
         }
         UIController.Instance.UpdateTime(gameData.currentTime, gameData.targetTime);
 
+
         // 每秒减少1点血
         gameData.hpDecreaseTimer += Time.deltaTime;
         if (gameData.hpDecreaseTimer >= gameData.hpDecreaseInterval)
         {
             LoseHPByTime();
+
+            // 每秒增加1分
+            YanGF.Model.GetModel<ScoreManager>().AddScore(1);
             if (gameData.hp <= 0)
             {
                 GameLose();
@@ -64,6 +69,10 @@ public class GameManager : Singleton<GameManager>
         PlayerController.Instance.TakeDamage();
         AudioController.PlayDamageAudio();
         PostEffectController.Instance.SetBloomIntensity(gameData.hp / gameData.MaxHP);
+
+        // 减少分数
+        YanGF.Model.GetModel<ScoreManager>().LoseScore((int)amount);
+
         return gameData.hp;
     }
 
@@ -74,6 +83,10 @@ public class GameManager : Singleton<GameManager>
         UIController.Instance.UpdateHP(gameData.hp, gameData.MaxHP);
         PlayerController.Instance.GainHP();
         AudioController.PlayDrinkAudio();
+
+        // 增加分数
+        YanGF.Model.GetModel<ScoreManager>().AddScore((int)amount);
+
         return gameData.hp;
     }
 
