@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
-using YanGameFrameWork.CoreCodes;
+using YanGameFrameWork.Singleton;
 
 
 /// <summary>

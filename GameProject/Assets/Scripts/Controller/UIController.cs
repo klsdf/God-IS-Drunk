@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using YanGameFrameWork.CoreCodes;
+using YanGameFrameWork.Singleton;
 
 public class UIController : Singleton<UIController>
 {

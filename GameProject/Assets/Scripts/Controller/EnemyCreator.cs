@@ -1,5 +1,5 @@
 using UnityEngine;
-using YanGameFrameWork.CoreCodes;
+using YanGameFrameWork.Singleton;
 using System.Collections; // 引入命名空间
 
 public class EnemyCreator : Singleton<EnemyCreator>

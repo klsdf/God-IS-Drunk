@@ -19,9 +19,9 @@ public class GameData : YanModelBase
         }
     }
 
-    public readonly float MaxHP;
+    public  float MaxHP;
 
-    public readonly float MinHP;
+    public  float MinHP;
    
 
 
@@ -56,4 +56,16 @@ public class GameData : YanModelBase
         this.hpDecreaseInterval = 1;
     }
 
+    public override YanModelBase Clone(YanModelBase model)
+    {
+        GameData newModel = model as GameData;
+        newModel.HP = HP;
+        newModel.MaxHP = MaxHP;
+        newModel.MinHP = MinHP;
+        newModel.targetTime = targetTime;
+        newModel.hpDecreaseInterval = hpDecreaseInterval;
+        newModel.hpDecreaseTimer = hpDecreaseTimer;
+        newModel.currentTime = currentTime;
+        return newModel;
+    }
 }

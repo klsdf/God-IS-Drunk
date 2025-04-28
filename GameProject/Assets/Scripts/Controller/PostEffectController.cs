@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using YanGameFrameWork.CoreCodes;
+using YanGameFrameWork.Singleton;
 
 /// <summary>
 /// 控制后处理效果的控制器类。

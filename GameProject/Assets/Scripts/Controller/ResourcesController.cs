@@ -1,5 +1,6 @@
 using UnityEngine;
-using YanGameFrameWork.CoreCodes;
+using YanGameFrameWork.Singleton;
+
 public  class ResourcesController:Singleton<ResourcesController>
 {
     [Header("背景音乐")]

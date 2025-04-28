@@ -25,6 +25,14 @@ public class ScoreManager :YanModelBase
         score -= amount;
     }
 
+    public override YanModelBase Clone(YanModelBase model)
+    {
+        ScoreManager newModel = model as ScoreManager;
+        newModel.score = score;
+        
+        return newModel;
+    }
+
     public ScoreManager()
     {
         score = 0;

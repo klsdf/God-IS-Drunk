@@ -1,5 +1,5 @@
 using UnityEngine;
-using YanGameFrameWork.CoreCodes;
+using YanGameFrameWork.Singleton;
 using YanGameFrameWork.Editor;
 
 
