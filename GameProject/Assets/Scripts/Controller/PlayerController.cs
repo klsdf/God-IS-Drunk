@@ -14,7 +14,7 @@ public class PlayerController : Singleton<PlayerController>
     [SerializeField] private bool invertY = false;     // 是否反转Y轴
 
     [Header("平滑设置")]
-    [SerializeField] private float smoothSpeed = 10f;  // 平滑速度
+    [SerializeField] private float smoothSpeed = 4f;  // 平滑速度
 
     private Gamepad gamepad;
     private Vector3 initialPosition;
@@ -22,7 +22,7 @@ public class PlayerController : Singleton<PlayerController>
     private bool isControllerConnected = false;
 
     [Header("移动距离X")]
-    public float moveDistanceX = 6.0f;    // 移动距离X
+    public float moveDistanceX = 5.5f;    // 移动距离X
     [Header("移动距离Y")]
     public float moveDistanceY = 4.0f;    // 移动距离Y
 

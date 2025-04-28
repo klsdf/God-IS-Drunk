@@ -1,7 +1,9 @@
 using UnityEngine;
 using MoreMountains.Feedbacks;
 
-//所有可以接受节奏的物体
+/// <summary>
+/// 所有可以接受节奏的物体
+/// </summary>
 [RequireComponent(typeof(MMF_Player))]
 public class GameRhythmItem : MonoBehaviour
 {

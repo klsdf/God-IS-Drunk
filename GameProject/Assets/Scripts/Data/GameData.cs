@@ -3,6 +3,10 @@ using YanGameFrameWork.ModelControlSystem;
 
 
 [System.Serializable]
+
+/// <summary>
+/// 游戏的数据
+/// </summary>
 public class GameData : YanModelBase
 {
     public float hp;
