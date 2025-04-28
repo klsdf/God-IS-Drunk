@@ -9,6 +9,7 @@ using YanGameFrameWork.ModelControlSystem;
 /// </summary>
 public class GameData : YanModelBase
 {
+    [SerializeField]
     public float hp;
 
     public float HP
@@ -23,8 +24,10 @@ public class GameData : YanModelBase
         }
     }
 
+    [SerializeField]
     public  float MaxHP;
 
+    [SerializeField]
     public  float MinHP;
    
 
