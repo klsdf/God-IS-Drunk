@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
-
+using System;
 /// <summary>
 /// 可变形RawImage，可以被摇杆控制变形，也就是哥们三人那个图
 /// </summary>
@@ -27,7 +27,7 @@ public class DistortableRawImage : RawImage
     private MeshCollider meshCollider;   // MeshCollider
     private Mesh mesh;  // 自定义 Mesh
 
-
+    private Action _showOnCollisionEnemyDialogLimited;
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -41,6 +41,9 @@ public class DistortableRawImage : RawImage
         mesh = new Mesh();
         meshCollider.sharedMesh = mesh; // 初始化 MeshCollider 使用自定义 Mesh
         // UpdateUI();
+        _showOnCollisionEnemyDialogLimited
+        = YanGF.Timer.CreateRateLimitedAction(FunDialogController.Instance.ShowOnCollisionEnemyDialog, 3f);
+  
     }
 
     void Update()
@@ -89,7 +92,12 @@ public class DistortableRawImage : RawImage
         UpdateMesh();
         // 强制刷新 UI
         SetVerticesDirty();
-    }
+
+
+
+
+        //更新函数
+  }
 
 
     void UpdateMesh()
@@ -149,16 +157,20 @@ public class DistortableRawImage : RawImage
     void OnTriggerEnter(Collider other)
     {
 
-        if(other.tag == "障碍物")
+        if (other.tag == "障碍物")
         {
-            print("碰撞了"+other.gameObject.name);
+            print("碰撞了" + other.gameObject.name);
             GameManager.Instance.LoseHP(5);
-        }else if(other.tag == "酒")
+
+            _showOnCollisionEnemyDialogLimited?.Invoke();
+        }
+        else if (other.tag == "酒")
         {
-            print("碰撞了"+other.gameObject.name);
+            print("碰撞了" + other.gameObject.name);
             GameManager.Instance.GainHP(1);
         }
-        
+
+
     }
 
 

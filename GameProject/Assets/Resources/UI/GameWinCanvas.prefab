@@ -320,7 +320,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u6E38\u620F\u5931\u8D25"
+  m_text: "\u6E38\u620F\u80DC\u5229"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 390bca90caf8a864e9a13935e69d3dbd, type: 2}
   m_sharedMaterial: {fileID: 8565818760558534652, guid: 390bca90caf8a864e9a13935e69d3dbd, type: 2}

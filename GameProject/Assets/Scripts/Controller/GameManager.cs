@@ -19,6 +19,11 @@ public class GameManager : Singleton<GameManager>
     {
         InitDatas();
         AudioController.PlayBGM();
+
+        YanGF.Timer.SetTimeOut(() =>
+        {
+            FunDialogController.Instance.ShowGameStartDialog();
+        }, 1f);
     }
 
 
