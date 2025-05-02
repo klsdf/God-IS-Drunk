@@ -12,6 +12,19 @@ public class UIController : Singleton<UIController>
     public TMP_Text timeText;
     public Slider timeSlider;
 
+    public Button pauseButton;
+
+
+    private void Start() {
+        pauseButton.onClick.AddListener(OnPauseButtonClick);
+    }
+
+    private void OnPauseButtonClick()
+    {
+        YanGF.UI.PushPanel<PausePanel>();
+        Time.timeScale = 0;
+    }
+
 
     public void UpdateHP(float hp, float maxHP)
     {
