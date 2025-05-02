@@ -14,15 +14,73 @@ public class UIController : Singleton<UIController>
 
     public Button pauseButton;
 
+    public Image feverImage;
 
-    private void Start() {
+
+
+    private void Start()
+    {
         pauseButton.onClick.AddListener(OnPauseButtonClick);
+
+        HideHPSlider();
+        HideTimeSlider();
+        HidePauseButton();
+        HideFeverImage();
     }
+
+    public void ShowHPSlider()
+    {
+        hpSlider.gameObject.SetActive(true);
+    }
+
+    public void HideHPSlider()
+    {
+        hpSlider.gameObject.SetActive(false);
+    }
+
+    public void ShowTimeSlider()
+    {
+        timeSlider.gameObject.SetActive(true);
+    }
+
+    public void HideTimeSlider()
+    {
+        timeSlider.gameObject.SetActive(false);
+    }
+
+    public void ShowPauseButton()
+    {
+        pauseButton.gameObject.SetActive(true);
+    }
+
+    public void HidePauseButton()
+    {
+        pauseButton.gameObject.SetActive(false);
+    }
+
 
     private void OnPauseButtonClick()
     {
         YanGF.UI.PushPanel<PausePanel>();
         Time.timeScale = 0;
+    }
+
+
+
+    public void ShowFeverImage()
+    {
+        feverImage.gameObject.SetActive(true);
+    }
+
+    public void HideFeverImage()
+    {
+        feverImage.gameObject.SetActive(false);
+    }
+
+
+    public void UpdateFever(float fever, float maxFever)
+    {
+        feverImage.fillAmount = fever / maxFever;
     }
 
 
@@ -43,4 +101,8 @@ public class UIController : Singleton<UIController>
         timeText.text = YanGF.Localization.Translate("关卡进度") + ":" + percentage.ToString("F2") + "%";
         timeSlider.value = time / maxTime;
     }
+
+
+
+
 }

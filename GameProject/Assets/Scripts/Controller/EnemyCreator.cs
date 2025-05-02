@@ -48,8 +48,15 @@ public class EnemyCreator : Singleton<EnemyCreator>
     }
 
 
+    
+
+
     void Update()
     {
+        if (GameManager.Instance.IsGamePause)
+        {
+            return;
+        }
         // 如果到了生成敌人的时间
         if (Time.time >= nextSpawnTime)
         {
