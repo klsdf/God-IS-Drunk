@@ -40,6 +40,13 @@ public class MenuButton : MonoBehaviour
 
     void Update()
     {
+        // 检测鼠标是否悬停在按钮上
+        if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, Input.mousePosition))
+        {
+            // 如果悬停，则不移动
+            return;
+        }
+
         // 移动位置
         rectTransform.anchoredPosition += direction * speed * Time.deltaTime;
 

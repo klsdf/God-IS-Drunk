@@ -67,6 +67,9 @@ public class GameManager : Singleton<GameManager>
     }
 
 
+    /// <summary>
+    /// 开始游戏
+    /// </summary>
     public void StartGame(){
        FunDialogController.Instance.ShowGameStartDialog();
     }
