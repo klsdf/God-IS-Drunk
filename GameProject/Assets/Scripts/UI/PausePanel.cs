@@ -13,7 +13,8 @@ public class PausePanel : UIPanelBase
 
     public Button exitButton;
     
-    private void Start() {
+    public override void ChildStart() {
+        base.ChildStart();
         continueButton.onClick.AddListener(OnContinueButtonClick);
         restartButton.onClick.AddListener(OnRestartButtonClick);
         settingButton.onClick.AddListener(OnSettingButtonClick);
