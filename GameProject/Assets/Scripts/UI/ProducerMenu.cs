@@ -11,6 +11,9 @@ public class ProducerMenu : MonoBehaviour
     public Button closeButton;
 
     public StartMenu startMenu;
+
+    public CircleText2 circleText2;
+
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -18,6 +21,12 @@ public class ProducerMenu : MonoBehaviour
 
         //本地化按钮
         closeButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("返回");
+    }
+
+
+    void FixedUpdate()
+    {
+        circleText2.startAngle = (circleText2.startAngle + 1f) % 360;
     }
 
     public void Close()
@@ -30,14 +39,16 @@ public class ProducerMenu : MonoBehaviour
             cg => cg.alpha,
             0f,
             tweenTime,
-            () => Debug.Log("Tween完成")
+            () => canvasGroup.gameObject.SetActive(false)
         );
+
+
+        startMenuCanvasGroup.gameObject.SetActive(true);
         YanGF.Tween.Tween(
             startMenuCanvasGroup,
             cg => cg.alpha,
             1f,
-            tweenTime,
-            () => Debug.Log("Tween完成")
+            tweenTime
         );
     }
 }

@@ -167,15 +167,15 @@ public class StartMenu : MonoBehaviour
            cg => cg.alpha,
            0f,
            tweenTime,
-           () => Debug.Log("Tween完成")
+           () => canvasGroup.gameObject.SetActive(false)
        );
 
+        producerMenu.gameObject.SetActive(true);
         YanGF.Tween.Tween(
             producerMenu.canvasGroup,
             cg => cg.alpha,
             1f,
-            tweenTime,
-            () => Debug.Log("Tween完成")
+            tweenTime
         );
 
     }
