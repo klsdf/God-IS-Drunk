@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using YanGameFrameWork.GameSetting;
 using System.Collections;
-
+using TMPro;
+using System;
 /// <summary>
 /// 开始菜单类，负责处理开始菜单的交互逻辑。
 /// </summary>
@@ -11,27 +12,45 @@ public class StartMenu : MonoBehaviour
     /// <summary>
     /// Logo按钮
     /// </summary>
+    [Header("Logo按钮")]
     public Button logoButton;
 
     /// <summary>
     /// 开始按钮
     /// </summary>
+    [Header("开始按钮")]
     public Button startButton;
 
     /// <summary>
     /// 设置按钮
     /// </summary>
+    [Header("设置按钮")]
     public Button settingsButton;
 
     /// <summary>
     /// 退出按钮
     /// </summary>
+    [Header("退出按钮")]
     public Button exitButton;
+
+
+    /// <summary>
+    /// 制作人按钮
+    /// </summary>
+    [Header("制作人按钮")]
+    public Button producerButton;
+
+
+
+
+    [Header("制作人菜单")]
+    public ProducerMenu producerMenu;
 
     /// <summary>
     /// Canvas Group组件，用于控制UI透明度。
     /// </summary>
-    private CanvasGroup canvasGroup;
+    [NonSerialized]
+    public CanvasGroup canvasGroup;
 
     /// <summary>
     /// RectTransform组件，用于控制UI位置。
@@ -58,6 +77,7 @@ public class StartMenu : MonoBehaviour
         startButton.onClick.AddListener(StartGame);
         settingsButton.onClick.AddListener(Settings);
         exitButton.onClick.AddListener(Exit);
+        producerButton.onClick.AddListener(Producer);
     }
 
     /// <summary>
@@ -124,6 +144,32 @@ public class StartMenu : MonoBehaviour
         Application.Quit();
     }
 
+    /// <summary>
+    /// 制作人按钮点击事件。
+    /// </summary>
+    public void Producer()
+    {
+
+
+        float tweenTime = 1f;
+        // YanGF.UI.PushPanel<ProducerPanel>();
+        YanGF.Tween.Tween(
+           canvasGroup,
+           cg => cg.alpha,
+           0f,
+           tweenTime,
+           () => Debug.Log("Tween完成")
+       );
+
+        YanGF.Tween.Tween(
+            producerMenu.canvasGroup,
+            cg => cg.alpha,
+            1f,
+            tweenTime,
+            () => Debug.Log("Tween完成")
+        );
+
+    }
     /// <summary>
     /// Logo按钮点击事件。
     /// </summary>

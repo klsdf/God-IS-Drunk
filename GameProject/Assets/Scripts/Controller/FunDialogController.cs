@@ -53,8 +53,6 @@ public class FunDialogController : Singleton<FunDialogController>
     void Start()
     {
 
-
-
         DialogBlock dialogBlock = new DialogBlock(DialogType.GameStart.ToString(), new List<Dialog>
         {
             new Dialog("喂，哥们，你会开车吗？", 左),
