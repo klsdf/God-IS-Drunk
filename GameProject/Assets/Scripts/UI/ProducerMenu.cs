@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 public class ProducerMenu : MonoBehaviour
 {
 
@@ -15,6 +15,9 @@ public class ProducerMenu : MonoBehaviour
     {
         canvasGroup = GetComponent<CanvasGroup>();
         closeButton.onClick.AddListener(Close);
+
+        //本地化按钮
+        closeButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("返回");
     }
 
     public void Close()

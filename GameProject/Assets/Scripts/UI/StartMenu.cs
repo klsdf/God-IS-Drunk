@@ -78,6 +78,15 @@ public class StartMenu : MonoBehaviour
         settingsButton.onClick.AddListener(Settings);
         exitButton.onClick.AddListener(Exit);
         producerButton.onClick.AddListener(Producer);
+
+
+
+        //本地化按钮
+        logoButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("宿醉阿弥陀佛");
+        startButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("开始游戏");
+        settingsButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("设置");
+        exitButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("退出");
+        producerButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("制作人名单");
     }
 
     /// <summary>

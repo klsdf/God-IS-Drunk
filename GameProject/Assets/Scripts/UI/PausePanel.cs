@@ -2,6 +2,7 @@ using UnityEngine.UI;
 using YanGameFrameWork.UISystem;
 using UnityEngine;
 using YanGameFrameWork.GameSetting;
+using TMPro;
 public class PausePanel : UIPanelBase
 {
     public Button continueButton;
@@ -18,6 +19,16 @@ public class PausePanel : UIPanelBase
         settingButton.onClick.AddListener(OnSettingButtonClick);
         exitButton.onClick.AddListener(OnExitButtonClick);
     }
+
+    public override void OnLocalize()
+    {
+        continueButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("继续游戏");
+        restartButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("重开游戏");
+        settingButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("设置");
+        exitButton.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("退出游戏");
+    }
+
+
 
     private void OnContinueButtonClick()
     {

@@ -17,10 +17,18 @@ public class GameWinPanel : UIPanelBase
     public Button btnExit;
 
 
-    private void Start()
+    public override void ChildStart()
     {
+        base.ChildStart();
         btnRestart.onClick.AddListener(Restart);
         btnExit.onClick.AddListener(Exit);
+    }
+
+    public override void OnLocalize()
+    {
+        title.text = YanGF.Localization.Translate("游戏成功了喵");
+        btnRestart.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("重开游戏");
+        btnExit.GetComponentInChildren<TMP_Text>().text = YanGF.Localization.Translate("退出游戏");
     }
 
 

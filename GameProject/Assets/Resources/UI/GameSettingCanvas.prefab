@@ -3143,11 +3143,23 @@ MonoBehaviour:
   effectsVolumeSlider: {fileID: 2263530344005079843}
   resolutionDropdown: {fileID: 5297848352290622766}
   fullScreenButton: {fileID: 6074651888899262533}
-  fullScreenText: {fileID: 6124242818614198154}
+  fullScreenStateText: {fileID: 6124242818614198154}
   lockFrameButton: {fileID: 274392340428282310}
-  lockFrameText: {fileID: 156717723303892470}
+  lockFrameStateText: {fileID: 156717723303892470}
   exitButton: {fileID: 3162064975816194740}
   closeButton: {fileID: 2022744039178272148}
+  customResolutions:
+  - {x: 1280, y: 720}
+  - {x: 1920, y: 1080}
+  - {x: 2560, y: 1440}
+  masterVolumeText: {fileID: 6569110569415788113}
+  musicVolumeText: {fileID: 8201374393086668112}
+  effectsVolumeText: {fileID: 5184978967684427248}
+  resolutionText: {fileID: 6845063325911160243}
+  fullScreenText: {fileID: 8813720521238302116}
+  languageText: {fileID: 7480284452814449945}
+  lockFrameText: {fileID: 6521341841094557350}
+  exitText: {fileID: 4227739366906558816}
 --- !u!1 &4639235193617998152
 GameObject:
   m_ObjectHideFlags: 0
@@ -6005,7 +6017,7 @@ GameObject:
   - component: {fileID: 1895680400812359617}
   - component: {fileID: 6124242818614198154}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: "\u5168\u5C4F\u72B6\u6001\u6587\u672C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6523,7 +6535,7 @@ GameObject:
   - component: {fileID: 2954924427780593843}
   - component: {fileID: 156717723303892470}
   m_Layer: 5
-  m_Name: "\u9501\u5E27\u6587\u672C"
+  m_Name: "\u9501\u5E27\u72B6\u6001\u6587\u672C"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
