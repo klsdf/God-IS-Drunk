@@ -19,19 +19,19 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1766199373824
-    m_Localized: Level Progress
+    m_Localized: Distance
     m_Metadata:
       m_Items: []
   - m_Id: 1773245804544
-    m_Localized: Alcohol Level
+    m_Localized: "\u201CRemaining Fuel\u201D"
     m_Metadata:
       m_Items: []
   - m_Id: 1894721236992
-    m_Localized: Success!
+    m_Localized: "Win\uFF01"
     m_Metadata:
       m_Items: []
   - m_Id: 1950186713088
-    m_Localized: Over!
+    m_Localized: Game Over
     m_Metadata:
       m_Items: []
   references:
