@@ -79,6 +79,7 @@ public class FeverController : Singleton<FeverController>
 
     void Update()
     {
+        if (GameManager.Instance.IsGamePause) return;
         // Fever值每秒增加10
         Fever = Mathf.Min(_fever + 10 * Time.deltaTime, FeverMax);
     }

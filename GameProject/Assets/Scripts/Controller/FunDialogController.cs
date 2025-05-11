@@ -123,15 +123,15 @@ public class FunDialogController : Singleton<FunDialogController>
 
         if (dialog.speaker == StoryConfig.左)
         {
-            _dialogPanel.anchoredPosition = new Vector2(0, 85);
+            _dialogPanel.anchoredPosition = new Vector2(0, 130);
         }
         else if (dialog.speaker == StoryConfig.center)
         {
-            _dialogPanel.anchoredPosition = new Vector2(60, 85);
+            _dialogPanel.anchoredPosition = new Vector2(60, 130);
         }
         else if (dialog.speaker == StoryConfig.right)
         {
-            _dialogPanel.anchoredPosition = new Vector2(120, 85);
+            _dialogPanel.anchoredPosition = new Vector2(120, 130);
         }
 
         dialog.onPlay?.Invoke();
