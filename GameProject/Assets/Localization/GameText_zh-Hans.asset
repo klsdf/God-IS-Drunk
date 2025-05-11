@@ -19,19 +19,19 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 1766199373824
-    m_Localized: "\u5173\u5361\u8FDB\u5EA6"
+    m_Localized: "\u8DDD\u79BB"
     m_Metadata:
       m_Items: []
   - m_Id: 1773245804544
-    m_Localized: "\u9152\u91CF"
+    m_Localized: "\u5269\u4F59\u300C\u71C3\u6599\u300D"
     m_Metadata:
       m_Items: []
   - m_Id: 1894721236992
-    m_Localized: "\u6E38\u620F\u6210\u529F\u4E86\u55B5"
+    m_Localized: "Win\uFF01"
     m_Metadata:
       m_Items: []
   - m_Id: 1950186713088
-    m_Localized: "\u6E38\u620F\u5931\u8D25\u4E86\u55B5"
+    m_Localized: "Game Over\uFF01"
     m_Metadata:
       m_Items: []
   references:
