@@ -1,5 +1,3 @@
-
-
 public static class DataConfig{
     /// <summary>
     /// 最大血量
@@ -9,7 +7,7 @@ public static class DataConfig{
     /// <summary>
     /// 目标时间
     /// </summary>
-    public static float targetTime = 500;
+    public static float targetTime = 400;
 
     /// <summary>
     /// 每隔多少秒减少一次血量
@@ -30,7 +28,7 @@ public static class DataConfig{
     /// <summary>
     /// Boss战时长
     /// </summary>
-    public static float bossBattleTargetTime = 30;
+    public static float bossBattleTargetTime = 100;
 
 
     /// <summary>

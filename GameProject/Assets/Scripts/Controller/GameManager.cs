@@ -53,14 +53,6 @@ public class NormalState : BaseState
 public class BossBattleState : BaseState
 {
 
-
-    [Header("Boss战计时器")]
-    [SerializeField]
-    private float bossBattleCurrentTime = 0.0f;
-
-    // Boss战时长
-    [SerializeField]
-    private float bossBattleTargetTime = 30.0f; // 假设Boss战持续30秒
     /// <summary>
     /// 进入Boss战模式
     /// </summary>
@@ -69,7 +61,9 @@ public class BossBattleState : BaseState
 
         // 触发进入Boss战的逻辑
         Debug.Log("进入Boss战模式");
-        bossBattleCurrentTime = 0.0f; // 初始化Boss战计时器
+
+        GameData gameData = YanGF.Model.GetModel<GameData>();
+        gameData.bossBattleCurrentTime = 0.0f; // 初始化Boss战计时器
 
         FunDialogController.Instance.ShowBossDialog();
         GameManager.Instance.PauseGame();
@@ -78,11 +72,12 @@ public class BossBattleState : BaseState
 
     public override void OnUpdate()
     {
-        bossBattleCurrentTime += Time.deltaTime;
-        if (bossBattleCurrentTime >= bossBattleTargetTime)
+        GameData gameData = YanGF.Model.GetModel<GameData>();
+        gameData.bossBattleCurrentTime += Time.deltaTime;
+        if (gameData.bossBattleCurrentTime >= gameData.bossBattleTargetTime)
         {
             GameManager.Instance.OnBossBattleWin();
-            bossBattleCurrentTime = 0.0f; // 重置计时器
+            gameData.bossBattleCurrentTime = 0.0f; // 重置计时器
         }
     }
 
@@ -208,9 +203,8 @@ public class GameManager : Singleton<GameManager>
     {
         gameData.currentTime = gameData.targetTime; // 将进度设置为100%
         GameWin(); // 调用游戏胜利逻辑
+        PauseGame();
     }
-
-
 
 
     private float LoseHPByTime()
