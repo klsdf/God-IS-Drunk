@@ -52,6 +52,13 @@ public static class DataConfig{
     /// </summary>
     public static float gainHP = 1;
 
+
+
+    /// <summary>
+    /// 射线检测的最大距离
+    /// </summary>
+    public static float raycastDistance = 30f;
+
 }
 
 

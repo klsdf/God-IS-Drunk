@@ -21,8 +21,6 @@ public class Enemy : MonoBehaviour
 
     public GameObject notification;
 
-    // 射线检测的最大距离
-    private float raycastDistance = 20f;
 
     void Start()
     {
@@ -45,7 +43,7 @@ public class Enemy : MonoBehaviour
 
         // 射线检测
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -transform.forward, out hit, raycastDistance))
+        if (Physics.Raycast(transform.position, -transform.forward, out hit, DataConfig.raycastDistance))
         {
             // 检查是否碰到提示墙
             if (hit.collider.gameObject.tag == "提示墙")
@@ -57,7 +55,7 @@ public class Enemy : MonoBehaviour
                 // 计算notification透明度，距离越近透明度越高
                 float distance = hit.distance;
                 // 使用平方根函数使透明度变化在距离较近时更明显
-                float alpha = Mathf.Clamp01(1 - Mathf.Sqrt(distance / raycastDistance));
+                float alpha = Mathf.Clamp01(1 - Mathf.Sqrt(distance / DataConfig.raycastDistance));
                 // 获取SpriteRenderer组件并设置透明度
                 SpriteRenderer spriteRenderer = notification.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
@@ -74,6 +72,6 @@ public class Enemy : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * raycastDistance);
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * DataConfig.raycastDistance);
     }
 }
