@@ -16,6 +16,8 @@ public class GameManager : Singleton<GameManager>
 
     public bool IsGamePause = false;
 
+    private bool isBossBattle = false;
+
 
 
 
@@ -40,16 +42,12 @@ public class GameManager : Singleton<GameManager>
 
 
 
-
-
-
-
     public void InitDatas()
     {
         gameData = YanGF.Model.RegisterModule(new GameData(
-            maxHP: 3000f,
-            targetTime: 1000f,
-            hpDecreaseInterval: 1f
+            maxHP: DataConfig.maxHP,
+            targetTime: DataConfig.targetTime,
+            hpDecreaseInterval: DataConfig.hpDecreaseInterval
             )
         );
 
@@ -59,14 +57,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        gameData.currentTime += Time.deltaTime;
-        if (gameData.currentTime >= gameData.targetTime)
-        {
-            gameData.currentTime = 0;
-            Pause();
-            GameWin();
-        }
-        UIController.Instance.UpdateTime(gameData.currentTime, gameData.targetTime);
+        GameProcessCheck();
 
         // 每秒减少1点血
         gameData.hpDecreaseTimer += Time.deltaTime;
@@ -87,9 +78,50 @@ public class GameManager : Singleton<GameManager>
     }
 
 
+
+
+    /// <summary>
+    /// 检查游戏进程，看看有没有通关，或者进入boss战
+    /// </summary>
+    private void GameProcessCheck(){
+        if (isBossBattle) return; // 如果已经进入Boss战，停止进度更新
+
+        gameData.currentTime += Time.deltaTime;
+        float progress = gameData.currentTime / gameData.targetTime;
+
+        if (progress >= DataConfig.meetBossProgress) {
+            gameData.currentTime = gameData.targetTime * DataConfig.meetBossProgress; // 将进度卡在99%
+            EnterBossBattle(); // 进入Boss战模式
+            isBossBattle = true;
+        }
+
+        UIController.Instance.UpdateTime(gameData.currentTime, gameData.targetTime);
+    }
+
+    /// <summary>
+    /// 进入Boss战模式
+    /// </summary>
+    private void EnterBossBattle() {
+        // 触发进入Boss战的逻辑
+        Debug.Log("进入Boss战模式");
+        // 这里可以添加进入Boss战的具体实现
+    }
+
+    /// <summary>
+    /// Boss战胜利后调用此方法
+    /// </summary>
+    public void OnBossBattleWin() {
+        gameData.currentTime = gameData.targetTime; // 将进度设置为100%
+        isBossBattle = false;
+        GameWin(); // 调用游戏胜利逻辑
+    }
+
+
+
+
     private float LoseHPByTime()
     {
-        gameData.hp = Mathf.Max(gameData.hp - 1, gameData.MinHP);
+        gameData.hp = Mathf.Max(gameData.hp - DataConfig.loseHPByTime, gameData.MinHP);
         UIController.Instance.UpdateHP(gameData.hp, gameData.MaxHP);
         return gameData.hp;
     }
@@ -106,7 +138,7 @@ public class GameManager : Singleton<GameManager>
         YanGF.Model.GetModel<ScoreManager>().LoseScore((int)amount);
 
 
-        FeverController.Instance.LoseFever(3);
+        FeverController.Instance.LoseFever(DataConfig.loseFever);
 
         return gameData.hp;
     }
@@ -123,7 +155,7 @@ public class GameManager : Singleton<GameManager>
         YanGF.Model.GetModel<ScoreManager>().AddScore((int)amount);
 
         // Fever值增加2
-        FeverController.Instance.GainFever(2);
+        FeverController.Instance.GainFever(DataConfig.gainFever);
 
         return gameData.hp;
     }
