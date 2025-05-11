@@ -10,6 +10,8 @@ public static class StoryConfig
     public static DialogCharacter right = new DialogCharacter("右");
     public static DialogCharacter 打工人 = new DialogCharacter("神秘打工人");
 
+    public static DialogCharacter 地雷妹 = new DialogCharacter("地雷妹");
+
 
     public static DialogBlock startDialogBlock = new DialogBlock(DialogType.GameStart.ToString(), new List<Dialog>
     {

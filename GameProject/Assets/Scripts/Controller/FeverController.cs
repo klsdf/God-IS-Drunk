@@ -44,6 +44,11 @@ public class FeverController : Singleton<FeverController>
     #region fever修改的物体参数
     public Light2D FeverLight;
 
+
+    public Transform God;
+    public Transform Jupiter;
+
+
     #endregion
 
 
@@ -112,11 +117,19 @@ public class FeverController : Singleton<FeverController>
     private void OnFever()
     {
         Debug.Log("触发fever事件");
+
+
+        YanGF.Tween.Tween(God, t => t.position, new Vector3(-39, -7, 109.5f), 3);
+
+        YanGF.Tween.Tween(Jupiter, t => t.position, new Vector3(70.2f, 46.5f, 122.4f), 3);
     }
 
     private void OnNotFever()
     {
         Debug.Log("触发notfever事件");
         FeverLight.color = Color.white;
+
+        YanGF.Tween.Tween(God, t => t.position, new Vector3(-92.2f, -49.8f, 109.5f), 3);
+        YanGF.Tween.Tween(Jupiter, t => t.position, new Vector3(121.9f, 52.4f, 122.4f), 3);
     }
 }
