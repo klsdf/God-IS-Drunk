@@ -14,39 +14,12 @@ public class GameManager : Singleton<GameManager>
 
     private bool isGameOver = false; // 游戏是否结束的标志
 
-
-
     public bool IsGamePause = false;
 
 
-    [SerializeField]
-    private float _fever = 0;
-    public float Fever
-    {
-        get
-        {
-            return _fever;
-        }
-        set
-        {
-            _fever = value;
-            UIController.Instance.UpdateFever(_fever, FeverMax);
-
-            if (_fever >= FeverMax * 0.7f){
-                YanGF.Event.TriggerEvent(GameEventType.OnFever.ToString());
-            }else{
-                YanGF.Event.TriggerEvent(GameEventType.OnNotFever.ToString());
-            }
-        }
-    }
-
-
-    private bool _isFever = false;
 
 
  
-    
-    public float FeverMax = 1000;
 
     private void Start()
     {
@@ -54,16 +27,7 @@ public class GameManager : Singleton<GameManager>
         AudioController.PlayBGM();
 
         IsGamePause = true;
-        YanGF.Event.AddListener(GameEventType.OnFever.ToString(), ()=>{
-            if(_isFever == true) return;
-            OnFever();
-            _isFever = true;
-        });
-        YanGF.Event.AddListener(GameEventType.OnNotFever.ToString(), ()=>{
-            if(_isFever == false) return;
-            OnNotFever();
-            _isFever = false;
-        });
+   
     }
 
 
@@ -77,13 +41,6 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    private void OnFever(){
-        Debug.Log("触发fever事件");
-    }
-
-    private void OnNotFever(){
-        Debug.Log("触发notfever事件");
-    }
 
 
 
@@ -126,8 +83,7 @@ public class GameManager : Singleton<GameManager>
             gameData.hpDecreaseTimer = 0;
         }
 
-        // Fever值每秒增加10
-        Fever = Mathf.Min(_fever + 10 * Time.deltaTime, FeverMax);
+
     }
 
 
@@ -149,8 +105,8 @@ public class GameManager : Singleton<GameManager>
         // 减少分数
         YanGF.Model.GetModel<ScoreManager>().LoseScore((int)amount);
 
-        // Fever值减少1
-        Fever = Mathf.Max(_fever - 3, 0);
+
+        FeverController.Instance.LoseFever(3);
 
         return gameData.hp;
     }
@@ -167,7 +123,7 @@ public class GameManager : Singleton<GameManager>
         YanGF.Model.GetModel<ScoreManager>().AddScore((int)amount);
 
         // Fever值增加2
-        Fever = Mathf.Min(_fever + 2, FeverMax);
+        FeverController.Instance.GainFever(2);
 
         return gameData.hp;
     }
