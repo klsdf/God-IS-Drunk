@@ -4,12 +4,15 @@ public abstract class BossBase : MonoBehaviour
 {
 
     protected SpriteRenderer spriteRenderer;
-    protected Vector3 startPosition;
-    protected Vector3 targetPosition;
+    protected Vector3 startPosition = new Vector3(0.89f, -10.3f, 83);
+    protected Vector3 targetPosition = new Vector3(0.89f, 4.8f, 83);
 
     protected bool isMoveing = false;
 
     protected float moveTime = 3f;
+
+
+    public bool isShow = false;
 
 
 
@@ -27,6 +30,7 @@ public abstract class BossBase : MonoBehaviour
     [ContextMenu("Show")]
     public void Show()
     {
+        isShow = true;
         transform.position = startPosition;
 
 
@@ -35,6 +39,17 @@ public abstract class BossBase : MonoBehaviour
         {
             isMoveing = false;
         });
+    }
+
+
+
+    public void Hide()
+    {
+        isShow = false;
+        YanGF.Tween.Tween(transform, t => t.position, startPosition, moveTime, () =>
+       {
+           isMoveing = false;
+       });
     }
 
 

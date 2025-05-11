@@ -3,19 +3,14 @@ using UnityEngine;
 public class BossEnemy : BossBase
 {
 
-    public Sprite[] sprites;
-    public Sprite deathSprite; // 死亡时的sprite
+    public Sprite[] HappySprites;
 
     public Sprite normalSprite;// 正常状态的sprite
-    public Sprite normal2Sprite;// 正常状态2的sprite
 
     private int currentSpriteIndex = 0;
-    private bool isDead = false; // 死亡状态标志
 
-    private float survivalTime = 0f; // 存活时间
-    
-
-
+    [SerializeField]
+    private bool isHappy = false; // 标记是否处于happy状态
 
     /// <summary>
     /// 左边的装饰
@@ -40,17 +35,11 @@ public class BossEnemy : BossBase
 
     void Update()
     {
-        if (isDead) return; // 如果已经死亡，不再更新
-
-        survivalTime += Time.deltaTime;
-        if (survivalTime >= DataConfig.smallBossBattleTargetTime)
-        {
-            Die(); // 超过阈值，自动死亡
-        }
+        if (isShow == false) return;
 
         // 模拟跳跃的震动效果
 
-        if (isMoveing == false)
+        if (isMoveing == false && isHappy == true)
         {
             float shakeOffset = Mathf.Sin(Time.time * shakeSpeed) * shakeAmplitude;
             Vector3 leftNewPosition = leftDecoration.localPosition + new Vector3(0, shakeOffset, 0);
@@ -62,19 +51,20 @@ public class BossEnemy : BossBase
 
     protected override void OnRhythm(RhythmType rhythmType)
     {
-        if (isDead) return; // 如果已经死亡，不再切换图片
+        if (!isHappy) return; // 只有在happy状态时才进行轮播
 
-        spriteRenderer.sprite = sprites[currentSpriteIndex];
-        currentSpriteIndex = (currentSpriteIndex + 1) % sprites.Length;
+        spriteRenderer.sprite = HappySprites[currentSpriteIndex];
+        currentSpriteIndex = (currentSpriteIndex + 1) % HappySprites.Length;
     }
 
-    public void Die()
+
+    [ContextMenu("SetHappyState")]
+    public void SetHappyState(bool happy)
     {
-        isDead = true;
-        spriteRenderer.sprite = deathSprite; // 切换为死亡画面
-        YanGF.Tween.Tween(transform, t => t.position, startPosition, moveTime, () =>
+        isHappy = happy;
+        if (!isHappy)
         {
-            isMoveing = false;
-        });
+            spriteRenderer.sprite = normalSprite; // 切换回正常状态的sprite
+        }
     }
 }
