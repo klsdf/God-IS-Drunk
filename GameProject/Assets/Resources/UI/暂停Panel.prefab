@@ -509,6 +509,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u91CD\u5F00\u6E38\u620F"
       objectReference: {fileID: 0}
+    - target: {fileID: 3438155981960005013, guid: 739213861b085934ead6251104125403, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -629,6 +633,10 @@ PrefabInstance:
     - target: {fileID: 3438155981960005013, guid: 739213861b085934ead6251104125403, type: 3}
       propertyPath: m_text
       value: "\u8BBE\u7F6E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438155981960005013, guid: 739213861b085934ead6251104125403, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -751,6 +759,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u9000\u51FA\u6E38\u620F"
       objectReference: {fileID: 0}
+    - target: {fileID: 3438155981960005013, guid: 739213861b085934ead6251104125403, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -865,6 +877,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2604279253251803045, guid: 739213861b085934ead6251104125403, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3438155981960005013, guid: 739213861b085934ead6251104125403, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
