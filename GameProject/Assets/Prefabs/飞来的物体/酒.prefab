@@ -56,10 +56,54 @@ PrefabInstance:
       propertyPath: m_TagString
       value: "\u9152"
       objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7138619
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7002865
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -88.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853346484541999994, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6302671954335641452, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a30422b66f11dd54aa4d2f3368b2266c, type: 3}
+      objectReference: {fileID: 21300000, guid: f4f5d6428092240428277ca2c4c676f7, type: 3}
     - target: {fileID: 6900035705635164091, guid: 132bb14765d65984ca7b1a896d6cbbb2, type: 3}
       propertyPath: m_Name
       value: "\u9152"
