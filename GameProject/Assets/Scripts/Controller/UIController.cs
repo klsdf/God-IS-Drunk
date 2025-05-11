@@ -11,7 +11,7 @@ public class UIController : Singleton<UIController>
     public Slider hpSlider;
 
     public TMP_Text timeText;
-    public Slider timeSlider;
+    public Image timeSlider;
 
     public Button pauseButton;
 
@@ -47,12 +47,12 @@ public class UIController : Singleton<UIController>
 
     public void ShowTimeSlider()
     {
-        timeSlider.gameObject.SetActive(true);
+        timeSlider.transform.parent.gameObject.SetActive(true);
     }
 
     public void HideTimeSlider()
     {
-        timeSlider.gameObject.SetActive(false);
+        timeSlider.transform.parent.gameObject.SetActive(false);
     }
 
     public void ShowPauseButton()
@@ -106,7 +106,7 @@ public class UIController : Singleton<UIController>
     {
         float percentage = (time / maxTime) * 100;
         timeText.text = YanGF.Localization.Translate("关卡进度") + ":" + percentage.ToString("F2") + "%";
-        timeSlider.value = time / maxTime;
+        timeSlider.fillAmount = time / maxTime;
     }
 
 
