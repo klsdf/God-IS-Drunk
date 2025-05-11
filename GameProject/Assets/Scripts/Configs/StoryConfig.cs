@@ -56,9 +56,9 @@ public static class StoryConfig
 
     public static DialogBlock collisionEnemyDialogBlock = new DialogBlock(DialogType.OnCollisionEnemy.ToString(), new List<Dialog>
     {
-        new Dialog("大哥！你...你别晃啊！撞...撞上啦...装上啦！", 左),
-        new Dialog("老三...嗝...你别左右...左右乱动！往...往前走！", center),
-        new Dialog("哎呀！酒...酒撒啦！二哥...我不行啦！帮...帮帮我！", right),
+        new Dialog("大哥！你……你别晃啊！撞。撞上啦……撞上啦！", 左),
+        new Dialog("老三……嗝。你别左右……左右乱动！往，往前走！", center),
+        new Dialog("哎呀！酒酒撒啦！二哥！我不行啦！帮……帮帮我！", right),
 
         });
 
