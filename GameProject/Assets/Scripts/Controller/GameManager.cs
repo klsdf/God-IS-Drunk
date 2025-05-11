@@ -67,6 +67,8 @@ public class BossBattleState : BaseState
 
         FunDialogController.Instance.ShowBossDialog();
         GameManager.Instance.PauseGame();
+
+        GameManager.Instance.bossEnemy.Show();
     }
 
 
@@ -111,6 +113,8 @@ public class GameManager : Singleton<GameManager>
 
 
     public string debugCurrentState;
+
+    public BossEnemy bossEnemy;
 
     private void Start()
     {

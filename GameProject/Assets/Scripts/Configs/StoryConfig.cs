@@ -76,13 +76,13 @@ public static class StoryConfig
     {
         new Dialog("1", 左),
         new Dialog("2", center),
-        new Dialog("3", right),
+        new Dialog("我是地雷妹", 地雷妹),
         new Dialog("4", 左),
         new Dialog("5", center),
-        new Dialog("6", right),
+        new Dialog("我是地雷妹", 地雷妹),
         new Dialog("7", 左),
         new Dialog("8", center),
-        new Dialog("9", right),
+        new Dialog("我是地雷妹", 地雷妹),
         
     });
 }

@@ -37,15 +37,25 @@ public class BossEnemy : MonoBehaviour
     {
         YanGF.Event.AddListener<RhythmType>(RhythmEvent.OnRhythm, OnRhythm);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        transform.position = startPosition;
+    }
 
+
+    [ContextMenu("Show")]
+    public void Show()
+    {
         transform.position = startPosition;
 
 
         isMoveing = true;
-        YanGF.Tween.Tween(transform, t => t.position, targetPosition, moveTime,()=>{
+        YanGF.Tween.Tween(transform, t => t.position, targetPosition, moveTime, () =>
+        {
             isMoveing = false;
         });
     }
+
+
+
 
     void Update()
     {
@@ -59,10 +69,11 @@ public class BossEnemy : MonoBehaviour
 
         // 模拟跳跃的震动效果
 
-        if(isMoveing == false){
+        if (isMoveing == false)
+        {
             float shakeOffset = Mathf.Sin(Time.time * shakeSpeed) * shakeAmplitude;
-            Vector3 leftNewPosition = leftDecoration.localPosition+ new Vector3(0, shakeOffset, 0);
-            Vector3 rightNewPosition = rightDecoration.localPosition+ new Vector3(0, shakeOffset, 0);
+            Vector3 leftNewPosition = leftDecoration.localPosition + new Vector3(0, shakeOffset, 0);
+            Vector3 rightNewPosition = rightDecoration.localPosition + new Vector3(0, shakeOffset, 0);
             leftDecoration.localPosition = leftNewPosition;
             rightDecoration.localPosition = rightNewPosition;
         }
@@ -80,7 +91,8 @@ public class BossEnemy : MonoBehaviour
     {
         isDead = true;
         spriteRenderer.sprite = deathSprite; // 切换为死亡画面
-        YanGF.Tween.Tween(transform, t => t.position, startPosition, moveTime,()=>{
+        YanGF.Tween.Tween(transform, t => t.position, startPosition, moveTime, () =>
+        {
             isMoveing = false;
         });
     }

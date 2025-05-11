@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using YanGameFrameWork.DialogSystem;
 using System.Collections;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 
 
 
@@ -38,10 +39,23 @@ public class FunDialogController : Singleton<FunDialogController>
 {
 
     [SerializeField]
+    [Header("对话框的文本")]
     private TMP_Text _dialogText;
 
     [SerializeField]
+    [Header("对话框面板")]
     private RectTransform _dialogPanel;
+
+
+
+
+    [SerializeField]
+    [Header("Boss对话框的文本")]
+    private TMP_Text BossDialogText;
+
+    [SerializeField]
+    [Header("Boss对话框面板")]
+    private RectTransform BossDialogPanel;
 
 
 
@@ -86,6 +100,7 @@ public class FunDialogController : Singleton<FunDialogController>
     }
 
 
+    [ContextMenu("ShowBossDialog")]
     public void ShowBossDialog(){
         YanGF.Dialog.RunSequenceDialog(DialogType.EnterBossBattle.ToString(),ShowDialog,()=>{
             GameManager.Instance.ResumeGame();
@@ -108,6 +123,7 @@ public class FunDialogController : Singleton<FunDialogController>
     public void CloseDialog()
     {
         _dialogPanel.gameObject.SetActive(false);
+        BossDialogPanel.gameObject.SetActive(false);
     }
 
 
@@ -117,7 +133,15 @@ public class FunDialogController : Singleton<FunDialogController>
     {
 
         string dialogText = YanGF.Localization.Translate(dialog.dialog);
-        // print("播放对话：" + dialogText);
+
+        if(dialog.speaker == StoryConfig.地雷妹){
+            BossDialogText.text = dialogText;
+            BossDialogPanel.gameObject.SetActive(true);
+            YanGF.Dialog.StartTypingEffect(dialogText, 0.05f, BossDialogText);
+            return;
+        }
+
+
         _dialogPanel.gameObject.SetActive(true);
         YanGF.Dialog.StartTypingEffect(dialogText, 0.05f, _dialogText);
 
