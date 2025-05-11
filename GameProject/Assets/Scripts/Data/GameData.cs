@@ -59,14 +59,14 @@ public class GameData : YanModelBase
         MinHP = 0;
         hp = MaxHP;
 
-        this.targetTime = 1000;
+        this.targetTime = 500;
         this.hpDecreaseInterval = 1;
     }
 
     public override YanModelBase Clone(YanModelBase model)
     {
         GameData newModel = model as GameData;
-        newModel.HP = HP;
+        newModel.hp = hp;
         newModel.MaxHP = MaxHP;
         newModel.MinHP = MinHP;
         newModel.targetTime = targetTime;

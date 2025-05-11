@@ -31,6 +31,8 @@ public enum DialogType
     EnterFeverMode,
     /// <summary>立刻进入Fever模式事件。</summary>
     InstantFeverMode,
+    /// <summary>进入Boss战事件。</summary>
+    EnterBossBattle,
 }
 public class FunDialogController : Singleton<FunDialogController>
 {
@@ -52,11 +54,12 @@ public class FunDialogController : Singleton<FunDialogController>
 
         DialogBlock dialogBlock3 = StoryConfig.drinkDialogBlock;
 
-
+        DialogBlock dialogBlock4 = StoryConfig.bossDialogBlock;
 
         YanGF.Dialog.RegisterDialogBlock(dialogBlock);
         YanGF.Dialog.RegisterDialogBlock(dialogBlock2);
         YanGF.Dialog.RegisterDialogBlock(dialogBlock3);
+        YanGF.Dialog.RegisterDialogBlock(dialogBlock4);
     }
 
 
@@ -78,6 +81,13 @@ public class FunDialogController : Singleton<FunDialogController>
             CloseDialog();
         });
 
+    }
+
+
+    public void ShowBossDialog(){
+        Dialog dialog = YanGF.Dialog.GetDialogBlockByName(
+            DialogType.EnterBossBattle.ToString()).GetRandomDialog();
+        ShowDialog(dialog);
     }
 
 

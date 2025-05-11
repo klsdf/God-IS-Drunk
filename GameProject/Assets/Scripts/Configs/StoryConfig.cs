@@ -11,7 +11,7 @@ public static class StoryConfig
     public static DialogCharacter 打工人 = new DialogCharacter("神秘打工人");
 
 
-    public static DialogBlock startDialogBlock= new DialogBlock(DialogType.GameStart.ToString(), new List<Dialog>
+    public static DialogBlock startDialogBlock = new DialogBlock(DialogType.GameStart.ToString(), new List<Dialog>
     {
         new Dialog("喂，哥们，你会开车吗？", 左),
             new Dialog("没错，就你是。屏幕前这个。", right),
@@ -67,7 +67,21 @@ public static class StoryConfig
 
             new Dialog("卧槽，是酒！", 左),
             new Dialog("兄弟们，快来喝酒！", center),
-          
+
 
         });
+
+    public static DialogBlock bossDialogBlock = new DialogBlock(DialogType.EnterBossBattle.ToString(), new List<Dialog>
+    {
+        new Dialog("1", 左),
+        new Dialog("2", center),
+        new Dialog("3", right),
+        new Dialog("4", 左),
+        new Dialog("5", center),
+        new Dialog("6", right),
+        new Dialog("7", 左),
+        new Dialog("8", center),
+        new Dialog("9", right),
+        
+    });
 }
