@@ -163,31 +163,43 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5474525610389504
-    m_Localized: "[\u5F85\u7FFB\u8BD1\u4E3Aen]\u5BBF\u9189\u963F\u5F25\u9640\u4F5B"
+    m_Localized: God IS Drunk
     m_Metadata:
       m_Items: []
   - m_Id: 5474525627166720
-    m_Localized: "[\u5F85\u7FFB\u8BD1\u4E3Aen]\u5F00\u59CB\u6E38\u620F"
+    m_Localized: Start Game
     m_Metadata:
       m_Items: []
   - m_Id: 5474525627166721
-    m_Localized: "[\u5F85\u7FFB\u8BD1\u4E3Aen]\u8BBE\u7F6E"
+    m_Localized: Settings
     m_Metadata:
       m_Items: []
   - m_Id: 5474525627166722
-    m_Localized: "[\u5F85\u7FFB\u8BD1\u4E3Aen]\u9000\u51FA"
+    m_Localized: Exit
     m_Metadata:
       m_Items: []
   - m_Id: 5474525627166723
-    m_Localized: "[\u5F85\u7FFB\u8BD1\u4E3Aen]\u5236\u4F5C\u4EBA\u540D\u5355"
+    m_Localized: Staff
     m_Metadata:
       m_Items: []
   - m_Id: 5474526394724352
-    m_Localized: "[\u5F85\u7FFB\u8BD1\u4E3Aen]\u8FD4\u56DE"
+    m_Localized: Back
     m_Metadata:
       m_Items: []
   - m_Id: 5481509973798912
-    m_Localized: "[\u5F85\u7FFB\u8BD1\u4E3Aen]\u7B2C\u4E00\u7AE0:\u6D41\u6D6A\u554A\u6D41\u6D6A"
+    m_Localized: Level1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5551011373658112
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5551011403018240
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5551011403018241
+    m_Localized: Exit
     m_Metadata:
       m_Items: []
   references:

@@ -1151,7 +1151,7 @@ MonoBehaviour:
   drinkAudio: {fileID: 8300000, guid: 5c0383cef05ab074292d70790d82528d, type: 3}
   winAudio: {fileID: 8300000, guid: 86639b3f187d3664393ab583a94c369f, type: 3}
   loseAudio: {fileID: 8300000, guid: ec8d8864e50febc45a8b27b26fd53e93, type: 3}
---- !u!43 &376355529
+--- !u!43 &417264727
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14387,7 +14387,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.116000004, y: 0.5}
   m_AnchorMax: {x: 0.116000004, y: 0.5}
-  m_AnchoredPosition: {x: -60.4018, y: -48}
+  m_AnchoredPosition: {x: -60.401855, y: -48}
   m_SizeDelta: {x: 324.6404, y: 120.1494}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1561670341
@@ -16635,7 +16635,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 376355529}
+  m_Mesh: {fileID: 417264727}
 --- !u!54 &2087278764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17596,6 +17596,10 @@ PrefabInstance:
       propertyPath: startMenu
       value: 
       objectReference: {fileID: 29465804}
+    - target: {fileID: 5659170528063322695, guid: 641990ec245b7084981be013269bc40a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7189520365679826361, guid: 641990ec245b7084981be013269bc40a, type: 3}
       propertyPath: m_Name
       value: ProducerMenu
