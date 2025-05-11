@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using YanGameFrameWork.Singleton;
+using System;
 
 public class UIController : Singleton<UIController>
 {
@@ -15,6 +16,12 @@ public class UIController : Singleton<UIController>
     public Button pauseButton;
 
     public Image feverImage;
+    
+
+
+
+    [Header("关卡的名字")]
+    public TMP_Text levelText;
 
 
 
@@ -102,6 +109,17 @@ public class UIController : Singleton<UIController>
         timeSlider.value = time / maxTime;
     }
 
+
+
+    public void ShowLevelText(string levelName, Action onComplete)
+    {
+        levelText.text = YanGF.Localization.Translate(levelName);
+        YanGF.Tween.Tween(levelText, levelText => levelText.alpha, 1, 2, () =>
+        {
+            
+            YanGF.Tween.Tween(levelText, levelText => levelText.alpha, 0, 3, onComplete);
+        });
+    }
 
 
 

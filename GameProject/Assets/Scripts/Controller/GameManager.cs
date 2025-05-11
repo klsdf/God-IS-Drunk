@@ -89,11 +89,6 @@ public class BossBattleState : BaseState
 
 
 
-
-
-
-
-
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField]

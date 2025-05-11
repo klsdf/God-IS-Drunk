@@ -74,13 +74,15 @@ public class FunDialogController : Singleton<FunDialogController>
     /// </summary>
     public void ShowGameStartDialog()
     {
-
         YanGF.Dialog.RunSequenceDialog(DialogType.GameStart.ToString(), ShowDialog, () =>
         {
-            GameManager.Instance.ResumeGame();
-            CloseDialog();
+              CloseDialog();
+            UIController.Instance.ShowLevelText("第一章:流浪啊流浪", () =>
+            {
+                GameManager.Instance.ResumeGame();
+              
+            });
         });
-
     }
 
 
