@@ -13,8 +13,11 @@ public class GameRhythmItem : RhythmItemBase
         mmfPlayer = GetComponent<MMF_Player>();
  
     }
-    public override void OnRhythm(RhythmType rhythmType)
+  
+    public override void OnBeat(RhythmType rhythmType)
     {
         mmfPlayer.PlayFeedbacks();
     }
+
+
 }

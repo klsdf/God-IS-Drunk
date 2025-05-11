@@ -254,10 +254,22 @@ PrefabInstance:
       objectReference: {fileID: 1594486376}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
@@ -463,11 +475,23 @@ PrefabInstance:
       objectReference: {fileID: 1594486376}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -514,6 +538,171 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+--- !u!43 &123030582
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 11
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 0
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 0
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 0
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 0
+    _typelessdata: 
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_MeshUsageFlags: 0
+  m_CookingOptions: 30
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    serializedVersion: 2
+    offset: 0
+    size: 0
+    path: 
 --- !u!1 &123849870
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,11 +1080,23 @@ PrefabInstance:
       objectReference: {fileID: 1594486376}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -976,11 +1177,23 @@ PrefabInstance:
       objectReference: {fileID: 1594486376}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1241,11 +1454,23 @@ PrefabInstance:
       objectReference: {fileID: 1304810091}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1531,11 +1756,23 @@ PrefabInstance:
       objectReference: {fileID: 1304810091}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1620,11 +1857,23 @@ PrefabInstance:
       objectReference: {fileID: 1304810091}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1776,6 +2025,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3607364dc5824408c004f478e62306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkStrong: 1
+  checkMiddle: 1
+  checkWeak: 1
 --- !u!114 &600733638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2329,11 +2581,23 @@ PrefabInstance:
       objectReference: {fileID: 1594486376}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3196,11 +3460,23 @@ PrefabInstance:
       objectReference: {fileID: 1304810091}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3513,11 +3789,23 @@ PrefabInstance:
       objectReference: {fileID: 1304810091}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3626,11 +3914,23 @@ PrefabInstance:
       objectReference: {fileID: 1594486376}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3764,11 +4064,23 @@ PrefabInstance:
       objectReference: {fileID: 1304810091}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4278,11 +4590,23 @@ PrefabInstance:
       objectReference: {fileID: 1594486376}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4528,11 +4852,23 @@ PrefabInstance:
       objectReference: {fileID: 1594486376}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4856,11 +5192,23 @@ PrefabInstance:
       objectReference: {fileID: 1594486376}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5032,171 +5380,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!43 &1888665214
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 0
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 0
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 0
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 0
-    _typelessdata: 
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1001 &1942384925
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5223,11 +5406,23 @@ PrefabInstance:
       objectReference: {fileID: 1594486376}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5691,6 +5886,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3607364dc5824408c004f478e62306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkStrong: 1
+  checkMiddle: 1
+  checkWeak: 1
 --- !u!1 &1957589180
 GameObject:
   m_ObjectHideFlags: 0
@@ -5767,11 +5965,23 @@ PrefabInstance:
       objectReference: {fileID: 1304810091}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5923,11 +6133,23 @@ PrefabInstance:
       objectReference: {fileID: 1304810091}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6254,7 +6476,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 1888665214}
+  m_Mesh: {fileID: 123030582}
 --- !u!54 &2087278764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6294,6 +6516,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3607364dc5824408c004f478e62306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  checkStrong: 1
+  checkMiddle: 1
+  checkWeak: 1
 --- !u!114 &2087278767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6747,11 +6972,23 @@ PrefabInstance:
       objectReference: {fileID: 1304810091}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6836,11 +7073,23 @@ PrefabInstance:
       objectReference: {fileID: 1304810091}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_MaxSpeed
-      value: 190.2086
+      value: 31.701433
       objectReference: {fileID: 0}
     - target: {fileID: 3675434650279915696, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_StartOffset
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkWeak
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkMiddle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5975348695269611609, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
+      propertyPath: checkStrong
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
       propertyPath: m_LocalScale.x
