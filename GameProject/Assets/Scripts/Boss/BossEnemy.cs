@@ -1,20 +1,20 @@
 using UnityEngine;
 
-public class BossEnemy : MonoBehaviour
+public class BossEnemy : BossBase
 {
-    private SpriteRenderer spriteRenderer;
+
     public Sprite[] sprites;
     public Sprite deathSprite; // 死亡时的sprite
+
+    public Sprite normalSprite;// 正常状态的sprite
+    public Sprite normal2Sprite;// 正常状态2的sprite
 
     private int currentSpriteIndex = 0;
     private bool isDead = false; // 死亡状态标志
 
     private float survivalTime = 0f; // 存活时间
-    public float survivalThreshold = 10f; // 存活时间阈值
+    
 
-    private Vector3 startPosition = new Vector3(0.89f, -10.3f, 83);
-    private Vector3 targetPosition = new Vector3(0.89f, 4.8f, 83);
-    private float moveTime = 3f;
 
 
     /// <summary>
@@ -31,28 +31,9 @@ public class BossEnemy : MonoBehaviour
     private float shakeSpeed = 15f; // 震动速度
 
 
-    private bool isMoveing = false;
-
-    void Start()
-    {
-        YanGF.Event.AddListener<RhythmType>(RhythmEvent.OnRhythm, OnRhythm);
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        transform.position = startPosition;
-    }
 
 
-    [ContextMenu("Show")]
-    public void Show()
-    {
-        transform.position = startPosition;
 
-
-        isMoveing = true;
-        YanGF.Tween.Tween(transform, t => t.position, targetPosition, moveTime, () =>
-        {
-            isMoveing = false;
-        });
-    }
 
 
 
@@ -62,7 +43,7 @@ public class BossEnemy : MonoBehaviour
         if (isDead) return; // 如果已经死亡，不再更新
 
         survivalTime += Time.deltaTime;
-        if (survivalTime >= survivalThreshold)
+        if (survivalTime >= DataConfig.smallBossBattleTargetTime)
         {
             Die(); // 超过阈值，自动死亡
         }
@@ -79,7 +60,7 @@ public class BossEnemy : MonoBehaviour
         }
     }
 
-    void OnRhythm(RhythmType rhythmType)
+    protected override void OnRhythm(RhythmType rhythmType)
     {
         if (isDead) return; // 如果已经死亡，不再切换图片
 

@@ -15,6 +15,8 @@ public abstract class BaseState
 [System.Serializable]
 public class NormalState : BaseState
 {
+
+    private bool hasShowSmallBoss = false;
     public override void OnEnter()
     {
 
@@ -30,6 +32,16 @@ public class NormalState : BaseState
         gameData.currentTime += Time.deltaTime;
         float progress = gameData.currentTime / gameData.targetTime;
 
+        if (progress >= DataConfig.meetSmallBossProgress)
+        {
+            if (hasShowSmallBoss == false)
+            {
+                GameManager.Instance.smallBossEnemy.Show();
+                hasShowSmallBoss = true;
+            }
+        }
+
+
         if (progress >= DataConfig.meetBossProgress)
         {
             gameData.currentTime = gameData.targetTime * DataConfig.meetBossProgress; // 将进度卡在99%
@@ -38,10 +50,6 @@ public class NormalState : BaseState
 
         UIController.Instance.UpdateTime(gameData.currentTime, gameData.targetTime);
     }
-
-
-
-
 
     public override void OnExit()
     {
@@ -68,7 +76,7 @@ public class BossBattleState : BaseState
         FunDialogController.Instance.ShowBossDialog();
         GameManager.Instance.PauseGame();
 
-        GameManager.Instance.bossEnemy.Show();
+
     }
 
 
@@ -88,6 +96,8 @@ public class BossBattleState : BaseState
 
     }
 }
+
+
 
 
 
@@ -114,6 +124,10 @@ public class GameManager : Singleton<GameManager>
 
     public string debugCurrentState;
 
+    [Header("小Boss")]
+    public BossEnemy smallBossEnemy;
+
+    [Header("Boss")]
     public BossEnemy bossEnemy;
 
     private void Start()

@@ -25,6 +25,19 @@ public static class DataConfig{
     /// </summary>
     public static float meetBossProgress = 0.99f;
 
+
+    /// <summary>
+    /// 遇到小Boss时的进度
+    /// </summary>
+    public static float meetSmallBossProgress = 0.50f;
+
+    /// <summary>
+    /// 遇到小Boss时的进度
+    /// </summary>
+    public static float smallBossBattleTargetTime = 50;
+
+
+
     /// <summary>
     /// Boss战时长
     /// </summary>

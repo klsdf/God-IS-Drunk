@@ -109,6 +109,8 @@ public class FunDialogController : Singleton<FunDialogController>
     }
 
 
+
+
     public void ShowOnCollisionEnemyDialog()
     {
         Dialog dialog = YanGF.Dialog.GetDialogBlockByName(DialogType.OnCollisionEnemy.ToString()).GetRandomDialog();
