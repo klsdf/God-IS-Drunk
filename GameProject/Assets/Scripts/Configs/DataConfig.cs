@@ -27,6 +27,11 @@ public static class DataConfig{
     /// </summary>
     public static float meetBossProgress = 0.99f;
 
+    /// <summary>
+    /// Boss战时长
+    /// </summary>
+    public static float bossBattleTargetTime = 30;
+
 
     /// <summary>
     /// 碰撞障碍物时损失的Fever

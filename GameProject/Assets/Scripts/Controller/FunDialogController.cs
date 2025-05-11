@@ -77,7 +77,7 @@ public class FunDialogController : Singleton<FunDialogController>
 
         YanGF.Dialog.RunSequenceDialog(DialogType.GameStart.ToString(), ShowDialog, () =>
         {
-            GameManager.Instance.IsGamePause = false;
+            GameManager.Instance.ResumeGame();
             CloseDialog();
         });
 
@@ -85,9 +85,10 @@ public class FunDialogController : Singleton<FunDialogController>
 
 
     public void ShowBossDialog(){
-        Dialog dialog = YanGF.Dialog.GetDialogBlockByName(
-            DialogType.EnterBossBattle.ToString()).GetRandomDialog();
-        ShowDialog(dialog);
+        YanGF.Dialog.RunSequenceDialog(DialogType.EnterBossBattle.ToString(),ShowDialog,()=>{
+            GameManager.Instance.ResumeGame();
+            CloseDialog();
+        });
     }
 
 
@@ -114,7 +115,7 @@ public class FunDialogController : Singleton<FunDialogController>
     {
 
         string dialogText = YanGF.Localization.Translate(dialog.dialog);
-        print("播放对话：" + dialogText);
+        // print("播放对话：" + dialogText);
         _dialogPanel.gameObject.SetActive(true);
         YanGF.Dialog.StartTypingEffect(dialogText, 0.05f, _dialogText);
 

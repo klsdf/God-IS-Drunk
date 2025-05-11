@@ -43,14 +43,22 @@ public class GameData : YanModelBase
     public float hpDecreaseInterval = 1.0f;
     public float hpDecreaseTimer = 0;
 
-    public GameData(float maxHP, float targetTime, float hpDecreaseInterval)
+
+    [Header("Boss战时长")]
+    public float bossBattleTargetTime = 30;
+
+    [Header("Boss战当前时间")]
+    public float bossBattleCurrentTime = 0;
+
+    public GameData(float maxHP, float targetTime, float hpDecreaseInterval,float bossBattleTargetTime)
     {
         MaxHP = maxHP;
         MinHP = 0;
         hp = MaxHP;
-
         this.targetTime = targetTime;
         this.hpDecreaseInterval = hpDecreaseInterval;
+        this.bossBattleTargetTime = bossBattleTargetTime;
+        this.bossBattleCurrentTime = 0;
     }
       
     public GameData()

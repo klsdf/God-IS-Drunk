@@ -41,6 +41,8 @@ public class EnemyCreator : Singleton<EnemyCreator>
     [Header("调试生成方式")]
     public int debugSpawnMethod = 0; // 调试时选择的生成方式
 
+
+
     void Start()
     {
         nextSpawnTime = Time.time + spawnInterval; // 初始化第一次生成时间

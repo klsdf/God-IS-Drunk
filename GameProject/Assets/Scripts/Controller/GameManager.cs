@@ -4,40 +4,149 @@ using YanGameFrameWork.Editor;
 
 
 
+[System.Serializable]
+public abstract class BaseState
+{
+    public abstract void OnEnter();
+    public abstract void OnUpdate();
+    public abstract void OnExit();
+}
 
-public class GameManager : Singleton<GameManager>
+[System.Serializable]
+public class NormalState : BaseState
+{
+    public override void OnEnter()
+    {
+
+    }
+    /// <summary>
+    /// 检查游戏进程，看看有没有通关，或者进入boss战
+    /// </summary>
+    public override void OnUpdate()
+    {
+
+        GameData gameData = YanGF.Model.GetModel<GameData>();
+
+        gameData.currentTime += Time.deltaTime;
+        float progress = gameData.currentTime / gameData.targetTime;
+
+        if (progress >= DataConfig.meetBossProgress)
+        {
+            gameData.currentTime = gameData.targetTime * DataConfig.meetBossProgress; // 将进度卡在99%
+            GameManager.Instance.ChangeState(new BossBattleState()); // 进入Boss战模式
+        }
+
+        UIController.Instance.UpdateTime(gameData.currentTime, gameData.targetTime);
+    }
+
+
+
+
+
+    public override void OnExit()
+    {
+
+    }
+}
+
+[System.Serializable]
+public class BossBattleState : BaseState
 {
 
 
+    [Header("Boss战计时器")]
+    [SerializeField]
+    private float bossBattleCurrentTime = 0.0f;
+
+    // Boss战时长
+    [SerializeField]
+    private float bossBattleTargetTime = 30.0f; // 假设Boss战持续30秒
+    /// <summary>
+    /// 进入Boss战模式
+    /// </summary>
+    public override void OnEnter()
+    {
+
+        // 触发进入Boss战的逻辑
+        Debug.Log("进入Boss战模式");
+        bossBattleCurrentTime = 0.0f; // 初始化Boss战计时器
+
+        FunDialogController.Instance.ShowBossDialog();
+        GameManager.Instance.PauseGame();
+    }
+
+
+    public override void OnUpdate()
+    {
+        bossBattleCurrentTime += Time.deltaTime;
+        if (bossBattleCurrentTime >= bossBattleTargetTime)
+        {
+            GameManager.Instance.OnBossBattleWin();
+            bossBattleCurrentTime = 0.0f; // 重置计时器
+        }
+    }
+
+    public override void OnExit()
+    {
+
+    }
+}
+
+
+
+
+
+
+
+
+public class GameManager : Singleton<GameManager>
+{
     [SerializeField]
     private GameData gameData;
 
     private bool isGameOver = false; // 游戏是否结束的标志
 
-    public bool IsGamePause = false;
 
-    private bool isBossBattle = false;
+    [SerializeField]
+    private bool isGamePause = false;
+
+    public bool IsGamePause
+    {
+        get { return isGamePause; }
+    }
+
+    [SerializeField]
+    public BaseState currentState;
 
 
 
-
- 
+    public string debugCurrentState;
 
     private void Start()
     {
         InitDatas();
         AudioController.PlayBGM();
 
-        IsGamePause = true;
-   
+        PauseGame();
+        ChangeState(new NormalState());
+
+    }
+
+    public void ChangeState(BaseState state)
+    {
+        debugCurrentState = state.GetType().Name;
+        currentState?.OnExit();
+        currentState = state;
+        currentState.OnEnter();
     }
 
 
     /// <summary>
     /// 开始游戏
     /// </summary>
-    public void StartGame(){
-       FunDialogController.Instance.ShowGameStartDialog();
+    public void StartGame()
+    {
+        FunDialogController.Instance.ShowGameStartDialog();
     }
 
 
@@ -47,7 +156,8 @@ public class GameManager : Singleton<GameManager>
         gameData = YanGF.Model.RegisterModule(new GameData(
             maxHP: DataConfig.maxHP,
             targetTime: DataConfig.targetTime,
-            hpDecreaseInterval: DataConfig.hpDecreaseInterval
+            hpDecreaseInterval: DataConfig.hpDecreaseInterval,
+            bossBattleTargetTime: DataConfig.bossBattleTargetTime
             )
         );
 
@@ -55,9 +165,17 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+
+
     private void Update()
     {
-        GameProcessCheck();
+
+        if (isGamePause) return;
+
+        if (currentState != null)
+        {
+            currentState.OnUpdate();
+        }
 
         // 每秒减少1点血
         gameData.hpDecreaseTimer += Time.deltaTime;
@@ -73,46 +191,22 @@ public class GameManager : Singleton<GameManager>
             }
             gameData.hpDecreaseTimer = 0;
         }
-
-
     }
 
 
 
 
-    /// <summary>
-    /// 检查游戏进程，看看有没有通关，或者进入boss战
-    /// </summary>
-    private void GameProcessCheck(){
-        if (isBossBattle) return; // 如果已经进入Boss战，停止进度更新
 
-        gameData.currentTime += Time.deltaTime;
-        float progress = gameData.currentTime / gameData.targetTime;
 
-        if (progress >= DataConfig.meetBossProgress) {
-            gameData.currentTime = gameData.targetTime * DataConfig.meetBossProgress; // 将进度卡在99%
-            EnterBossBattle(); // 进入Boss战模式
-            isBossBattle = true;
-        }
 
-        UIController.Instance.UpdateTime(gameData.currentTime, gameData.targetTime);
-    }
 
-    /// <summary>
-    /// 进入Boss战模式
-    /// </summary>
-    private void EnterBossBattle() {
-        // 触发进入Boss战的逻辑
-        Debug.Log("进入Boss战模式");
-        // 这里可以添加进入Boss战的具体实现
-    }
 
     /// <summary>
     /// Boss战胜利后调用此方法
     /// </summary>
-    public void OnBossBattleWin() {
+    public void OnBossBattleWin()
+    {
         gameData.currentTime = gameData.targetTime; // 将进度设置为100%
-        isBossBattle = false;
         GameWin(); // 调用游戏胜利逻辑
     }
 
@@ -136,8 +230,6 @@ public class GameManager : Singleton<GameManager>
 
         // 减少分数
         YanGF.Model.GetModel<ScoreManager>().LoseScore((int)amount);
-
-
         FeverController.Instance.LoseFever(DataConfig.loseFever);
 
         return gameData.hp;
@@ -162,14 +254,14 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    public void Pause()
+    public void PauseGame()
     {
-        Time.timeScale = 0;
+        isGamePause = true;
     }
 
-    public void Resume()
+    public void ResumeGame()
     {
-        Time.timeScale = 1;
+        isGamePause = false;
     }
 
 
@@ -195,6 +287,7 @@ public class GameManager : Singleton<GameManager>
         var panel = YanGF.UI.PushPanel<GameOverPanel>();
         print("游戏失败");
     }
+
 
 
 
