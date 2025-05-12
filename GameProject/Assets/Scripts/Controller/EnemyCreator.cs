@@ -2,6 +2,17 @@ using UnityEngine;
 using YanGameFrameWork.Singleton;
 using System.Collections; // 引入命名空间
 
+
+
+
+public class SpawnMode : MonoBehaviour
+{
+    
+}
+
+
+
+
 public class EnemyCreator : Singleton<EnemyCreator>
 {
     [Header("敌人预制体")]
