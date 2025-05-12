@@ -1,14 +1,44 @@
 using UnityEngine;
 using YanGameFrameWork.Singleton;
-using System.Collections; // 引入命名空间
+using System.Collections;
+using Sirenix.OdinInspector;
+using System.Collections.Generic; // 引入命名空间
 
 
 
 
-public class SpawnMode : MonoBehaviour
+
+
+public abstract class SpawnModeBase
 {
-    
+    public abstract void Spawn();
 }
+
+
+public class NormalSpawnMode : SpawnModeBase
+{
+    public override void Spawn()
+    {
+        Debug.Log("生成敌人");
+    }
+}
+
+public class SmallBossSpawnMode : SpawnModeBase
+{
+    public override void Spawn()
+    {
+        Debug.Log("生成小boss");
+    }
+}
+
+public class BigBossSpawnMode : SpawnModeBase
+{
+    public override void Spawn()
+    {
+        Debug.Log("生成大boss");
+    }
+}
+
 
 
 
@@ -17,8 +47,6 @@ public class EnemyCreator : Singleton<EnemyCreator>
 {
     [Header("敌人预制体")]
     public GameObject enemyPrefab; // 敌人预制体
-    [Header("酒预制体")]
-    public GameObject winePrefab; // 酒预制体
 
     [Header("最小的X坐标")]
     public float minX = -10f; // 最小 X 坐标（生成范围）
@@ -43,14 +71,45 @@ public class EnemyCreator : Singleton<EnemyCreator>
     private float nextSpawnTime; // 下一次生成敌人的时间
 
 
+
+
+
     [Header("敌人生成概率")]
+    [Range(0.1f, 0.8f)]
     public float enemySpawnRate = 0.8f;
+
+
+
+    [Header("敌人材质")]
+    public Material enemyMaterial;
+
+    [Header("酒材质")]
+    public Material wineMaterial;
 
     [Header("调试模式")]
     public bool debugMode = false; // 是否启用调试模式
 
     [Header("调试生成方式")]
     public int debugSpawnMethod = 0; // 调试时选择的生成方式
+
+
+
+
+    [Header("敌人列表")]
+    public List<Enemy> enemies = new List<Enemy>();
+
+    [Header("酒列表")]
+    public List<Enemy> wines = new List<Enemy>();
+
+
+
+
+    public Transform enemyContainer;
+    public Transform wineContainer;
+
+
+    public Sprite enemySprite;
+    public Sprite wineSprite;
 
 
 
@@ -61,7 +120,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
     }
 
 
-    
+
 
 
     void Update()
@@ -90,7 +149,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
 
 
-      /// <summary>
+    /// <summary>
     /// 随机生成酒或敌人
     /// </summary>
     void SpawnSomething()
@@ -155,27 +214,13 @@ public class EnemyCreator : Singleton<EnemyCreator>
         float randomY = Random.Range(minY, maxY);
         // 在 Y 位置生成敌人（根据需要，可以增加高度变化或其他随机性）
         Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
-        
+
         // 在指定位置实例化敌人，并将其设置为当前对象的子节点
         CreateEnemy(spawnPosition, new ZMovementCommand(20f));
     }
-    
 
-    /// <summary>
-    /// 生成酒
-    /// </summary>
-    void SpawnWine()
-    {
-        // 在指定范围内随机生成 X 坐标
-        float randomX = Random.Range(minX, maxX);
 
-        float randomY = Random.Range(minY, maxY);
-        // 在 Y 位置生成敌人（根据需要，可以增加高度变化或其他随机性）
-        Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
-        
-        // 在指定位置实例化敌人，并将其设置为当前对象的子节点
-        Instantiate(winePrefab, spawnPosition, Quaternion.identity, transform);
-    }
+
 
 
     void OnDrawGizmos()
@@ -429,6 +474,77 @@ public class EnemyCreator : Singleton<EnemyCreator>
     {
         // 在指定位置实例化敌人，并将其设置为当前对象的子节点
         GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
-        enemy.GetComponent<Enemy>().Init(movementCommand);
+
+        enemy.tag = "障碍物";
+        enemy.GetComponent<Enemy>().Init(movementCommand, enemyMaterial, enemySprite, 5f);
+        enemy.name = "敌人" + enemies.Count;
+        enemy.transform.SetParent(enemyContainer);
+        enemies.Add(enemy.GetComponent<Enemy>());
+    }
+
+    private void CreateWine(Vector3 spawnPosition, IMovementCommand movementCommand)
+    {
+        // 在指定位置实例化敌人，并将其设置为当前对象的子节点
+        GameObject wine = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
+        wine.tag = "酒";
+        wine.GetComponent<Enemy>().Init(movementCommand, wineMaterial, wineSprite, 2f);
+        wine.name = "酒" + wines.Count;
+        wine.transform.SetParent(wineContainer);
+        wines.Add(wine.GetComponent<Enemy>());
+    }
+
+
+
+    public void DestroyItem(Enemy enemy)
+    {
+        if (enemy.tag == "障碍物")
+        {
+            enemies.Remove(enemy);
+            Destroy(enemy.gameObject);
+        }
+        else if (enemy.tag == "酒")
+        {
+            wines.Remove(enemy);
+            Destroy(enemy.gameObject);
+        }
+    }
+
+
+    /// <summary>
+    /// 生成酒
+    /// </summary>
+    /// 
+    [Button("生成酒")]
+    void SpawnWine()
+    {
+        // 在指定范围内随机生成 X 坐标
+        float randomX = Random.Range(minX, maxX);
+
+        float randomY = Random.Range(minY, maxY);
+        // 在 Y 位置生成敌人（根据需要，可以增加高度变化或其他随机性）
+        Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
+
+        // 在指定位置实例化敌人，并将其设置为当前对象的子节点
+        CreateWine(spawnPosition, new ZMovementCommand(20f));
+    }
+
+
+
+    /// <summary>
+    /// 消除所有敌人并停止所有协程
+    /// </summary>
+    [Button("消除所有敌人")]
+    public void ClearAllEnemies()
+    {
+        // 停止所有协程
+        StopAllCoroutines();
+        // 遍历并销毁每个敌人
+        foreach (var enemy in enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
+
+        Debug.Log("所有敌人已被消除");
+        enemies.Clear();
     }
 }
