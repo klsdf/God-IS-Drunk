@@ -52,7 +52,10 @@ public class Enemy : MonoBehaviour
 
         YanGF.Timer.SetTimeOut(() =>
         {
-            EnemyCreator.Instance.DestroyItem(this);
+            if (this != null) // 检查当前对象是否为 null
+            {
+                EnemyCreator.Instance.DestroyItem(this);
+            }
         }, 40f);
     }
 
