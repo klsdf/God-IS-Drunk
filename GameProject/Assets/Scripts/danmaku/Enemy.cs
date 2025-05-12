@@ -12,8 +12,6 @@ public class Enemy : MonoBehaviour
 
     private IMovementCommand movementCommand; // 移动命令
 
-
-
     [Header("提示墙")]
     public GameObject notification;
     public SpriteRenderer enemySpriteFront;

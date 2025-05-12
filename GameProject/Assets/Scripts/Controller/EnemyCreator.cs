@@ -135,6 +135,18 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
 
 
+    public enum EnemyMovementMethod
+    {
+        ZMovement,
+        SpiralMovement,
+        ZigzagMovement,
+        BouncingBallMovement,
+        LinearMovement,
+        CircularMovement,
+
+        
+    }
+
 
     /// <summary>
     /// 随机生成酒或敌人
@@ -154,7 +166,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
             {
                 case 0:
                     // 生成单个敌人
-                    SpawnEnemy();
+                    // SpawnEnemy(EnemyMovementMethod.ZMovement);
                     break;
                 case 1:
                     // 生成螺旋形敌人
@@ -240,6 +252,8 @@ public class EnemyCreator : Singleton<EnemyCreator>
     [Button("生成普通敌人")]
     void SpawnEnemy()
     {
+
+        EnemyMovementMethod enemyMovementMethod = EnemyMovementMethod.SpiralMovement;
         // 在指定范围内随机生成 X 坐标
         float randomX = Random.Range(minX, maxX);
 
@@ -248,8 +262,126 @@ public class EnemyCreator : Singleton<EnemyCreator>
         Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
 
         // 在指定位置实例化敌人，并将其设置为当前对象的子节点
-        CreateEnemy(spawnPosition, new ZMovementCommand(20f));
+
+
+        // switch (enemyMovementMethod)
+        // {
+        //     case EnemyMovementMethod.ZMovement:
+        //         CreateEnemy(spawnPosition, new ZMovementCommand(15f));
+        //         break;
+        //     case EnemyMovementMethod.SpiralMovement:
+        //         // CreateEnemy(spawnPosition, new SpiralMovementCommand(radius, spiralSpeed, angle));
+        //         break;
+        //     case EnemyMovementMethod.ZigzagMovement:
+        //         CreateEnemy(spawnPosition, new ZigzagMovementCommand(20f, 2f));
+        //         break;
+        //     case EnemyMovementMethod.BouncingBallMovement:
+        //         CreateEnemy(spawnPosition, new BouncingBallMovementCommand(new Vector3(0, 0, 0), 2f,this));
+        //         break;
+        //     case EnemyMovementMethod.LinearMovement:
+        //         CreateEnemy(spawnPosition, new LinearMovementCommand(new Vector3(0, 0, 0), 2f));
+        //         break;
+        //     case EnemyMovementMethod.CircularMovement:
+        //         CreateEnemy(spawnPosition, new CircularMovementCommand(2f, 2f,0));
+        //         break;
+        // }
     }
+
+
+    [Button("生成Z字形敌人")]
+    public void SpawnEnemyZigzagMovementCommand(float frequency, float amplitude)
+    {
+
+        // 在指定范围内随机生成 X 坐标
+        float randomX = Random.Range(minX, maxX);
+
+        float randomY = Random.Range(minY, maxY);
+        // 在 Y 位置生成敌人（根据需要，可以增加高度变化或其他随机性）
+        Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
+
+
+        CreateEnemy(spawnPosition, new ZigzagMovementCommand(frequency, amplitude));    
+
+    }
+
+    [Button("生成弹跳球敌人")]
+    public void SpawnEnemyBouncingBallMovementCommand(Vector2 direction, float speed,float zSpeed)
+    {
+           // 在指定范围内随机生成 X 坐标
+        float randomX = Random.Range(minX, maxX);
+
+        float randomY = Random.Range(minY, maxY);
+        // 在 Y 位置生成敌人（根据需要，可以增加高度变化或其他随机性）
+        Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
+
+
+        CreateEnemy(spawnPosition, new BouncingBallMovementCommand(direction, this,speed,zSpeed));
+    }
+
+
+    [Button("生成线性移动敌人")]
+    public void SpawnEnemyLinearMovementCommand(Vector2 direction , float speed = 15f)
+    {
+        // 在指定范围内随机生成 X 坐标
+        float randomX = Random.Range(minX, maxX);
+
+        float randomY = Random.Range(minY, maxY);
+        // 在 Y 位置生成敌人（根据需要，可以增加高度变化或其他随机性）
+        Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
+
+        CreateEnemy(spawnPosition, new LinearMovementCommand(direction, speed));
+    }
+
+    [Button("生成圆形移动敌人")]
+    public void SpawnEnemyCircularMovementCommand(float radius, float speed,float zSpeed)
+    {
+        // 在指定范围内随机生成 X 坐标
+        float randomX = Random.Range(minX, maxX);   
+
+        float randomY = Random.Range(minY, maxY);
+        // 在 Y 位置生成敌人（根据需要，可以增加高度变化或其他随机性）
+        Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
+
+        CreateEnemy(spawnPosition, new CircularMovementCommand(radius, speed,zSpeed));
+    }
+
+
+
+    [Button("生成螺旋移动敌人")]
+    public void SpawnEnemySpiralMovementCommand(float radius, float speed,float zSpeed)
+    {
+        // 在指定范围内随机生成 X 坐标
+        float randomX = Random.Range(minX, maxX);   
+
+        float randomY = Random.Range(minY, maxY);
+        // 在 Y 位置生成敌人（根据需要，可以增加高度变化或其他随机性）
+        Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
+
+        CreateEnemy(spawnPosition, new SpiralMovementCommand(radius, speed,zSpeed));
+    }
+
+
+    [Button("生成跟随玩家移动的敌人")]
+    public void SpawnEnemyPlayerFollowMovementCommand(float speed = 10f,float zSpeed = 10f)
+    {
+        // 在指定范围内随机生成 X 坐标
+        float randomX = Random.Range(minX, maxX);   
+
+        float randomY = Random.Range(minY, maxY);
+        // 在 Y 位置生成敌人（根据需要，可以增加高度变化或其他随机性）
+        Vector3 spawnPosition = new Vector3(randomX, randomY, zPosition);
+
+        Transform playerTransform = GameManager.Instance.playerTransform;
+
+        CreateEnemy(spawnPosition, new PlayerFollowMovementCommand(playerTransform,speed,zSpeed));
+    }
+
+
+
+
+
+
+
 
     /// <summary>
     /// 生成围绕 (0, 0) 点的敌人
@@ -284,7 +416,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
     /// <param name="radiusIncrement">每圈半径的增量</param>
     /// <param name="spawnDelay">每个敌人生成的延迟时间</param>
     [Button("生成螺旋形状的敌人")]
-    public void SpawnEnemiesInSpiral(int spiralTurns = 4, int enemyCount = 15, float radiusIncrement = 2f, float spawnDelay = 1f)
+    public void SpawnEnemiesInSpiral(int spiralTurns = 4, int enemyCount = 150, float radiusIncrement = 2f, float spawnDelay = 0.1f)
     {
         StartCoroutine(SpawnEnemiesInSpiralCoroutine(spiralTurns, enemyCount, radiusIncrement, spawnDelay));
     }
@@ -340,9 +472,14 @@ public class EnemyCreator : Singleton<EnemyCreator>
     /// <param name="sideLength">正方形的边长</param>
     /// <param name="enemyCount">要生成的敌人数量</param>
     [Button("生成正方形形状的敌人")]
-    public void SpawnEnemiesInSquare(float sideLength = 5f, int enemyCount = 8)
+    public void SpawnEnemiesInSquare(float sideLength = 6f, int enemyCount = 100, float squareOffsetX = 4f, float squareOffsetY = 4f)
     {
         int enemiesPerSide = enemyCount / 4; // 每条边上的敌人数量
+
+        // 为整个正方形计算一个随机偏移，使其在 (3, 3) 范围内
+        float randomXOffset = Random.Range(-squareOffsetX, squareOffsetX);
+        float randomYOffset = Random.Range(-squareOffsetY, squareOffsetY);
+        Vector3 squareOffset = new Vector3(randomXOffset, randomYOffset, 0);
 
         for (int i = 0; i < enemiesPerSide; i++)
         {
@@ -360,10 +497,29 @@ public class EnemyCreator : Singleton<EnemyCreator>
             // 在每个计算的位置实例化敌人
             foreach (var pos in positions)
             {
-                CreateEnemy(pos, new ZMovementCommand(20f));
+                // 应用正方形的随机偏移
+                Vector3 spawnPosition = pos + squareOffset;
+                CreateEnemy(spawnPosition, new ZMovementCommand(20f));
             }
         }
     }
+
+    /// <summary>
+    /// 生成动态变化的正方形形状的敌人
+    /// </summary>
+    /// <param name="initialSideLength">初始正方形的边长</param>
+    /// <param name="enemyCount">每批次生成的敌人数量</param>
+    /// <param name="batchCount">生成的批次数量</param>
+    /// <param name="interval">每批次生成的时间间隔</param>
+    /// <param name="growthRate">每批次边长的增长率</param>
+    /// 
+    [Button("生成动态变化的正方形形状的敌人")]
+    public void SpawnEnemiesInGrowingSquare(float initialSideLength = 6f, int enemyCount = 100, int batchCount = 10, float interval = 1f, float growthRate = 0.5f, float squareOffsetX = 4f, float squareOffsetY = 4f)
+    {
+        StartCoroutine(SpawnEnemiesInGrowingSquareCoroutine(initialSideLength, enemyCount, batchCount, interval, growthRate, squareOffsetX, squareOffsetY));
+    }
+
+
 
 
     /// <summary>
@@ -377,6 +533,9 @@ public class EnemyCreator : Singleton<EnemyCreator>
     {
         StartCoroutine(SpawnEnemiesInCircleIndividuallyCoroutine(radius, enemyCount, spawnDelay));
     }
+
+
+
     #endregion
 
 
@@ -523,5 +682,27 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
         Debug.Log("所有敌人已被消除");
         enemies.Clear();
+    }
+
+    /// <summary>
+    /// 协程生成动态变化的正方形形状的敌人
+    /// </summary>
+    /// <param name="initialSideLength">初始正方形的边长</param>
+    /// <param name="enemyCount">每批次生成的敌人数量</param>
+    /// <param name="batchCount">生成的批次数量</param>
+    /// <param name="interval">每批次生成的时间间隔</param>
+    /// <param name="growthRate">每批次边长的增长率</param>
+    /// <param name="squareOffsetX">正方形的偏移X</param>
+    /// <param name="squareOffsetY">正方形的偏移Y</param>
+    public IEnumerator SpawnEnemiesInGrowingSquareCoroutine(float initialSideLength, int enemyCount, int batchCount, float interval, float growthRate, float squareOffsetX, float squareOffsetY)
+    {
+        float currentSideLength = initialSideLength;
+
+        for (int batch = 0; batch < batchCount; batch++)
+        {
+            SpawnEnemiesInSquare(currentSideLength, enemyCount, squareOffsetX, squareOffsetY);
+            currentSideLength += growthRate; // 增加边长
+            yield return new WaitForSeconds(interval); // 等待指定的时间间隔
+        }
     }
 }

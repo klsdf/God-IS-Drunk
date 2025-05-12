@@ -130,6 +130,9 @@ public class GameManager : Singleton<GameManager>
     [Header("Boss")]
     public BossEnemy bossEnemy;
 
+
+    public Transform playerTransform;
+
     private void Start()
     {
         InitDatas();
@@ -137,6 +140,8 @@ public class GameManager : Singleton<GameManager>
 
         PauseGame();
         ChangeState(new NormalState());
+
+        playerTransform = FindObjectOfType<PlayerController>().transform;
 
     }
 
