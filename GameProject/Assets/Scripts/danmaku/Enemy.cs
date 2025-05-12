@@ -37,13 +37,15 @@ public class Enemy : MonoBehaviour
         // 记录原始缩放比例
         originalScale = enemySpriteFront.transform.localScale;
 
-        // 设置精灵
-        enemySpriteFront.sprite = sprite;
-        enemySpriteBack.sprite = sprite;
 
         // 调整缩放比例以保持大小不变
         AdjustSpriteScale(enemySpriteFront);
         AdjustSpriteScale(enemySpriteBack);
+        // 设置精灵
+        enemySpriteFront.sprite = sprite;
+        enemySpriteBack.sprite = sprite;
+
+
 
         Cube.GetComponent<MeshRenderer>().material = material;
         hasInit = true;

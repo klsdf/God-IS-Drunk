@@ -381,6 +381,22 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
 
 
+    /// <summary>
+    /// 生成任意形状的敌人
+    /// </summary>
+    /// <param name="positions">敌人生成位置的Transform数组</param>
+    [Button("生成任意形状的敌人")]
+    public void SpawnEnemiesInCustomShape()
+    {
+        Transform[] positions = GameObject.Find("文字预制体").GetComponentsInChildren<Transform>();
+        foreach (var position in positions)
+        {
+
+            Vector3 spawnPosition = new Vector3(position.position.x, position.position.y, zPosition);
+            // 在每个Transform的位置生成敌人
+            CreateEnemy(spawnPosition, new ZMovementCommand(15f));
+        }
+    }
 
 
     /// <summary>
@@ -705,4 +721,5 @@ public class EnemyCreator : Singleton<EnemyCreator>
             yield return new WaitForSeconds(interval); // 等待指定的时间间隔
         }
     }
+
 }

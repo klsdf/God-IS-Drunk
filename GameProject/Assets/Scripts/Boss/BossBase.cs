@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Sirenix.OdinInspector;
 public abstract class BossBase : MonoBehaviour
 {
 
@@ -27,8 +27,8 @@ public abstract class BossBase : MonoBehaviour
     protected abstract void OnRhythm(RhythmType rhythmType);
 
 
-    [ContextMenu("Show")]
-    public void Show()
+    [Button("显示")]
+    public  virtual void Show()
     {
         isShow = true;
         transform.position = startPosition;
