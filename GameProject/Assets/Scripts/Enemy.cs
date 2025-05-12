@@ -4,9 +4,8 @@ using UnityEngine;
 /// 敌人，或者说碰到后会掉血的障碍物
 /// </summary>
 public class Enemy : MonoBehaviour
-{
-
-
+{       
+    public Sprite sprite;
     // 新增变量
     // public float angle; // 当前的角度
     // public float radius = 5f; // 圆周运动的半径
@@ -19,7 +18,14 @@ public class Enemy : MonoBehaviour
         this.movementCommand = movementCommand;
     }
 
+    [Header("提示墙")]
     public GameObject notification;
+    public SpriteRenderer enemySpriteFront;
+    public SpriteRenderer enemySpriteBack;
+
+    public GameObject Cube;
+
+    public float length;
 
 
     void Start()
@@ -34,6 +40,8 @@ public class Enemy : MonoBehaviour
         // 5秒后销毁敌人
         Destroy(gameObject, 40f);
         notification.SetActive(false);
+        enemySpriteFront.sprite = sprite;
+        enemySpriteBack.sprite = sprite;
     }
 
     void Update()
@@ -66,6 +74,14 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+
+        Cube.transform.localScale = new Vector3(
+            Cube.transform.localScale.x,
+            Cube.transform.localScale.y,
+            length
+        );
+        enemySpriteFront.transform.localPosition = new Vector3(0, 0, 0);
+        enemySpriteBack.transform.localPosition = new Vector3(0, 0, length);
     }
 
     // 在场景视图中绘制射线
