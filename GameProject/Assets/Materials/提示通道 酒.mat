@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u63D0\u793A\u901A\u9053"
+  m_Name: "\u63D0\u793A\u901A\u9053 \u9152"
   m_Shader: {fileID: -6465566751694194690, guid: e0a74e8ea3204ed4f857a288353b6dee, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -54,5 +54,5 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 0.8805031, g: 0.5343933, b: 0.5343933, a: 0}
+    - _Color: {r: 0.54475045, g: 0.9308176, b: 0.35417885, a: 1}
   m_BuildTextureStacks: []
