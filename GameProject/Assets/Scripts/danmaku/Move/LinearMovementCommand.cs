@@ -14,7 +14,7 @@ public class LinearMovementCommand : ZMovementCommand
     /// 构造函数，初始化移动方向
     /// </summary>
     /// <param name="direction">移动方向向量</param>
-    public LinearMovementCommand(Vector3 direction, float speed,float zSpeed = 10f)
+    public LinearMovementCommand(Vector3 direction, float speed = 5f,float zSpeed = 10f)
     {
         this.direction = direction.normalized; // 确保方向是单位向量
         this.speed = speed;

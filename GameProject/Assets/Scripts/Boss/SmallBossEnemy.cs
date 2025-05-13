@@ -1,9 +1,99 @@
 using UnityEngine;
 using System.Collections;
+using Sirenix.OdinInspector;
+using Unity.VisualScripting;
+
+public abstract class AttackMode
+{
+    public abstract void RhythmAttack(Sprite enemySprite);
+
+    public abstract void FirstAttack();
+
+}
+
+
+public class FirstAttackMode : AttackMode
+{
+    public override void RhythmAttack(Sprite enemySprite)
+    {
+
+        // 生成圆形形状的敌人
+        // EnemyCreator.Instance.SpawnEnemiesInCircle(radius: 5f, enemyCount: 20);
+
+        // 生成自定义形状的敌人
+        // EnemyCreator.Instance.SpawnEnemy(
+        //     enemySprite: enemySprite, 
+        //     spawnMode: new SpawnCustomShape(), 
+        //     spawnParameters: new SpawnCustomShapeParameters(),
+        //     movementCommand: new ZMovementCommand(zSpeed: 10f));
+
+
+        // 生成等边三角形形状的敌人
+    //   EnemyCreator.Instance.SpawnEnemy(
+    //         enemySprite: enemySprite, 
+    //         spawnMode: new SpawnEnemiesInTriangle(), 
+    //         spawnParameters: new SpawnEnemiesInTriangleParameters(sideLength: 5f, enemyCount: 20),
+    //         movementCommand: new ZMovementCommand(zSpeed: 10f));
+
+
+
+        // 生成正方形形状的敌人
+        // EnemyCreator.Instance.SpawnEnemy(
+        //     enemySprite: enemySprite, 
+        //     spawnMode: new SpawnInSquare(), 
+        //     spawnParameters: new SpawnInSquareParameters(
+        //         sideLength: 5f,
+        //         enemyCount: 100,
+        //         squareOffsetX: 4f,
+        //         squareOffsetY: 4f
+        //     ),
+        //     movementCommand: new ZMovementCommand(zSpeed: 10f));
+
+        // 生成圆形形状的敌人
+        // EnemyCreator.Instance.SpawnEnemy(
+        //     enemySprite: enemySprite,
+        //     spawnMode: new SpawnEnemiesInCircle(),
+        //     spawnParameters: new SpawnEnemiesInCircleParameters(radius: 5f, enemyCount: 20),
+        //     movementCommand: new ZMovementCommand(zSpeed: 10f));
+
+
+        //   EnemyCreator.Instance.SpawnEnemy(
+        //     enemySprite: enemySprite,
+        //     spawnMode: new SpawnEnemiesInCircle(),
+        //     spawnParameters: new SpawnEnemiesInCircleParameters(radius: 5f, enemyCount: 20),
+        //     movementCommand: new PlayerFollowMovementCommand(playerTransform: GameManager.Instance.playerTransform, zSpeed: 20f));
+
+
+
+        // 生成螺旋形状的敌人
+        // EnemyCreator.Instance.SpawnEnemy(
+        //     enemySprite: enemySprite,
+        //     spawnMode: new SpawnInSpiral(),
+        //     spawnParameters: new SpawnInSpiralParameters(spiralTurns: 4, enemyCount: 150, radiusIncrement: 2f),
+        //     movementCommand: new ZMovementCommand(zSpeed: 10f));
+
+
+        // 生成圆形波纹形状的敌人
+        EnemyCreator.Instance.SpawnEnemy(
+            enemySprite: enemySprite,
+            spawnMode: new SpawnInWave(),
+            spawnParameters: new SpawnInWaveParameters(waveCount: 5, enemiesPerWave: 100, radiusIncrement: 2f),
+            movementCommand: new ZMovementCommand(zSpeed: 10f));
+    }
+    
+
+    public override void FirstAttack()
+    {
+        // EnemyCreator.Instance.SpawnEnemiesInSpiral(spiralTurns: 4, enemyCount: 150, radiusIncrement: 2f, spawnDelay: 0.1f);
+    }
+}
+
+
+
+
 
 public class SmallBossEnemy : BossBase
 {
-
 
     [SerializeField]
     private float survivalTime = 0f; // 存活时间
@@ -26,10 +116,17 @@ public class SmallBossEnemy : BossBase
     private Coroutine attackCoroutine;
 
 
+    [SerializeField]
+    private AttackMode attackMode = new FirstAttackMode();
+
+
     protected override void OnRhythm(RhythmType rhythmType)
-    {        
+    {
         if (isDead) return; // 如果已经死亡，不再切换图片
-        Debug.Log("OnRhythm");
+        // Debug.Log("OnRhythm");
+
+        // attackMode.RhythmAttack();
+
     }
 
     public override void Show()
@@ -56,37 +153,49 @@ public class SmallBossEnemy : BossBase
     {
         while (!isDead)
         {
-            FirstAttack();
-            yield return new WaitForSeconds(firstAttackInterval);
-
-            SecondAttack();
-            yield return new WaitForSeconds(secondAttackInterval);
-
-            ThirdAttack();
-            yield return new WaitForSeconds(thirdAttackInterval);
+            yield return StartCoroutine(FirstAttackCoroutine());
+            yield return StartCoroutine(SecondAttackCoroutine());
+            yield return StartCoroutine(ThirdAttackCoroutine());
         }
     }
 
-    private void FirstAttack()
+
+
+
+    private IEnumerator FirstAttackCoroutine()
     {
+        float attackTimeInterval = 5f;
+        attackMode = new FirstAttackMode();
+
+        attackMode.FirstAttack();
+        for (float t = 0; t < DataConfig.smallBossBattleTargetTime / 3; t += attackTimeInterval)
+        {
+            attackMode.RhythmAttack(enemySprite: deathSprite);
+            yield return new WaitForSeconds(attackTimeInterval);
+            Debug.Log("第一次攻击");
+        }
         // 实现第一次攻击逻辑
-        Debug.Log("第一次攻击");
+
         // 这里可以添加具体的攻击实现
-        // EnemyCreator
+        yield return new WaitForSeconds(firstAttackInterval);
     }
 
-    private void SecondAttack()
+    private IEnumerator SecondAttackCoroutine()
     {
         // 实现第二次攻击逻辑
         Debug.Log("第二次攻击");
         // 这里可以添加具体的攻击实现
+        // EnemyCreator.Instance.SpawnEnemiesInSpiral(spiralTurns: 4, enemyCount: 150, radiusIncrement: 2f, spawnDelay: 0.1f);
+        yield return new WaitForSeconds(secondAttackInterval);
     }
 
-    private void ThirdAttack()
+    private IEnumerator ThirdAttackCoroutine()
     {
         // 实现第三次攻击逻辑
         Debug.Log("第三次攻击");
         // 这里可以添加具体的攻击实现
+        // EnemyCreator.Instance.SpawnEnemiesInSpiral(spiralTurns: 4, enemyCount: 150, radiusIncrement: 2f, spawnDelay: 0.1f);
+        yield return new WaitForSeconds(thirdAttackInterval);
     }
 
     public void Die()
