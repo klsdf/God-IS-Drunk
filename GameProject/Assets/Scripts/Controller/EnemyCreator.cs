@@ -68,6 +68,8 @@ public class EnemyCreator : Singleton<EnemyCreator>
     {
         nextSpawnTime = Time.time + spawnInterval; // 初始化第一次生成时间
         zPosition = transform.position.z;
+
+        YanGF.ObjectPool.RegisterPool(enemyPrefab);
     }
 
 
@@ -123,7 +125,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
     /// </summary>
     /// 
     [Button("生成酒")]
-    public void SpawnWine(Sprite enemySprite,ISpawnMode spawnMode,SpawnParameters spawnParameters,IMovementCommand movementCommand)
+    public void SpawnWine(Sprite enemySprite, ISpawnMode spawnMode, SpawnParameters spawnParameters, IMovementCommand movementCommand)
     {
         Vector3[] spawnPositions = spawnMode.SpawnPosition(spawnParameters);
 
@@ -142,7 +144,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
     /// <param name="spawnMode"></param>
     /// <param name="spawnParameters"></param>
     /// <param name="movementCommand"></param>
-    public void SpawnEnemy(Sprite enemySprite,ISpawnMode spawnMode,SpawnParameters spawnParameters,IMovementCommand movementCommand)
+    public void SpawnEnemy(Sprite enemySprite, ISpawnMode spawnMode, SpawnParameters spawnParameters, IMovementCommand movementCommand)
     {
         Vector3[] spawnPositions = spawnMode.SpawnPosition(spawnParameters);
         foreach (var spawnPosition in spawnPositions)
@@ -162,7 +164,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
     /// <param name="spawnParameters"></param>
     /// <param name="movementCommand"></param>
     /// <param name="interval"></param>
-    public void SpawnEnemiesWithInterval(Sprite enemySprite,ISpawnMode spawnMode,SpawnParameters spawnParameters,IMovementCommand movementCommand,float interval)
+    public void SpawnEnemiesWithInterval(Sprite enemySprite, ISpawnMode spawnMode, SpawnParameters spawnParameters, IMovementCommand movementCommand, float interval)
     {
         StartCoroutine(SpawnEnemiesWithIntervalCoroutine(enemySprite, spawnMode, spawnParameters, movementCommand, interval));
     }
@@ -181,7 +183,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
         IMovementCommand movementCommand,
         float interval)
     {
-       Vector3[] spawnPositions = spawnMode.SpawnPosition(spawnParameters);
+        Vector3[] spawnPositions = spawnMode.SpawnPosition(spawnParameters);
         foreach (var spawnPosition in spawnPositions)
         {
             // 在指定位置实例化敌人，并将其设置为当前对象的子节点
@@ -428,24 +430,47 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
 
 
-    private void CreateEnemy(Vector3 spawnPosition,Sprite enemySprite, IMovementCommand movementCommand)
+    private void CreateEnemy(Vector3 spawnPosition, Sprite enemySprite, IMovementCommand movementCommand)
     {
-        // 在指定位置实例化敌人，并将其设置为当前对象的子节点
-        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
+        // 从对象池中获取敌人对象
+        GameObject enemy = YanGF.ObjectPool.GetItem(enemyPrefab);
+        enemy.transform.position = spawnPosition;
+        enemy.transform.rotation = Quaternion.identity;
+        enemy.transform.SetParent(transform);
 
         enemy.tag = "障碍物";
-        enemy.GetComponent<Enemy>().Init(movementCommand, enemyMaterial, enemySprite, 5f);
+        EnemyParameters enemyParameters = new EnemyParameters(enemyMaterial, enemySprite, 5f, () =>
+        {
+            // 碰撞处理
+            print("碰撞了" + enemy.name);
+
+            GameManager.Instance.LoseHP(DataConfig.loseHP);
+
+            FunDialogController.Instance.ShowOnCollisionEnemyDialogLimited();
+        });
+        enemy.GetComponent<Enemy>().Init(movementCommand, enemyParameters);
         enemy.name = "敌人" + enemies.Count;
         enemy.transform.SetParent(enemyContainer);
         enemies.Add(enemy.GetComponent<Enemy>());
     }
 
-    private void CreateWine(Vector3 spawnPosition,Sprite wineSprite, IMovementCommand movementCommand)
+    private void CreateWine(Vector3 spawnPosition, Sprite wineSprite, IMovementCommand movementCommand)
     {
-        // 在指定位置实例化敌人，并将其设置为当前对象的子节点
-        GameObject wine = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
+        // 从对象池中获取酒对象
+        GameObject wine = YanGF.ObjectPool.GetItem(enemyPrefab);
+        wine.transform.position = spawnPosition;
+        wine.transform.rotation = Quaternion.identity;
+        wine.transform.SetParent(transform);
+
         wine.tag = "酒";
-        wine.GetComponent<Enemy>().Init(movementCommand, wineMaterial, wineSprite, 2f);
+        EnemyParameters enemyParameters = new EnemyParameters(wineMaterial, wineSprite, 2f, () =>
+        {
+            // 碰撞处理
+            print("碰撞了" + wine.name);
+
+            GameManager.Instance.LoseHP(DataConfig.loseHP);
+        });
+        wine.GetComponent<Enemy>().Init(movementCommand, enemyParameters);
         wine.name = "酒" + wines.Count;
         wine.transform.SetParent(wineContainer);
         wines.Add(wine.GetComponent<Enemy>());
@@ -460,12 +485,14 @@ public class EnemyCreator : Singleton<EnemyCreator>
         if (enemy.tag == "障碍物")
         {
             enemies.Remove(enemy);
-            Destroy(enemy.gameObject);
+            // 将敌人返回到对象池
+            YanGF.ObjectPool.ReturnItem(enemy.gameObject, enemyPrefab);
         }
         else if (enemy.tag == "酒")
         {
             wines.Remove(enemy);
-            Destroy(enemy.gameObject);
+            // 将酒返回到对象池
+            YanGF.ObjectPool.ReturnItem(enemy.gameObject, enemyPrefab);
         }
     }
 

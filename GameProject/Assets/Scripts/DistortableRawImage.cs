@@ -27,7 +27,7 @@ public class DistortableRawImage : RawImage
     private MeshCollider meshCollider;   // MeshCollider
     private Mesh mesh;  // 自定义 Mesh
 
-    private Action _showOnCollisionEnemyDialogLimited;
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -41,8 +41,7 @@ public class DistortableRawImage : RawImage
         mesh = new Mesh();
         meshCollider.sharedMesh = mesh; // 初始化 MeshCollider 使用自定义 Mesh
         // UpdateUI();
-        _showOnCollisionEnemyDialogLimited
-        = YanGF.Timer.CreateRateLimitedAction(FunDialogController.Instance.ShowOnCollisionEnemyDialog, 3f);
+
   
     }
 
@@ -156,20 +155,12 @@ public class DistortableRawImage : RawImage
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "障碍物")
+        Enemy enemy = other.GetComponent<Enemy>();
+
+        if (enemy != null)
         {
-            // print("碰撞了" + other.gameObject.name);
-            GameManager.Instance.LoseHP(DataConfig.loseHP);
-
-            _showOnCollisionEnemyDialogLimited?.Invoke();
+            enemy.onCollision?.Invoke();
         }
-        else if (other.tag == "酒")
-        {
-            print("碰撞了" + other.gameObject.name);
-            GameManager.Instance.GainHP(DataConfig.gainHP);
-        }
-
-
     }
 
 

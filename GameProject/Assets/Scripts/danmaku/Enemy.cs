@@ -1,7 +1,31 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+
+
+
+
+
+public class EnemyParameters
+{
+    public Material material;
+    public Sprite sprite;
+    public float length;
+    public Action onCollision;
+
+    public EnemyParameters(Material material, Sprite sprite, float length, Action onCollision)
+    {
+        this.material = material;
+        this.sprite = sprite;
+        this.length = length;
+        this.onCollision = onCollision;
+    }
+}
+
+
+
 /// <summary>
-/// 敌人，或者说碰到后会掉血的障碍物
+/// 所有会飞的东西，包括敌人和酒
 /// </summary>
 public class Enemy : MonoBehaviour
 {
@@ -34,10 +58,12 @@ public class Enemy : MonoBehaviour
     private Vector3 originalScale; // 原始缩放比例
 
 
-    public void Init(IMovementCommand movementCommand, Material material, Sprite sprite, float length)
+    public Action onCollision;
+
+    public void Init(IMovementCommand movementCommand,  EnemyParameters enemyParameters)
     {
         this.movementCommand = movementCommand;
-        this.length = length;
+        this.length = enemyParameters.length;
         notification.SetActive(false);
 
         // 记录原始缩放比例
@@ -48,15 +74,17 @@ public class Enemy : MonoBehaviour
         // AdjustSpriteScale(enemySpriteFront);
         // AdjustSpriteScale(enemySpriteBack);
         // 设置精灵
-        enemyImageFront.sprite = sprite;
-        enemyImageBack.sprite = sprite;
+        enemyImageFront.sprite = enemyParameters.sprite;
+        enemyImageBack.sprite = enemyParameters.sprite;
 
         enemyImageFrontObj = enemyImageFront.transform.parent.gameObject;
         enemyImageBackObj = enemyImageBack.transform.parent.gameObject;
 
+        onCollision = enemyParameters.onCollision;
 
 
-        Cube.GetComponent<MeshRenderer>().material = material;
+
+        Cube.GetComponent<MeshRenderer>().material = enemyParameters.material;
         hasInit = true;
 
         YanGF.Timer.SetTimeOut(() =>

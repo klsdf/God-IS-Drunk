@@ -1,12 +1,8 @@
 using YanGameFrameWork.Singleton;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
 using YanGameFrameWork.DialogSystem;
-using System.Collections;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
-
+using System;
 
 
 /// <summary>
@@ -74,10 +70,20 @@ public class FunDialogController : Singleton<FunDialogController>
         YanGF.Dialog.RegisterDialogBlock(dialogBlock2);
         YanGF.Dialog.RegisterDialogBlock(dialogBlock3);
         YanGF.Dialog.RegisterDialogBlock(dialogBlock4);
+
+        _showOnCollisionEnemyDialogLimited
+        = YanGF.Timer.CreateRateLimitedAction(ShowOnCollisionEnemyDialog, 3f);
     }
 
 
 
+    private Action _showOnCollisionEnemyDialogLimited;
+    /// <summary>
+    /// 显示碰撞敌人对话,3秒内只显示一次
+    /// </summary>
+    public void ShowOnCollisionEnemyDialogLimited(){
+        _showOnCollisionEnemyDialogLimited?.Invoke();
+    }
 
 
 
