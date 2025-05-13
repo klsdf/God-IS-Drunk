@@ -150,6 +150,10 @@ public class GameManager : Singleton<GameManager>
 
         playerTransform = FindObjectOfType<PlayerController>().transform;
 
+
+        YanGF.Localization.SwitchToJapanese();
+
+
     }
 
     public void ChangeState(BaseState state)

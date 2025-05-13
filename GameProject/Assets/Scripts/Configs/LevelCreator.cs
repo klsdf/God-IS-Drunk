@@ -148,8 +148,6 @@ public static class LevelCreator
     public static void SpanNoramlItems()
     {
 
-
-
         float random = Random.Range(0f, 1f); // 生成一个0到1之间的随机数
 
         // 使用enemySpawnRate作为生成敌人的概率

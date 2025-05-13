@@ -56,6 +56,12 @@ public class EnemyCreator : Singleton<EnemyCreator>
     public Transform wineContainer;
 
 
+    public Transform 夜;
+    public Transform 露;
+    public Transform 死;
+    public Transform 苦;
+
+
 
     void Start()
     {

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+
 public class 贞子一阶段攻击 : AttackMode
 {
     public override void RhythmAttack(Sprite enemySprite)
@@ -20,8 +21,10 @@ public class 贞子一阶段攻击 : AttackMode
 
     public override void FirstAttack(Sprite enemySprite)
     {
-        // 实现一阶段攻击逻辑
+
     }
+
+
 }
 
 
@@ -62,7 +65,12 @@ public class 贞子三阶段攻击 : AttackMode
 
     public override void FirstAttack(Sprite enemySprite)
     {
-        // 实现三阶段攻击逻辑
+
+
+
+
+
+
     }
 }
 
@@ -109,7 +117,7 @@ public class BossEnemy : BossBase
     private IEnumerator AttackSequence()
     {
         debugTotalTime = DataConfig.bossBattleTargetTime;
- 
+
         debugStatus = "第一次对话";
         // 显示第一次攻击前的对话
         yield return StartCoroutine(FunDialogController.Instance.ShowBossDialogCoroutine(
@@ -149,6 +157,7 @@ public class BossEnemy : BossBase
 
         // 执行第三次攻击
         debugStatus = "第三次攻击";
+        yield return StartCoroutine(FirstAttackCoroutine(enemySprite: GetRandomBulletSprite()));
         yield return StartCoroutine(ThirdAttackCoroutine());
 
         // 第三次休息
@@ -262,4 +271,38 @@ public class BossEnemy : BossBase
 
         GameManager.Instance.OnBossBattleWin();
     }
+    public IEnumerator FirstAttackCoroutine(Sprite enemySprite)
+    {
+
+        float attackTimeInterval = 3f;
+        // 生成敌人并等待3秒
+        EnemyCreator.Instance.SpawnEnemy(
+            enemySprite: enemySprite,
+            spawnMode: new SpawnCustomShape(),
+            spawnParameters: new SpawnCustomShapeParameters(spawnCustomShapeType: SpawnCustomShapeType.夜),
+            movementCommand: new ZMovementCommand(zSpeed: 10f));
+        yield return new WaitForSeconds(attackTimeInterval);
+
+        EnemyCreator.Instance.SpawnEnemy(
+            enemySprite: enemySprite,
+            spawnMode: new SpawnCustomShape(),
+            spawnParameters: new SpawnCustomShapeParameters(spawnCustomShapeType: SpawnCustomShapeType.露),
+            movementCommand: new ZMovementCommand(zSpeed: 10f));
+        yield return new WaitForSeconds(attackTimeInterval);
+
+        EnemyCreator.Instance.SpawnEnemy(
+            enemySprite: enemySprite,
+            spawnMode: new SpawnCustomShape(),
+            spawnParameters: new SpawnCustomShapeParameters(spawnCustomShapeType: SpawnCustomShapeType.死),
+            movementCommand: new ZMovementCommand(zSpeed: 10f));
+        yield return new WaitForSeconds(attackTimeInterval);
+
+        EnemyCreator.Instance.SpawnEnemy(
+            enemySprite: enemySprite,
+            spawnMode: new SpawnCustomShape(),
+            spawnParameters: new SpawnCustomShapeParameters(spawnCustomShapeType: SpawnCustomShapeType.苦),
+            movementCommand: new ZMovementCommand(zSpeed: 10f));
+        yield return new WaitForSeconds(attackTimeInterval);
+    }
+
 }
