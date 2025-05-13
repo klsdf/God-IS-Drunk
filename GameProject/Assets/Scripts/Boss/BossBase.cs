@@ -1,5 +1,6 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System.Collections.Generic;
 public abstract class BossBase : MonoBehaviour
 {
 
@@ -13,6 +14,10 @@ public abstract class BossBase : MonoBehaviour
 
 
     public bool isShow = false;
+
+
+    [Header("子弹的图片")]
+    public List<Sprite> bulletSprites;
 
 
 
@@ -50,6 +55,14 @@ public abstract class BossBase : MonoBehaviour
        {
            isMoveing = false;
        });
+    }
+
+
+
+    public Sprite GetRandomBulletSprite()
+    {
+        int randomIndex = Random.Range(0, bulletSprites.Count);
+        return bulletSprites[randomIndex];
     }
 
 

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 /// <summary>
 /// 敌人，或者说碰到后会掉血的障碍物
 /// </summary>
@@ -14,8 +14,14 @@ public class Enemy : MonoBehaviour
 
     [Header("提示墙")]
     public GameObject notification;
-    public SpriteRenderer enemySpriteFront;
-    public SpriteRenderer enemySpriteBack;
+    // public SpriteRenderer enemySpriteFront;
+    // public SpriteRenderer enemySpriteBack;
+
+
+    public Image enemyImageFront;
+    private GameObject enemyImageFrontObj;
+    public Image enemyImageBack;
+    private GameObject enemyImageBackObj;
 
     public GameObject Cube;
 
@@ -35,15 +41,18 @@ public class Enemy : MonoBehaviour
         notification.SetActive(false);
 
         // 记录原始缩放比例
-        originalScale = enemySpriteFront.transform.localScale;
+        // originalScale = enemySpriteFront.transform.localScale;
 
 
         // 调整缩放比例以保持大小不变
-        AdjustSpriteScale(enemySpriteFront);
-        AdjustSpriteScale(enemySpriteBack);
+        // AdjustSpriteScale(enemySpriteFront);
+        // AdjustSpriteScale(enemySpriteBack);
         // 设置精灵
-        enemySpriteFront.sprite = sprite;
-        enemySpriteBack.sprite = sprite;
+        enemyImageFront.sprite = sprite;
+        enemyImageBack.sprite = sprite;
+
+        enemyImageFrontObj = enemyImageFront.transform.parent.gameObject;
+        enemyImageBackObj = enemyImageBack.transform.parent.gameObject;
 
 
 
@@ -59,13 +68,13 @@ public class Enemy : MonoBehaviour
         }, 40f);
     }
 
-    private void AdjustSpriteScale(SpriteRenderer spriteRenderer)
-    {
-        // 计算缩放比例
-        Vector3 spriteSize = spriteRenderer.sprite.bounds.size;
-        Vector3 scale = new Vector3(originalScale.x / spriteSize.x, originalScale.y / spriteSize.y, originalScale.z);
-        spriteRenderer.transform.localScale = scale;
-    }
+    // private void AdjustSpriteScale(SpriteRenderer spriteRenderer)
+    // {
+    //     // 计算缩放比例
+    //     Vector3 spriteSize = spriteRenderer.sprite.bounds.size;
+    //     Vector3 scale = new Vector3(originalScale.x / spriteSize.x, originalScale.y / spriteSize.y, originalScale.z);
+    //     spriteRenderer.transform.localScale = scale;
+    // }
 
     void Update()
     {
@@ -77,7 +86,7 @@ public class Enemy : MonoBehaviour
         movementCommand?.Execute(this);
 
         // 检查enemySpriteFront和notification的z坐标
-        if (enemySpriteFront.transform.position.z <= notification.transform.position.z)
+        if (enemyImageFrontObj.transform.position.z <= notification.transform.position.z)
         {
             notification.SetActive(false); // 隐藏notification
         }
@@ -119,8 +128,8 @@ public class Enemy : MonoBehaviour
             Cube.transform.localScale.y,
             length
         );
-        enemySpriteFront.transform.localPosition = new Vector3(0, 0, -length / 2);
-        enemySpriteBack.transform.localPosition = new Vector3(0, 0, length / 2);
+        enemyImageFrontObj.transform.localPosition = new Vector3(0, 0, -length / 2);
+        enemyImageBackObj.transform.localPosition = new Vector3(0, 0, length / 2);
     }
 
     // 在场景视图中绘制射线

@@ -6,11 +6,8 @@ using Unity.VisualScripting;
 public abstract class AttackMode
 {
     public abstract void RhythmAttack(Sprite enemySprite);
-
-    public abstract void FirstAttack();
-
+    public abstract void FirstAttack(Sprite enemySprite);
 }
-
 
 public class FirstAttackMode : AttackMode
 {
@@ -29,11 +26,11 @@ public class FirstAttackMode : AttackMode
 
 
         // 生成等边三角形形状的敌人
-    //   EnemyCreator.Instance.SpawnEnemy(
-    //         enemySprite: enemySprite, 
-    //         spawnMode: new SpawnEnemiesInTriangle(), 
-    //         spawnParameters: new SpawnEnemiesInTriangleParameters(sideLength: 5f, enemyCount: 20),
-    //         movementCommand: new ZMovementCommand(zSpeed: 10f));
+        //   EnemyCreator.Instance.SpawnEnemy(
+        //         enemySprite: enemySprite, 
+        //         spawnMode: new SpawnEnemiesInTriangle(), 
+        //         spawnParameters: new SpawnEnemiesInTriangleParameters(sideLength: 5f, enemyCount: 20),
+        //         movementCommand: new ZMovementCommand(zSpeed: 10f));
 
 
 
@@ -66,25 +63,61 @@ public class FirstAttackMode : AttackMode
 
 
         // 生成螺旋形状的敌人
-        // EnemyCreator.Instance.SpawnEnemy(
-        //     enemySprite: enemySprite,
-        //     spawnMode: new SpawnInSpiral(),
-        //     spawnParameters: new SpawnInSpiralParameters(spiralTurns: 4, enemyCount: 150, radiusIncrement: 2f),
-        //     movementCommand: new ZMovementCommand(zSpeed: 10f));
+        EnemyCreator.Instance.SpawnEnemiesWithInterval(
+            enemySprite: enemySprite,
+            spawnMode: new SpawnInSpiral(),
+            spawnParameters: new SpawnInSpiralParameters(spiralTurns: 4, enemyCount: 150, radiusIncrement: 2f),
+            movementCommand: new ZMovementCommand(zSpeed: 10f),
+            interval: 0.1f);
 
 
         // 生成圆形波纹形状的敌人
-        EnemyCreator.Instance.SpawnEnemy(
-            enemySprite: enemySprite,
-            spawnMode: new SpawnInWave(),
-            spawnParameters: new SpawnInWaveParameters(waveCount: 5, enemiesPerWave: 100, radiusIncrement: 2f),
-            movementCommand: new ZMovementCommand(zSpeed: 10f));
-    }
-    
 
-    public override void FirstAttack()
+
+
+
+    }
+
+
+    public override void FirstAttack(Sprite enemySprite)
     {
         // EnemyCreator.Instance.SpawnEnemiesInSpiral(spiralTurns: 4, enemyCount: 150, radiusIncrement: 2f, spawnDelay: 0.1f);
+
+
+        // EnemyCreator.Instance.SpawnEnemiesWithInterval(
+        // enemySprite: enemySprite,
+        // spawnMode: new SpawnInWave(),
+        // spawnParameters: new SpawnInWaveParameters(waveCount: 5, enemiesPerWave: 100, radiusIncrement: 2f),
+        // movementCommand: new ZMovementCommand(zSpeed: 10f),
+        // interval: 0.1f);
+
+        EnemyCreator.Instance.SpawnEnemy(
+                 enemySprite: enemySprite,
+                 spawnMode: new SpawnInSquare(),
+                 spawnParameters: new SpawnInSquareParameters(
+                     sideLength: 5f,
+                     enemyCount: 100,
+                     squareOffsetX: 4f,
+                     squareOffsetY: 4f
+                 ),
+                 movementCommand: new ZMovementCommand(zSpeed: 10f));
+
+
+
+        // EnemyCreator.Instance.SpawnEnemiesWithInterval(
+        //          enemySprite: enemySprite,
+        //          spawnMode: new SpawnInSquare(),
+        //          spawnParameters: new SpawnInSquareParameters(
+        //              sideLength: 5f,
+        //              enemyCount: 100,
+        //              squareOffsetX: 4f,
+        //              squareOffsetY: 4f
+        //          ),
+        //          movementCommand: new ZMovementCommand(zSpeed: 10f),
+        //          interval: 0.03f);
+
+
+
     }
 }
 
@@ -164,13 +197,13 @@ public class SmallBossEnemy : BossBase
 
     private IEnumerator FirstAttackCoroutine()
     {
-        float attackTimeInterval = 5f;
+        float attackTimeInterval = 3f;
         attackMode = new FirstAttackMode();
 
-        attackMode.FirstAttack();
+        attackMode.FirstAttack(enemySprite: GetRandomBulletSprite());
         for (float t = 0; t < DataConfig.smallBossBattleTargetTime / 3; t += attackTimeInterval)
         {
-            attackMode.RhythmAttack(enemySprite: deathSprite);
+            attackMode.RhythmAttack(enemySprite: GetRandomBulletSprite());
             yield return new WaitForSeconds(attackTimeInterval);
             Debug.Log("第一次攻击");
         }

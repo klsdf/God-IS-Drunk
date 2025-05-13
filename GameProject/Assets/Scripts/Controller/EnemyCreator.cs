@@ -91,58 +91,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
     }
 
 
-    /// <summary>
-    /// 随机生成酒或敌人
-    /// </summary>
-    void SpawnSomething()
-    {
-        // 生成一个0到1之间的随机浮点数
-        float randomValue = Random.Range(0f, 1f);
 
-        // // 如果随机值小于0.8，则生成敌人
-        // if (randomValue < enemySpawnRate)
-        // {
-        //     // 随机选择一种敌人生成方式
-        //     int enemySpawnMethod = Random.Range(0, 5); // 更新上限为5
-
-        //     switch (enemySpawnMethod)
-        //     {
-        //         case 0:
-        //             // 生成单个敌人
-        //             // SpawnEnemy(EnemyMovementMethod.ZMovement);
-        //             break;
-        //         case 1:
-        //             // 生成螺旋形敌人
-        //             SpawnEnemiesInSpiral(4, 15, 2f, 1.5f);
-        //             break;
-        //         case 2:
-        //             // 生成圆形敌人
-        //             SpawnEnemiesInCircle(5f, 20);
-        //             break;
-        //         case 3:
-        //             // 生成波纹形敌人
-        //             SpawnEnemiesInWave(5, 10, 2f, 1f);
-        //             break;
-        //         case 4:
-        //             // 生成三角形敌人
-        //             SpawnEnemiesInTriangle(5f, 10);
-        //             break;
-        //         case 5:
-        //             // 生成正方形敌人
-        //             SpawnEnemiesInSquare(5f, 8);
-        //             break;
-        //         case 6:
-        //             // 生成圆形敌人
-        //             SpawnEnemiesInCircleIndividually(5f, 20, 0.5f);
-        //             break;
-        //     }
-        // }
-        // else
-        // {
-        //     // 否则生成酒
-        //     SpawnWine();
-        // }
-    }
 
 
 
@@ -189,6 +138,10 @@ public class EnemyCreator : Singleton<EnemyCreator>
     /// <summary>
     /// 生成敌人
     /// </summary>
+    /// <param name="enemySprite"></param>
+    /// <param name="spawnMode"></param>
+    /// <param name="spawnParameters"></param>
+    /// <param name="movementCommand"></param>
     public void SpawnEnemy(Sprite enemySprite,ISpawnMode spawnMode,SpawnParameters spawnParameters,IMovementCommand movementCommand)
     {
         Vector3[] spawnPositions = spawnMode.SpawnPosition(spawnParameters);
@@ -200,6 +153,42 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
     }
 
+
+    /// <summary>
+    /// 以间隔生成敌人
+    /// </summary>
+    /// <param name="enemySprite"></param>
+    /// <param name="spawnMode"></param>
+    /// <param name="spawnParameters"></param>
+    /// <param name="movementCommand"></param>
+    /// <param name="interval"></param>
+    public void SpawnEnemiesWithInterval(Sprite enemySprite,ISpawnMode spawnMode,SpawnParameters spawnParameters,IMovementCommand movementCommand,float interval)
+    {
+        StartCoroutine(SpawnEnemiesWithIntervalCoroutine(enemySprite, spawnMode, spawnParameters, movementCommand, interval));
+    }
+
+
+    /// <summary>
+    /// 协程：以间隔生成敌人
+    /// </summary>
+    /// <param name="movementMethod">敌人的移动方式</param>
+    /// <param name="enemyCount">要生成的敌人数量</param>
+    /// <param name="interval">每个敌人生成的间隔时间</param>
+    private IEnumerator SpawnEnemiesWithIntervalCoroutine(
+        Sprite enemySprite,
+        ISpawnMode spawnMode,
+        SpawnParameters spawnParameters,
+        IMovementCommand movementCommand,
+        float interval)
+    {
+       Vector3[] spawnPositions = spawnMode.SpawnPosition(spawnParameters);
+        foreach (var spawnPosition in spawnPositions)
+        {
+            // 在指定位置实例化敌人，并将其设置为当前对象的子节点
+            CreateEnemy(spawnPosition, enemySprite, movementCommand);
+            yield return new WaitForSeconds(interval);
+        }
+    }
 
     #endregion
 
