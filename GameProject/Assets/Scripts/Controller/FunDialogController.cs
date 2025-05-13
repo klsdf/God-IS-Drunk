@@ -30,46 +30,38 @@ public enum DialogType
     InstantFeverMode,
     /// <summary>进入Boss战事件。</summary>
     EnterBossBattle,
+    /// <summary>进入小Boss战事件。</summary>
+    SmallBossBattle,
+    /// <summary>小Boss的随机对话事件。</summary>
+    SmallBossRandomDialog,
 }
 public class FunDialogController : Singleton<FunDialogController>
 {
 
     [SerializeField]
-    [Header("对话框的文本")]
-    private TMP_Text _dialogText;
+    [Header("玩家对话框的文本")]
+    private TMP_Text _playerDialogText;
 
     [SerializeField]
-    [Header("对话框面板")]
-    private RectTransform _dialogPanel;
+    [Header("玩家对话框面板")]
+    private RectTransform _playerDialogPanel;
 
 
 
-
-    [SerializeField]
-    [Header("Boss对话框的文本")]
-    private TMP_Text BossDialogText;
-
-    [SerializeField]
-    [Header("Boss对话框面板")]
-    private RectTransform BossDialogPanel;
 
 
 
     void Start()
     {
 
-        DialogBlock dialogBlock = StoryConfig.startDialogBlock;
 
-        DialogBlock dialogBlock2 = StoryConfig.collisionEnemyDialogBlock;
 
-        DialogBlock dialogBlock3 = StoryConfig.drinkDialogBlock;
+        YanGF.Dialog.RegisterDialogBlock(StoryConfig.startDialogBlock);
+        YanGF.Dialog.RegisterDialogBlock(StoryConfig.collisionEnemyDialogBlock);
+        YanGF.Dialog.RegisterDialogBlock(StoryConfig.drinkDialogBlock);
+        YanGF.Dialog.RegisterDialogBlock(StoryConfig.bossDialogBlock);
 
-        DialogBlock dialogBlock4 = StoryConfig.bossDialogBlock;
-
-        YanGF.Dialog.RegisterDialogBlock(dialogBlock);
-        YanGF.Dialog.RegisterDialogBlock(dialogBlock2);
-        YanGF.Dialog.RegisterDialogBlock(dialogBlock3);
-        YanGF.Dialog.RegisterDialogBlock(dialogBlock4);
+        YanGF.Dialog.RegisterDialogBlock(StoryConfig.smallBossDialogBlock);
 
         _showOnCollisionEnemyDialogLimited
         = YanGF.Timer.CreateRateLimitedAction(ShowOnCollisionEnemyDialog, 3f);
@@ -81,7 +73,8 @@ public class FunDialogController : Singleton<FunDialogController>
     /// <summary>
     /// 显示碰撞敌人对话,3秒内只显示一次
     /// </summary>
-    public void ShowOnCollisionEnemyDialogLimited(){
+    public void ShowOnCollisionEnemyDialogLimited()
+    {
         _showOnCollisionEnemyDialogLimited?.Invoke();
     }
 
@@ -94,76 +87,128 @@ public class FunDialogController : Singleton<FunDialogController>
     /// </summary>
     public void ShowGameStartDialog()
     {
-        YanGF.Dialog.RunSequenceDialog(DialogType.GameStart.ToString(), ShowDialog, () =>
+        YanGF.Dialog.RunSequenceDialog(DialogType.GameStart.ToString(), ShowCharacterDialog, () =>
         {
-              CloseDialog();
+            ClosePlayerDialog();
             UIController.Instance.ShowLevelText("第一章:流浪啊流浪", () =>
             {
                 GameManager.Instance.ResumeGame();
-              
+
             });
         });
     }
 
 
-    [ContextMenu("ShowBossDialog")]
-    public void ShowBossDialog(){
-        YanGF.Dialog.RunSequenceDialog(DialogType.EnterBossBattle.ToString(),ShowDialog,()=>{
+    /// <summary>
+    /// 显示Boss对话
+    /// </summary>
+    /// <param name="panel">boss对话框</param>
+    /// <param name="dialogType">对话类型</param>
+    public void ShowBossDialog(DialogType dialogType, RectTransform panel, TMP_Text TMPtext,Action onDialogEnd)
+    {
+        GameManager.Instance.PauseGame();
+        YanGF.Dialog.RunSequenceDialog(dialogType.ToString(), (Dialog dialog) =>
+        {
+            if (dialog.speaker == StoryConfig.left || dialog.speaker == StoryConfig.right || dialog.speaker == StoryConfig.center)
+            {
+                ShowCharacterDialog(dialog);
+            }
+            else
+            {
+                ShowBossDialog(dialog, panel, TMPtext);
+            }
+
+        }, () =>
+        {
             GameManager.Instance.ResumeGame();
-            CloseDialog();
+            CloseDialog(panel);
+            onDialogEnd?.Invoke();
         });
     }
 
 
 
 
-    public void ShowOnCollisionEnemyDialog()
+    /// <summary>
+    /// 显示Boss的随机对话
+    /// </summary>
+    /// <param name="panel">boss对话框</param>
+    /// <param name="dialogType">对话类型</param>
+    public void ShowBossRandomDialog(DialogType dialogType, RectTransform panel, TMP_Text TMPtext)
     {
-        Dialog dialog = YanGF.Dialog.GetDialogBlockByName(DialogType.OnCollisionEnemy.ToString()).GetRandomDialog();
-        ShowDialog(dialog);
+        Dialog dialog = YanGF.Dialog.GetDialogBlockByName(dialogType.ToString()).GetRandomDialog();
+        ShowBossDialog(dialog, panel, TMPtext);
         YanGF.Timer.SetTimeOut(() =>
         {
-            CloseDialog();
+            CloseDialog(panel);
         }, 2f);
     }
 
 
-    public void CloseDialog()
+
+
+    /// <summary>
+    /// 显示碰撞敌人对话
+    /// </summary>
+
+    public void ShowOnCollisionEnemyDialog()
     {
-        _dialogPanel.gameObject.SetActive(false);
-        BossDialogPanel.gameObject.SetActive(false);
+        Dialog dialog = YanGF.Dialog.GetDialogBlockByName(DialogType.OnCollisionEnemy.ToString()).GetRandomDialog();
+        ShowCharacterDialog(dialog);
+        YanGF.Timer.SetTimeOut(() =>
+        {
+            ClosePlayerDialog();
+        }, 2f);
+    }
+
+
+    public void ClosePlayerDialog()
+    {
+        _playerDialogPanel.gameObject.SetActive(false);
+    }
+
+    public void CloseDialog(RectTransform panel)
+    {
+        panel.gameObject.SetActive(false);
     }
 
 
 
 
-    private void ShowDialog(Dialog dialog)
+
+    private void ShowBossDialog(Dialog dialog, RectTransform panel, TMP_Text TMPtext)
+    {
+        panel.gameObject.SetActive(true);
+        string dialogText = YanGF.Localization.Translate(dialog.dialog);
+        YanGF.Dialog.StartTypingEffect(dialogText, 0.05f, TMPtext);
+        dialog.onPlay?.Invoke();
+    }
+
+
+
+    /// <summary>
+    /// 显示角色对话
+    /// </summary>
+    /// <param name="dialog"></param>
+    private void ShowCharacterDialog(Dialog dialog)
     {
 
         string dialogText = YanGF.Localization.Translate(dialog.dialog);
 
-        if(dialog.speaker == StoryConfig.地雷妹){
-            BossDialogText.text = dialogText;
-            BossDialogPanel.gameObject.SetActive(true);
-            YanGF.Dialog.StartTypingEffect(dialogText, 0.05f, BossDialogText);
-            return;
-        }
+        _playerDialogPanel.gameObject.SetActive(true);
+        YanGF.Dialog.StartTypingEffect(dialogText, 0.05f, _playerDialogText);
 
-
-        _dialogPanel.gameObject.SetActive(true);
-        YanGF.Dialog.StartTypingEffect(dialogText, 0.05f, _dialogText);
-
-        if (dialog.speaker == StoryConfig.左)
+        if (dialog.speaker == StoryConfig.left)
         {
-            _dialogPanel.anchoredPosition = new Vector2(0, 130);
+            _playerDialogPanel.anchoredPosition = new Vector2(0, 130);
         }
         else if (dialog.speaker == StoryConfig.center)
         {
-            _dialogPanel.anchoredPosition = new Vector2(60, 130);
+            _playerDialogPanel.anchoredPosition = new Vector2(60, 130);
         }
         else if (dialog.speaker == StoryConfig.right)
         {
-            _dialogPanel.anchoredPosition = new Vector2(120, 130);
+            _playerDialogPanel.anchoredPosition = new Vector2(120, 130);
         }
 
         dialog.onPlay?.Invoke();

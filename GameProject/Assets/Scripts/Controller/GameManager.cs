@@ -61,6 +61,8 @@ public class NormalState : BaseState
 public class BossBattleState : BaseState
 {
 
+
+    public bool isBossStartBattle = false;
     /// <summary>
     /// 进入Boss战模式
     /// </summary>
@@ -72,9 +74,16 @@ public class BossBattleState : BaseState
 
         GameData gameData = YanGF.Model.GetModel<GameData>();
         gameData.bossBattleCurrentTime = 0.0f; // 初始化Boss战计时器
+        GameManager.Instance.bossEnemy.Show();
+        FunDialogController.Instance.ShowBossDialog(
+            DialogType.EnterBossBattle,
+            GameManager.Instance.bossEnemy.BossDialogPanel,
+            GameManager.Instance.bossEnemy.BossDialogText,
+            () =>
+            {
+                isBossStartBattle = true;
+            });
 
-        FunDialogController.Instance.ShowBossDialog();
-        GameManager.Instance.PauseGame();
 
 
     }
@@ -82,6 +91,8 @@ public class BossBattleState : BaseState
 
     public override void OnUpdate()
     {
+
+        if (isBossStartBattle == false) return;
         GameData gameData = YanGF.Model.GetModel<GameData>();
         gameData.bossBattleCurrentTime += Time.deltaTime;
         if (gameData.bossBattleCurrentTime >= gameData.bossBattleTargetTime)
@@ -125,7 +136,7 @@ public class GameManager : Singleton<GameManager>
     public string debugCurrentState;
 
     [Header("小Boss")]
-    public BossEnemy smallBossEnemy;
+    public SmallBossEnemy smallBossEnemy;
 
     [Header("Boss")]
     public BossEnemy bossEnemy;

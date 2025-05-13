@@ -1,6 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using TMPro;
 public abstract class BossBase : MonoBehaviour
 {
 
@@ -18,6 +19,12 @@ public abstract class BossBase : MonoBehaviour
 
     [Header("子弹的图片")]
     public List<Sprite> bulletSprites;
+
+    [Header("Boss对话框")]
+    public RectTransform BossDialogPanel;
+
+    [Header("玩家对话框")]
+    public TMP_Text BossDialogText;
 
 
 

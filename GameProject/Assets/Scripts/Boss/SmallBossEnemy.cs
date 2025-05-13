@@ -149,6 +149,10 @@ public class SmallBossEnemy : BossBase
     private Coroutine attackCoroutine;
 
 
+
+
+    public string debugStatus = "";
+
     [SerializeField]
     private AttackMode attackMode = new FirstAttackMode();
 
@@ -165,8 +169,21 @@ public class SmallBossEnemy : BossBase
     public override void Show()
     {
         base.Show();
-        // 启动攻击协程
-        attackCoroutine = StartCoroutine(AttackSequence());
+
+
+        //展示对话
+        FunDialogController.Instance.ShowBossDialog(
+            DialogType.SmallBossBattle,
+            BossDialogPanel,
+            BossDialogText,
+            () =>
+            {
+                // 启动攻击协程
+                attackCoroutine = StartCoroutine(AttackSequence());
+            });
+
+
+
     }
 
     void Update()
@@ -176,7 +193,7 @@ public class SmallBossEnemy : BossBase
         if (isShow == false) return;
 
         survivalTime += Time.deltaTime;
-        if (survivalTime >= DataConfig.smallBossBattleTargetTime)
+        if (survivalTime >= DataConfig.smallBossHP)
         {
             Die(); // 超过阈值，自动死亡
         }
@@ -184,7 +201,7 @@ public class SmallBossEnemy : BossBase
 
     private IEnumerator AttackSequence()
     {
-        while (!isDead)
+        while (survivalTime < DataConfig.smallBossHP)
         {
             yield return StartCoroutine(FirstAttackCoroutine());
             yield return StartCoroutine(SecondAttackCoroutine());
@@ -197,11 +214,18 @@ public class SmallBossEnemy : BossBase
 
     private IEnumerator FirstAttackCoroutine()
     {
+        debugStatus = "第一次攻击";
         float attackTimeInterval = 3f;
         attackMode = new FirstAttackMode();
 
+
+
         attackMode.FirstAttack(enemySprite: GetRandomBulletSprite());
-        for (float t = 0; t < DataConfig.smallBossBattleTargetTime / 3; t += attackTimeInterval)
+
+
+
+
+        for (float t = 0; t < DataConfig.smallBossHP / 3; t += attackTimeInterval)
         {
             attackMode.RhythmAttack(enemySprite: GetRandomBulletSprite());
             yield return new WaitForSeconds(attackTimeInterval);
@@ -215,8 +239,16 @@ public class SmallBossEnemy : BossBase
 
     private IEnumerator SecondAttackCoroutine()
     {
+        debugStatus = "第二次攻击";
+        float attackTimeInterval = 3f;
         // 实现第二次攻击逻辑
-        Debug.Log("第二次攻击");
+
+        for (float t = 0; t < DataConfig.smallBossHP / 3; t += attackTimeInterval)
+        {
+            attackMode.RhythmAttack(enemySprite: GetRandomBulletSprite());
+            yield return new WaitForSeconds(attackTimeInterval);
+            Debug.Log("第二次攻击");
+        }
         // 这里可以添加具体的攻击实现
         // EnemyCreator.Instance.SpawnEnemiesInSpiral(spiralTurns: 4, enemyCount: 150, radiusIncrement: 2f, spawnDelay: 0.1f);
         yield return new WaitForSeconds(secondAttackInterval);
@@ -224,8 +256,16 @@ public class SmallBossEnemy : BossBase
 
     private IEnumerator ThirdAttackCoroutine()
     {
+        debugStatus = "第三次攻击";
+        float attackTimeInterval = 3f;
         // 实现第三次攻击逻辑
-        Debug.Log("第三次攻击");
+
+        for (float t = 0; t < DataConfig.smallBossHP / 3; t += attackTimeInterval)
+        {
+            attackMode.RhythmAttack(enemySprite: GetRandomBulletSprite());
+            yield return new WaitForSeconds(attackTimeInterval);
+            Debug.Log("第三次攻击");
+        }
         // 这里可以添加具体的攻击实现
         // EnemyCreator.Instance.SpawnEnemiesInSpiral(spiralTurns: 4, enemyCount: 150, radiusIncrement: 2f, spawnDelay: 0.1f);
         yield return new WaitForSeconds(thirdAttackInterval);
