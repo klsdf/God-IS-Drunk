@@ -14,6 +14,8 @@ public static class StoryConfig
     public static DialogCharacter LandmineGirl = new DialogCharacter("地雷妹");
     public static DialogCharacter Capitalist = new DialogCharacter("资本家");
 
+    public static DialogCharacter 贞子 = new DialogCharacter("贞子");
+
 
     public static DialogBlock startDialogBlock = new DialogBlock(DialogType.GameStart.ToString(), new List<Dialog>
     {
@@ -108,4 +110,30 @@ public static class StoryConfig
         new Dialog("世界末日真好啊！！可以狠狠花钱哈哈哈哈哈哈", Capitalist),
     });
 
+
+
+    public static DialogBlock 贞子对话1 = new DialogBlock(DialogType.贞子对话1.ToString(), new List<Dialog>
+    {
+        new Dialog("1", left),
+        new Dialog("2", 贞子),
+        new Dialog("3", right),
+    });
+
+    public static DialogBlock 贞子对话2 = new DialogBlock(DialogType.贞子对话2.ToString(), new List<Dialog>
+    {
+        new Dialog("1", 贞子),
+        new Dialog("2", 贞子),
+        new Dialog("3", center),
+    });
+
+
+    public static DialogBlock 贞子对话3 = new DialogBlock(DialogType.贞子对话3.ToString(), new List<Dialog>
+    {
+        new Dialog("1", 贞子),
+        new Dialog("2", 贞子),
+        new Dialog("3", 贞子),
+    });
+    
+    
+    
 }

@@ -17,6 +17,8 @@ public class NormalState : BaseState
 {
 
     private bool hasShowSmallBoss = false;
+
+    private bool hasShowBoss = false;
     public override void OnEnter()
     {
 
@@ -42,10 +44,15 @@ public class NormalState : BaseState
         }
 
 
-        if (progress >= DataConfig.meetBossProgress)
+        if (progress >= DataConfig.meetBossProgress && GameManager.Instance.isGameOver == false)
         {
-            gameData.currentTime = gameData.targetTime * DataConfig.meetBossProgress; // 将进度卡在99%
-            GameManager.Instance.ChangeState(new BossBattleState()); // 进入Boss战模式
+            if (hasShowBoss == false)
+            {
+                gameData.currentTime = gameData.targetTime * DataConfig.meetBossProgress; // 将进度卡在99%
+
+                GameManager.Instance.bossEnemy.Show();
+                hasShowBoss = true;
+            }
         }
 
         UIController.Instance.UpdateTime(gameData.currentTime, gameData.targetTime);
@@ -57,56 +64,6 @@ public class NormalState : BaseState
     }
 }
 
-[System.Serializable]
-public class BossBattleState : BaseState
-{
-
-
-    public bool isBossStartBattle = false;
-    /// <summary>
-    /// 进入Boss战模式
-    /// </summary>
-    public override void OnEnter()
-    {
-
-        // 触发进入Boss战的逻辑
-        Debug.Log("进入Boss战模式");
-
-        GameData gameData = YanGF.Model.GetModel<GameData>();
-        gameData.bossBattleCurrentTime = 0.0f; // 初始化Boss战计时器
-        GameManager.Instance.bossEnemy.Show();
-        FunDialogController.Instance.ShowBossDialog(
-            DialogType.EnterBossBattle,
-            GameManager.Instance.bossEnemy.BossDialogPanel,
-            GameManager.Instance.bossEnemy.BossDialogText,
-            () =>
-            {
-                isBossStartBattle = true;
-            });
-
-
-
-    }
-
-
-    public override void OnUpdate()
-    {
-
-        if (isBossStartBattle == false) return;
-        GameData gameData = YanGF.Model.GetModel<GameData>();
-        gameData.bossBattleCurrentTime += Time.deltaTime;
-        if (gameData.bossBattleCurrentTime >= gameData.bossBattleTargetTime)
-        {
-            GameManager.Instance.OnBossBattleWin();
-            gameData.bossBattleCurrentTime = 0.0f; // 重置计时器
-        }
-    }
-
-    public override void OnExit()
-    {
-
-    }
-}
 
 
 
@@ -117,7 +74,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameData gameData;
 
-    private bool isGameOver = false; // 游戏是否结束的标志
+    public bool isGameOver = false; // 游戏是否结束的标志
 
 
     [SerializeField]

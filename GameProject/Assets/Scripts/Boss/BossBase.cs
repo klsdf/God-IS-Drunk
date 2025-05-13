@@ -27,6 +27,39 @@ public abstract class BossBase : MonoBehaviour
     public TMP_Text BossDialogText;
 
 
+    [SerializeField]
+    [Header("存活时间")]
+    public float survivalTime = 0f; // 存活时间
+
+    protected Coroutine attackCoroutine;
+
+    [SerializeField]
+    public float firstAttackInterval = 3f; // 第一次攻击后的间隔时间
+    [SerializeField]
+    public float secondAttackInterval = 4f; // 第二次攻击后的间隔时间
+    [SerializeField]
+    public float thirdAttackInterval = 5f; // 第三次攻击后的间隔时间
+
+
+    public bool isDead = false; // 死亡状态标志
+
+    public Sprite deathSprite; // 死亡时的sprite
+
+
+
+   [SerializeField]
+    protected AttackMode attackMode;
+
+
+
+#region Debug
+
+    public string debugStatus = "";
+
+    public float debugTotalTime = 0f;
+
+#endregion
+
 
     void Start()
     {
@@ -37,6 +70,7 @@ public abstract class BossBase : MonoBehaviour
 
 
     protected abstract void OnRhythm(RhythmType rhythmType);
+
 
 
     [Button("显示")]
@@ -51,6 +85,7 @@ public abstract class BossBase : MonoBehaviour
         {
             isMoveing = false;
         });
+
     }
 
 
@@ -73,6 +108,21 @@ public abstract class BossBase : MonoBehaviour
     }
 
 
+   protected void Die()
+    {
+        isDead = true;
+        spriteRenderer.sprite = deathSprite; // 切换为死亡画面
+        Hide();
+  
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+        }
 
+
+        Debug.Log("Boss死亡！！");
+
+        GameManager.Instance.OnBossBattleWin();
+    }
 }
 

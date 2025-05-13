@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using YanGameFrameWork.DialogSystem;
 using System;
+using System.Collections;
 
 
 /// <summary>
@@ -34,6 +35,10 @@ public enum DialogType
     SmallBossBattle,
     /// <summary>小Boss的随机对话事件。</summary>
     SmallBossRandomDialog,
+
+    贞子对话1,
+    贞子对话2,
+    贞子对话3
 }
 public class FunDialogController : Singleton<FunDialogController>
 {
@@ -62,6 +67,10 @@ public class FunDialogController : Singleton<FunDialogController>
         YanGF.Dialog.RegisterDialogBlock(StoryConfig.bossDialogBlock);
 
         YanGF.Dialog.RegisterDialogBlock(StoryConfig.smallBossDialogBlock);
+
+        YanGF.Dialog.RegisterDialogBlock(StoryConfig.贞子对话1);
+        YanGF.Dialog.RegisterDialogBlock(StoryConfig.贞子对话2);
+        YanGF.Dialog.RegisterDialogBlock(StoryConfig.贞子对话3);
 
         _showOnCollisionEnemyDialogLimited
         = YanGF.Timer.CreateRateLimitedAction(ShowOnCollisionEnemyDialog, 3f);
@@ -100,13 +109,15 @@ public class FunDialogController : Singleton<FunDialogController>
 
 
     /// <summary>
-    /// 显示Boss对话
+    /// 显示Boss对话并返回一个协程
     /// </summary>
     /// <param name="panel">boss对话框</param>
     /// <param name="dialogType">对话类型</param>
-    public void ShowBossDialog(DialogType dialogType, RectTransform panel, TMP_Text TMPtext,Action onDialogEnd)
+    public IEnumerator ShowBossDialogCoroutine(DialogType dialogType, RectTransform panel, TMP_Text TMPtext)
     {
         GameManager.Instance.PauseGame();
+        bool dialogEnded = false;
+
         YanGF.Dialog.RunSequenceDialog(dialogType.ToString(), (Dialog dialog) =>
         {
             if (dialog.speaker == StoryConfig.left || dialog.speaker == StoryConfig.right || dialog.speaker == StoryConfig.center)
@@ -122,8 +133,14 @@ public class FunDialogController : Singleton<FunDialogController>
         {
             GameManager.Instance.ResumeGame();
             CloseDialog(panel);
-            onDialogEnd?.Invoke();
+            dialogEnded = true;
         });
+
+        // 等待对话结束
+        while (!dialogEnded)
+        {
+            yield return null;
+        }
     }
 
 
