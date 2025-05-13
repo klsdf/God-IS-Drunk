@@ -28,10 +28,6 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
     public float zPosition = 0f;
 
-    [Header("敌人生成间隔时间")]
-    public float spawnInterval = 2f; // 敌人生成间隔时间
-
-    private float nextSpawnTime; // 下一次生成敌人的时间
 
 
 
@@ -66,38 +62,10 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
     void Start()
     {
-        nextSpawnTime = Time.time + spawnInterval; // 初始化第一次生成时间
         zPosition = transform.position.z;
 
         YanGF.ObjectPool.RegisterPool(enemyPrefab);
     }
-
-
-
-
-
-    void Update()
-    {
-        if (GameManager.Instance.IsGamePause)
-        {
-            return;
-        }
-        // 如果到了生成敌人的时间
-        if (Time.time >= nextSpawnTime)
-        {
-
-            // SpawnSomething();
-
-            nextSpawnTime = Time.time + spawnInterval; // 更新下一次生成时间
-        }
-    }
-
-
-
-
-
-
-
 
 
 
@@ -195,6 +163,33 @@ public class EnemyCreator : Singleton<EnemyCreator>
     #endregion
 
 
+
+
+    public void SpanNoramlItems(Sprite[] enemySprites, bool isEnemy)
+    {
+
+        ISpawnMode spawnMode = new SpawnRandomPosition();
+        SpawnRandomPositionParameters spawnParameters = new SpawnRandomPositionParameters();
+        IMovementCommand movementCommand = new ZMovementCommand(20f);
+
+        Vector3[] spawnPositions = spawnMode.SpawnPosition(spawnParameters);
+
+
+        Sprite chooseSprite = enemySprites[Random.Range(0, enemySprites.Length)];
+        foreach (var spawnPosition in spawnPositions)
+        {
+            // 在指定位置实例化敌人，并将其设置为当前对象的子节点
+
+            if (isEnemy)
+            {
+                CreateEnemy(spawnPosition, chooseSprite, movementCommand);
+            }
+            else
+            {
+                CreateWine(spawnPosition, chooseSprite, movementCommand);
+            }
+        }
+    }
 
 
 

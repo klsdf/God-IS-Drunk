@@ -19,10 +19,26 @@ public class NormalState : BaseState
     private bool hasShowSmallBoss = false;
 
     private bool hasShowBoss = false;
+
+    [Header("敌人生成间隔时间")]
+    public float spawnInterval = 2f; // 敌人生成间隔时间
+    private float timer; // 下一次生成敌人的时间
+
     public override void OnEnter()
     {
-
+        timer = spawnInterval;
     }
+
+    private void PrepareSpanNoramlItems()
+    {
+        if (timer >= spawnInterval)
+        {
+            EnemyCreator.Instance.SpanNoramlItems(GameManager.Instance.障碍物们, true);
+            timer = 0;
+        }
+        timer += Time.deltaTime;
+    }
+
     /// <summary>
     /// 检查游戏进程，看看有没有通关，或者进入boss战
     /// </summary>
@@ -34,22 +50,40 @@ public class NormalState : BaseState
         gameData.currentTime += Time.deltaTime;
         float progress = gameData.currentTime / gameData.targetTime;
 
-        if (progress >= DataConfig.meetSmallBossProgress)
+
+        if (progress <= DataConfig.meetSmallBossProgress)
+        {
+            PrepareSpanNoramlItems();
+        }
+
+
+
+        if (progress > DataConfig.meetSmallBossProgress && progress < DataConfig.meetSmallBossProgress + DataConfig.smallBossProgress)
         {
             if (hasShowSmallBoss == false)
             {
+                GameManager.Instance.smallBossEnemy.gameObject.SetActive(true);
                 GameManager.Instance.smallBossEnemy.Show();
                 hasShowSmallBoss = true;
             }
         }
 
 
+        if (progress >= DataConfig.meetSmallBossProgress + DataConfig.smallBossProgress && progress < DataConfig.meetBossProgress)
+        {
+            PrepareSpanNoramlItems();
+        }
+
+
+
         if (progress >= DataConfig.meetBossProgress && GameManager.Instance.isGameOver == false)
         {
+            gameData.currentTime = gameData.targetTime * DataConfig.meetBossProgress; // 将进度卡在99%
             if (hasShowBoss == false)
             {
-                gameData.currentTime = gameData.targetTime * DataConfig.meetBossProgress; // 将进度卡在99%
 
+
+                GameManager.Instance.bossEnemy.gameObject.SetActive(true);
                 GameManager.Instance.bossEnemy.Show();
                 hasShowBoss = true;
             }
@@ -100,6 +134,11 @@ public class GameManager : Singleton<GameManager>
 
 
     public Transform playerTransform;
+
+
+    public Sprite[] 障碍物们;
+
+    public Sprite[] 酒们;
 
     private void Start()
     {

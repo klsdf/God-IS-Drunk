@@ -112,6 +112,7 @@ public class SmallBossEnemy : BossBase
 {
 
 
+    public float 目标时间  = 0f;
     protected override void OnRhythm(RhythmType rhythmType)
     {
         if (isDead) return; // 如果已经死亡，不再切换图片
@@ -126,6 +127,8 @@ public class SmallBossEnemy : BossBase
         base.Show();
 
         StartCoroutine(AttackSequence());
+
+        目标时间 = DataConfig.smallBossProgress * DataConfig.targetTime;
         //展示对话
 
 
@@ -135,7 +138,7 @@ public class SmallBossEnemy : BossBase
 
     private IEnumerator AttackSequence()
     {
-        debugTotalTime = DataConfig.smallBossHP;
+        debugTotalTime = 目标时间;
 
         yield return StartCoroutine(FunDialogController.Instance.ShowBossDialogCoroutine(
             DialogType.SmallBossBattle,
@@ -162,7 +165,7 @@ public class SmallBossEnemy : BossBase
 
         attackMode.FirstAttack(enemySprite: GetRandomBulletSprite());
 
-        for (; survivalTime < DataConfig.smallBossHP / 2; survivalTime += attackTimeInterval)
+        for (; survivalTime < 目标时间 / 2; survivalTime += attackTimeInterval)
         {
             attackMode.RhythmAttack(enemySprite: GetRandomBulletSprite());
             yield return new WaitForSeconds(attackTimeInterval);
@@ -181,7 +184,7 @@ public class SmallBossEnemy : BossBase
         attackMode = new 资本家二阶段攻击();
         // 实现第二次攻击逻辑
         attackMode.FirstAttack(enemySprite: GetRandomBulletSprite());
-        for (; survivalTime < DataConfig.smallBossHP; survivalTime += attackTimeInterval)
+        for (; survivalTime < 目标时间; survivalTime += attackTimeInterval)
         {
             attackMode.RhythmAttack(enemySprite: GetRandomBulletSprite());
             yield return new WaitForSeconds(attackTimeInterval);

@@ -108,7 +108,7 @@ public abstract class BossBase : MonoBehaviour
     }
 
 
-   protected void Die()
+   protected virtual void Die()
     {
         isDead = true;
         spriteRenderer.sprite = deathSprite; // 切换为死亡画面
@@ -119,10 +119,6 @@ public abstract class BossBase : MonoBehaviour
             StopCoroutine(attackCoroutine);
         }
 
-
-        Debug.Log("Boss死亡！！");
-
-        GameManager.Instance.OnBossBattleWin();
     }
 }
 

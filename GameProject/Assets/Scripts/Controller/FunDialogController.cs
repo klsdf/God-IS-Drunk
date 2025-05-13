@@ -133,6 +133,7 @@ public class FunDialogController : Singleton<FunDialogController>
         {
             GameManager.Instance.ResumeGame();
             CloseDialog(panel);
+            ClosePlayerDialog();
             dialogEnded = true;
         });
 

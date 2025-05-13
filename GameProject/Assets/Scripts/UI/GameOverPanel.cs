@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using YanGameFrameWork.UISystem;
+using DG.Tweening;
 
 
 public class GameOverPanel : UIPanelBase
@@ -15,6 +16,8 @@ public class GameOverPanel : UIPanelBase
 
     [Header("退出按钮")]
     public Button btnExit;
+
+    public CanvasGroup canvasGroup;
 
 
     public override void ChildStart()
@@ -36,6 +39,11 @@ public class GameOverPanel : UIPanelBase
     {
         base.OnEnter();
         title.text = YanGF.Localization.Translate("游戏失败了喵");
+
+        // 设置初始透明度为0
+        canvasGroup.alpha = 0;
+        // 透明度从0变为1
+        canvasGroup.DOFade(1, 1f).SetEase(Ease.OutQuad);
     }
 
  

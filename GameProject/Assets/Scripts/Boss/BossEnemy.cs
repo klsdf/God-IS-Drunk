@@ -108,8 +108,8 @@ public class BossEnemy : BossBase
 
     private IEnumerator AttackSequence()
     {
-        debugTotalTime = DataConfig.smallBossHP;
-
+        debugTotalTime = DataConfig.bossBattleTargetTime;
+ 
         debugStatus = "第一次对话";
         // 显示第一次攻击前的对话
         yield return StartCoroutine(FunDialogController.Instance.ShowBossDialogCoroutine(
@@ -169,7 +169,7 @@ public class BossEnemy : BossBase
 
         attackMode.FirstAttack(enemySprite: GetRandomBulletSprite());
 
-        for (; survivalTime < DataConfig.smallBossHP / 3; survivalTime += attackTimeInterval)
+        for (; survivalTime < DataConfig.bossBattleTargetTime / 3; survivalTime += attackTimeInterval)
         {
             attackMode.RhythmAttack(enemySprite: GetRandomBulletSprite());
             yield return new WaitForSeconds(attackTimeInterval);
@@ -187,7 +187,7 @@ public class BossEnemy : BossBase
 
         SetHappyState(true);
         attackMode.FirstAttack(enemySprite: GetRandomBulletSprite());
-        for (; survivalTime < DataConfig.smallBossHP * 2 / 3; survivalTime += attackTimeInterval)
+        for (; survivalTime < DataConfig.bossBattleTargetTime * 2 / 3; survivalTime += attackTimeInterval)
         {
             attackMode.RhythmAttack(enemySprite: GetRandomBulletSprite());
             yield return new WaitForSeconds(attackTimeInterval);
@@ -204,7 +204,7 @@ public class BossEnemy : BossBase
 
         attackMode.FirstAttack(enemySprite: GetRandomBulletSprite());
 
-        for (; survivalTime < DataConfig.smallBossHP; survivalTime += attackTimeInterval)
+        for (; survivalTime < DataConfig.bossBattleTargetTime; survivalTime += attackTimeInterval)
         {
             attackMode.RhythmAttack(enemySprite: GetRandomBulletSprite());
             yield return new WaitForSeconds(attackTimeInterval);
@@ -247,5 +247,12 @@ public class BossEnemy : BossBase
         {
             spriteRenderer.sprite = normalSprite; // 切换回正常状态的sprite
         }
+    }
+
+    override protected void Die()
+    {
+        base.Die();
+
+        GameManager.Instance.OnBossBattleWin();
     }
 }
