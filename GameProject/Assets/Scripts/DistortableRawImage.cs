@@ -158,7 +158,7 @@ public class DistortableRawImage : RawImage
     {
         if (other.tag == "障碍物")
         {
-            print("碰撞了" + other.gameObject.name);
+            // print("碰撞了" + other.gameObject.name);
             GameManager.Instance.LoseHP(DataConfig.loseHP);
 
             _showOnCollisionEnemyDialogLimited?.Invoke();
