@@ -2,6 +2,8 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using TMPro;
+using DG.Tweening; // 引入DoTween库
+
 public abstract class BossBase : MonoBehaviour
 {
 
@@ -47,18 +49,18 @@ public abstract class BossBase : MonoBehaviour
 
 
 
-   [SerializeField]
+    [SerializeField]
     protected AttackMode attackMode;
 
 
 
-#region Debug
+    #region Debug
 
     public string debugStatus = "";
 
     public float debugTotalTime = 0f;
 
-#endregion
+    #endregion
 
 
     void Start()
@@ -66,6 +68,8 @@ public abstract class BossBase : MonoBehaviour
         YanGF.Event.AddListener<RhythmType>(RhythmEvent.OnRhythm, OnRhythm);
         spriteRenderer = GetComponent<SpriteRenderer>();
         transform.position = startPosition;
+
+
     }
 
 
@@ -74,7 +78,7 @@ public abstract class BossBase : MonoBehaviour
 
 
     [Button("显示")]
-    public  virtual void Show()
+    public virtual void Show()
     {
         isShow = true;
         transform.position = startPosition;
@@ -84,7 +88,15 @@ public abstract class BossBase : MonoBehaviour
         YanGF.Tween.Tween(transform, t => t.position, targetPosition, moveTime, () =>
         {
             isMoveing = false;
+
+            // 使用DoTween在Y轴上循环移动，只移动1个单位
+            float moveDistance = 1f; // 移动距离
+            transform.DOMoveY(targetPosition.y + moveDistance, 2f)
+                     .SetLoops(-1, LoopType.Yoyo)
+                     .SetEase(Ease.InOutSine);
         });
+
+
 
     }
 
@@ -108,12 +120,12 @@ public abstract class BossBase : MonoBehaviour
     }
 
 
-   protected virtual void Die()
+    protected virtual void Die()
     {
         isDead = true;
         spriteRenderer.sprite = deathSprite; // 切换为死亡画面
         Hide();
-  
+
         if (attackCoroutine != null)
         {
             StopCoroutine(attackCoroutine);

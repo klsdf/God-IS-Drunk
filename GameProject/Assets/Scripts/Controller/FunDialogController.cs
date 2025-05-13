@@ -76,6 +76,9 @@ public class FunDialogController : Singleton<FunDialogController>
 
         _showOnCollisionEnemyDialogLimited
         = YanGF.Timer.CreateRateLimitedAction(ShowOnCollisionEnemyDialog, 3f);
+
+        _showOnDrinkDialogLimited
+        = YanGF.Timer.CreateRateLimitedAction(ShowOnDrinkDialog, 3f);
     }
 
 
@@ -87,6 +90,14 @@ public class FunDialogController : Singleton<FunDialogController>
     public void ShowOnCollisionEnemyDialogLimited()
     {
         _showOnCollisionEnemyDialogLimited?.Invoke();
+    }
+
+
+    private Action _showOnDrinkDialogLimited;
+
+    public void ShowOnDrinkDialogLimited()
+    {
+        _showOnDrinkDialogLimited?.Invoke();
     }
 
 
@@ -174,6 +185,20 @@ public class FunDialogController : Singleton<FunDialogController>
     public void ShowOnCollisionEnemyDialog()
     {
         Dialog dialog = YanGF.Dialog.GetDialogBlockByName(DialogType.OnCollisionEnemy.ToString()).GetRandomDialog();
+        ShowCharacterDialog(dialog);
+        YanGF.Timer.SetTimeOut(() =>
+        {
+            ClosePlayerDialog();
+        }, 2f);
+    }
+
+
+    /// <summary>
+    /// 显示喝到酒对话
+    /// </summary>
+    public void ShowOnDrinkDialog()
+    {
+        Dialog dialog = YanGF.Dialog.GetDialogBlockByName(DialogType.OnDrink.ToString()).GetRandomDialog();
         ShowCharacterDialog(dialog);
         YanGF.Timer.SetTimeOut(() =>
         {

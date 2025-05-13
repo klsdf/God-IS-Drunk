@@ -31,7 +31,9 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
 
 
-
+    [Header("敌人生成概率")]
+    [Range(0.1f, 0.8f)]
+    public float enemySpawnRate = 0.8f;
 
 
 
@@ -398,6 +400,16 @@ public class EnemyCreator : Singleton<EnemyCreator>
     //     }
     // }
 
+    [Button("生成测试敌人")]
+    public void SpawnEnemyWithDelay()
+    {
+        EnemyCreator.Instance.SpawnEnemy(
+            enemySprite: GameManager.Instance.障碍物们[0],
+            spawnMode: new SpawnCustomShape(),
+            spawnParameters: new SpawnCustomShapeParameters(spawnCustomShapeType: SpawnCustomShapeType.夜),
+            movementCommand: new ZMovementCommand(zSpeed: 10f));
+    }
+
 
 
 
@@ -419,7 +431,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
             FunDialogController.Instance.ShowOnCollisionEnemyDialogLimited();
         });
-        enemy.GetComponent<Enemy>().Init(movementCommand, enemyParameters);
+        enemy.GetComponent<Enemy>().Init(movementCommand, enemyParameters, 0);
         enemy.name = "敌人" + enemies.Count;
         enemy.transform.SetParent(enemyContainer);
         enemies.Add(enemy.GetComponent<Enemy>());
@@ -439,9 +451,10 @@ public class EnemyCreator : Singleton<EnemyCreator>
             // 碰撞处理
             print("碰撞了" + wine.name);
 
-            GameManager.Instance.LoseHP(DataConfig.loseHP);
+            GameManager.Instance.GainHP(DataConfig.gainHP);
+            FunDialogController.Instance.ShowOnDrinkDialogLimited();
         });
-        wine.GetComponent<Enemy>().Init(movementCommand, enemyParameters);
+        wine.GetComponent<Enemy>().Init(movementCommand, enemyParameters, 1);
         wine.name = "酒" + wines.Count;
         wine.transform.SetParent(wineContainer);
         wines.Add(wine.GetComponent<Enemy>());

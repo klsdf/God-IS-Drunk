@@ -107,7 +107,7 @@ public class PlayerController : Singleton<PlayerController>
         // 调用手柄震动功能
         if (isControllerConnected && gamepad != null)
         {
-            StartCoroutine(VibrateGamepad(0.5f, 0.25f)); // 震动强度为0.5，持续0.25秒
+            StartCoroutine(VibrateGamepad(0.7f, 0.2f)); // 震动强度为0.5，持续0.25秒
         }
 
         //播放受击音效
@@ -129,6 +129,11 @@ public class PlayerController : Singleton<PlayerController>
     public void GainHP()
     {
         StartCoroutine(FlashGreen());
+             // 调用手柄震动功能
+        if (isControllerConnected && gamepad != null)
+        {
+            StartCoroutine(VibrateGamepad(0.2f, 0.5f)); // 震动强度为0.5，持续0.25秒
+        }
     }
 
     

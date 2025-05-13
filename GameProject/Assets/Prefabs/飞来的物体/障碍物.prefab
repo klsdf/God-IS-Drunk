@@ -318,7 +318,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -7.26}
-  m_LocalScale: {x: 0.3644, y: 0.3644, z: 0.3644}
+  m_LocalScale: {x: 1, y: 1, z: 0.3644}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1532793115131109907}
@@ -666,7 +666,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.54, y: 2.69, z: 66.26}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4853346484541999994}
@@ -766,6 +766,8 @@ MonoBehaviour:
   enemyImageBack: {fileID: 2733218132489180084}
   Cube: {fileID: 3086805849074219210}
   length: 0
+  alertEnemySprite: {fileID: 21300000, guid: e9e4bc87a927b654aa311c0af8970d5f, type: 3}
+  alertWineSprite: {fileID: 21300000, guid: 9a6be2f63b4119749a48caa9ebf5e514, type: 3}
 --- !u!1 &7070487903347543765
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,8 +24,8 @@ public class DistortableRawImage : RawImage
 
     private Gamepad gamepad;
 
-    private MeshCollider meshCollider;   // MeshCollider
-    private Mesh mesh;  // 自定义 Mesh
+    // private MeshCollider meshCollider;   // MeshCollider
+    // private Mesh mesh;  // 自定义 Mesh
 
 
     protected override void OnEnable()
@@ -37,10 +37,9 @@ public class DistortableRawImage : RawImage
         }
 
         // 添加 MeshCollider 并初始化 Mesh
-        meshCollider = gameObject.GetComponent<MeshCollider>();
-        mesh = new Mesh();
-        meshCollider.sharedMesh = mesh; // 初始化 MeshCollider 使用自定义 Mesh
-        // UpdateUI();
+        // meshCollider = gameObject.GetComponent<MeshCollider>();
+        // mesh = new Mesh();
+        // meshCollider.sharedMesh = mesh; // 初始化 MeshCollider 使用自定义 Mesh
 
   
     }
@@ -136,17 +135,17 @@ public class DistortableRawImage : RawImage
         }
 
         // 为 Mesh 设置顶点数据
-        mesh.vertices = vertices;
+        // mesh.vertices = vertices;
 
         // 设置每个面的三角形索引
         int[] triangles = new int[6];
         triangles[0] = 0; triangles[1] = 1; triangles[2] = 2;  // 上三角形
         triangles[3] = 2; triangles[4] = 3; triangles[5] = 0;  // 下三角形
 
-        mesh.triangles = triangles;
+        // mesh.triangles = triangles;
 
-        // 更新 MeshCollider 的碰撞网格
-        meshCollider.sharedMesh = mesh;
+        // // 更新 MeshCollider 的碰撞网格
+        // meshCollider.sharedMesh = mesh;
     }
 
 

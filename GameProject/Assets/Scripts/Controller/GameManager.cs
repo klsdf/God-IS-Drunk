@@ -295,6 +295,7 @@ public class GameManager : Singleton<GameManager>
         if (isGameOver) return; // 如果游戏已经结束，直接返回
 
         isGameOver = true; // 设置游戏结束标志
+        PauseGame();
         AudioController.PlayWinAudio();
         var panel = YanGF.UI.PushPanel<GameWinPanel>();
         print("游戏胜利");
@@ -306,6 +307,7 @@ public class GameManager : Singleton<GameManager>
         if (isGameOver) return; // 如果游戏已经结束，直接返回
 
         isGameOver = true; // 设置游戏结束标志
+        PauseGame();
         AudioController.PlayLoseAudio();
         var panel = YanGF.UI.PushPanel<GameOverPanel>();
         print("游戏失败");

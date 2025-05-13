@@ -60,7 +60,13 @@ public class Enemy : MonoBehaviour
 
     public Action onCollision;
 
-    public void Init(IMovementCommand movementCommand,  EnemyParameters enemyParameters)
+
+
+    public Sprite alertEnemySprite;
+    public Sprite alertWineSprite;
+
+
+    public void Init(IMovementCommand movementCommand,  EnemyParameters enemyParameters, int type)
     {
         this.movementCommand = movementCommand;
         this.length = enemyParameters.length;
@@ -94,6 +100,15 @@ public class Enemy : MonoBehaviour
                 EnemyCreator.Instance.DestroyItem(this);
             }
         }, 40f);
+
+        if (type == 0)
+        {
+            notification.GetComponent<SpriteRenderer>().sprite = alertEnemySprite;
+        }
+        else
+        {
+            notification.GetComponent<SpriteRenderer>().sprite = alertWineSprite;
+        }
     }
 
     // private void AdjustSpriteScale(SpriteRenderer spriteRenderer)

@@ -3239,171 +3239,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7872053039010969663, guid: 3be2cd9cb1bcd1842a5475a24bd92d1b, type: 3}
   m_PrefabInstance: {fileID: 476165777}
   m_PrefabAsset: {fileID: 0}
---- !u!43 &491447772
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 11
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 6
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 4
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 95.426956, y: 84.92185, z: 0}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000001000200020003000000
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 4
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 48
-    _typelessdata: 9adabec2fdd7a9c2000000009adabec2fdd7a942000000009adabe42fdd7a942000000009adabe42fdd7a9c200000000
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 95.426956, y: 84.92185, z: 0}
-  m_MeshUsageFlags: 0
-  m_CookingOptions: 30
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    serializedVersion: 2
-    offset: 0
-    size: 0
-    path: 
 --- !u!1001 &518600904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3621,7 +3456,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 47
+  field of view: 47.7
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -5973,7 +5808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1356316581783102810, guid: c00929fa507ad754e991e9553e232148, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.9000187
+      value: 1.4400165
       objectReference: {fileID: 0}
     - target: {fileID: 1356316581783102810, guid: c00929fa507ad754e991e9553e232148, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6165,7 +6000,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1356316581783102810, guid: ab3d4eeebd31c7241bf0d262cccd0d10, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.9000187
+      value: 1.4400165
       objectReference: {fileID: 0}
     - target: {fileID: 1356316581783102810, guid: ab3d4eeebd31c7241bf0d262cccd0d10, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7615,7 +7450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1356316581783102810, guid: e38f0fc4b179c7d4e8853980385843fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.9
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 1356316581783102810, guid: e38f0fc4b179c7d4e8853980385843fd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7755,6 +7590,7 @@ GameObject:
   - component: {fileID: 1106870781}
   - component: {fileID: 1106870780}
   - component: {fileID: 1106870784}
+  - component: {fileID: 1106870785}
   m_Layer: 5
   m_Name: "\u4E3B\u89D2"
   m_TagString: Untagged
@@ -7866,6 +7702,27 @@ MonoBehaviour:
   moveDistanceY: 4
   leftStick: {x: 0, y: 0}
   rightStick: {x: 0, y: 0}
+--- !u!65 &1106870785
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106870779}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 200, y: 200, z: 200}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1112097561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14531,7 +14388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1356316581783102810, guid: 637b96f6fcd76eb44bb381a85721c1e1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.9000187
+      value: 1.4400165
       objectReference: {fileID: 0}
     - target: {fileID: 1356316581783102810, guid: 637b96f6fcd76eb44bb381a85721c1e1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15356,7 +15213,7 @@ Transform:
   m_GameObject: {fileID: 1338662866}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0508, y: -0.15, z: 1.44}
+  m_LocalPosition: {x: 1.0508, y: -0.15, z: -1.2}
   m_LocalScale: {x: 22.155226, y: 17.678328, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24593,7 +24450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4ac2e2b074c054bb259e67618608d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feverThreshold: 0.7
+  feverThreshold: 0.45
   FeverMax: 1000
   _fever: 0
   FeverLight: {fileID: 619394801}
@@ -25346,11 +25203,11 @@ GameObject:
   - component: {fileID: 2087278757}
   - component: {fileID: 2087278760}
   - component: {fileID: 2087278758}
-  - component: {fileID: 2087278763}
   - component: {fileID: 2087278764}
   - component: {fileID: 2087278762}
   - component: {fileID: 2087278767}
   - component: {fileID: 2087278766}
+  - component: {fileID: 2087278768}
   m_Layer: 5
   m_Name: "\u5947\u5999\u7684\u4E3B\u89D2"
   m_TagString: Untagged
@@ -25455,28 +25312,6 @@ MonoBehaviour:
   topRightOffset: {x: 0, y: 0}
   bottomLeftOffset: {x: 0, y: 0}
   bottomRightOffset: {x: 0, y: 0}
---- !u!64 &2087278763
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087278756}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 491447772}
 --- !u!54 &2087278764
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25826,6 +25661,28 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
+--- !u!64 &2087278768
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2087278756}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &2090881278
 GameObject:
   m_ObjectHideFlags: 0
@@ -26078,6 +25935,7 @@ MonoBehaviour:
   maxY: 10
   maxZ: 10
   zPosition: 0
+  enemySpawnRate: 0.7
   enemyMaterial: {fileID: 2100000, guid: af9446d251f63e548a5ae7e06f52fdd7, type: 2}
   wineMaterial: {fileID: 2100000, guid: 94df4170aa0174341b0e498610a7dd7e, type: 2}
   enemies: []
@@ -27337,7 +27195,7 @@ PrefabInstance:
     - target: {fileID: 3320579948569832724, guid: 2fd3221a54e09f744a4f65d88d5f0af0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: dee3c93c918376c4f87056d28cbb2016, type: 3}
+      objectReference: {fileID: 21300000, guid: dba7170caf988604e840857e10703385, type: 3}
     - target: {fileID: 3320579948569832724, guid: 2fd3221a54e09f744a4f65d88d5f0af0, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -27513,6 +27371,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2101938631966867212, guid: 121393b31463dac49abfd5d334d608ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4737632050771967131, guid: 121393b31463dac49abfd5d334d608ce, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5445040849109831345, guid: 121393b31463dac49abfd5d334d608ce, type: 3}

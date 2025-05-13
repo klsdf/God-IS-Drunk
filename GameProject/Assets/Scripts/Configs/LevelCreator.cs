@@ -9,9 +9,7 @@ using UnityEngine;
 public static class LevelCreator
 {
 
-    [Header("敌人生成概率")]
-    [Range(0.1f, 0.8f)]
-    public static float enemySpawnRate = 0.8f;
+
 
 
     public static List<IMovementCommand> movementCommands;
@@ -51,9 +49,7 @@ public static class LevelCreator
                     squareOffsetX: 5f,
                     squareOffsetY: 5f
                 );
-                IMovementCommand movementCommand1 = new CircularMovementCommand(
-                    radius: 6f,
-                    speed: 2f,
+                IMovementCommand movementCommand1 = new ZMovementCommand(
                     zSpeed: 10f
                 );
                 EnemyCreator.Instance.SpawnEnemy(chooseSprite, spawnMode1, spawnParameters1, movementCommand1);
@@ -151,7 +147,7 @@ public static class LevelCreator
         float random = Random.Range(0f, 1f); // 生成一个0到1之间的随机数
 
         // 使用enemySpawnRate作为生成敌人的概率
-        if (random < enemySpawnRate)
+        if (random < EnemyCreator.Instance.enemySpawnRate)
         {
             // 获取障碍物们
             Sprite[] enemySprites = GameManager.Instance.障碍物们;
