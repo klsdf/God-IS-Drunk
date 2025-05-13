@@ -26,7 +26,7 @@ public class PlayerController : Singleton<PlayerController>
     [Header("移动距离Y")]
     public float moveDistanceY = 4.0f;    // 移动距离Y
 
-    private DistortableRawImage spriteRenderer; // 用于改变颜色的SpriteRenderer
+    private DistortableRawImage distortableRawImage; // 用于改变颜色的SpriteRenderer
     private Color originalColor; // 原始颜色
     private float damageFlashDuration = 0.25f; // 受伤时颜色变化的持续时间
 
@@ -51,10 +51,10 @@ public class PlayerController : Singleton<PlayerController>
         }
 
         // 获取SpriteRenderer组件
-        spriteRenderer = GetComponent<DistortableRawImage>();
-        if (spriteRenderer != null)
+        distortableRawImage = GetComponent<DistortableRawImage>();
+        if (distortableRawImage != null)
         {
-            originalColor = spriteRenderer.color; // 保存原始颜色
+            originalColor = distortableRawImage.color; // 保存原始颜色
         }
     }
 
@@ -99,7 +99,7 @@ public class PlayerController : Singleton<PlayerController>
 
         //自身红色闪烁
         // 如果spriteRenderer不为空且当前没有在闪烁
-        if (spriteRenderer != null && !isFlashing)
+        if (distortableRawImage != null && !isFlashing)
         {
             StartCoroutine(FlashRed());
         }
@@ -137,18 +137,18 @@ public class PlayerController : Singleton<PlayerController>
     private IEnumerator FlashRed()
     {
         isFlashing = true; // 设置为正在闪烁
-        spriteRenderer.color = Color.red; // 变为红色
+        distortableRawImage.color = Color.red; // 变为红色
         yield return new WaitForSeconds(damageFlashDuration); // 等待一段时间
-        spriteRenderer.color = originalColor; // 恢复原始颜色
+        distortableRawImage.color = originalColor; // 恢复原始颜色
         isFlashing = false; // 闪烁结束
     }
 
     private IEnumerator FlashGreen()
     {
         isFlashing = true; // 设置为正在闪烁
-        spriteRenderer.color = Color.green; // 变为绿色
+        distortableRawImage.color = Color.green; // 变为绿色
         yield return new WaitForSeconds(damageFlashDuration); // 等待一段时间
-        spriteRenderer.color = originalColor; // 恢复原始颜色
+        distortableRawImage.color = originalColor; // 恢复原始颜色
         isFlashing = false; // 闪烁结束
     }
     
