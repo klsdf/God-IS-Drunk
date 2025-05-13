@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using YanGameFrameWork.UISystem;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class GameWinPanel : UIPanelBase
 {
@@ -60,7 +61,7 @@ public class GameWinPanel : UIPanelBase
 
 
         // 旋转并同时改变缩放比例
-        titleRectTransform.DORotate(new Vector3(0,0 ,1800 ), 2f, RotateMode.FastBeyond360)
+        titleRectTransform.DORotate(new Vector3(0, 0, 1800), 2f, RotateMode.FastBeyond360)
                 .SetEase(Ease.OutQuad)
                 .OnComplete(() => titleRectTransform.rotation = Quaternion.Euler(0, 0, 0));
 
@@ -74,7 +75,8 @@ public class GameWinPanel : UIPanelBase
 
     public void Restart()
     {
-        YanGF.UI.PopPanel();
+        // 重新加载当前场景
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Exit()

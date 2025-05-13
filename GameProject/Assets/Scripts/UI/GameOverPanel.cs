@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using YanGameFrameWork.UISystem;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 
 public class GameOverPanel : UIPanelBase
@@ -50,7 +51,8 @@ public class GameOverPanel : UIPanelBase
 
     public void Restart()
     {
-        YanGF.UI.PopPanel();
+        // 重新加载当前场景
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Exit()
