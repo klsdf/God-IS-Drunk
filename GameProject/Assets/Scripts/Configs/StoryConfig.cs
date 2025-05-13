@@ -76,109 +76,107 @@ public static class StoryConfig
 
         });
 
-    public static DialogBlock bossDialogBlock = new DialogBlock(DialogType.EnterBossBattle.ToString(), new List<Dialog>
-    {
-        new Dialog("1", left),
-        new Dialog("2", center),
-        new Dialog("我是地雷妹", LandmineGirl),
-        new Dialog("4", left),
-        new Dialog("5", center),
-        new Dialog("我是地雷妹", LandmineGirl),
-        new Dialog("7", left),
-        new Dialog("8", center),
-        new Dialog("我是地雷妹", LandmineGirl),
-
-    });
 
     public static DialogBlock smallBossDialogBlock = new DialogBlock(DialogType.SmallBossBattle.ToString(), new List<Dialog>
     {
-        new Dialog("卧槽，这不是峰川集团的老板吗", left),
-        new Dialog("经常能在电视上看到他呢", center),
-        new Dialog("要不要去要个签名？", right),
-        new Dialog("小家伙们，你们好吗？", Capitalist),
-        new Dialog("卧槽，说话了！", left),
-        new Dialog("你们想要钱吗？", Capitalist),
-        new Dialog("我有很多钱，现在全都给你们吧~~", Capitalist),
+        new Dialog("嗝…那不是丰川集团的总裁吗？末日来了…西装革履的也在逃命…", left),
+        new Dialog("哈！看他那副慌张样！西装革履的……嗝……跑得比谁都快！", center),
+        new Dialog("喂！让开！我有急事！", Capitalist),
+        new Dialog("一辈子都在急…嗝…现在还在急什么呢？", left),
+        new Dialog("我给钱！很多钱！只要让我过去！", Capitalist),
+        new Dialog("有些东西…嗝…一直都买不到的…即使你有很多钱…", center),
+        new Dialog("钱啊…就像酒一样…嗝…一下子就没了…但至少酒，喝了还快乐…", right),
+		
     });
 
 
     public static DialogBlock smallBossRandomDialogBlock = new DialogBlock(DialogType.SmallBossRandomDialog.ToString(), new List<Dialog>
     {
-        new Dialog("哈哈哈哈哈哈，我是撒币", Capitalist),
-        new Dialog("来一起拿钱吧！！！", Capitalist),
-        new Dialog("我最爱分享财富了", Capitalist),
-        new Dialog("世界末日真好啊！！可以狠狠花钱哈哈哈哈哈哈", Capitalist),
+        new Dialog("我有那么多钱…为什么…为什么我也要死？", Capitalist),
+        new Dialog("他们都走了…我身边的人…拿了我的钱…却不带我一起走…", Capitalist),
+        new Dialog("我的飞机还在那里…发动机都热着…可飞行员已经不见了…", Capitalist),
+        new Dialog("这一生…买了那么多东西…却没买到一个肯留下的人…", Capitalist),
+        new Dialog("如果我们都要死…为什么不一起死呢？我要让你们给我陪葬！", Capitalist),
+        new Dialog("擦大哥，末、末日来了！这老东西疯了！", left),
+        new Dialog("你、你错了。他早就疯了。有些人…嗝…清醒着比醉着更可怕…", center),
     });
 
 
 
     public static DialogBlock 贞子对话1 = new DialogBlock(DialogType.贞子对话1.ToString(), new List<Dialog>
     {
-        new Dialog("卧槽，前面那个是？！", left),
-        new Dialog("卧槽，前面那个是贞子？！", center),
-        new Dialog("喂，你们这群小鬼，", 贞子),
-        new Dialog("吵吵嚷嚷什么，是没见过我吗？", 贞子),
-        new Dialog("原来贞子是会说话的吗？", left),
-        new Dialog("比起这个，我更在意原来鬼也抽烟啊", center),
-        new Dialog("你这烟，是哪里买的？", right),
-        new Dialog("这个啊，我从电视机里面爬出来后，从被害人家里顺的", 贞子),
-        new Dialog("不错哦，下次给我也顺两条", right),
-        new Dialog("好啊，我给你顺两条，，", 贞子),
-        new Dialog("才怪啊！", 贞子),
-        new Dialog("你看到忧伤的美少女居然不来安慰一下吗！", 贞子),
-        new Dialog("你这人，真没情趣", 贞子),
-        new Dialog("那好吧，老妹你少抽点烟，对身体不好", right),
-        new Dialog("？？？", 贞子),
-        new Dialog("就让你们看看我的怨念吧！", 贞子),
-
+        new Dialog("嗝…前面那黑影是啥？难道我酒喝多了？大、大哥？", left),
+        new Dialog("那是……是珍子吗？我记得那是…什么都市传说来着？", right),
+        new Dialog("喂，你们这群醉鬼！", 贞子),
+        new Dialog("都世界末日了，你们往哪跑啊？所有人都在逃命，就你们往太阳那边去？", 贞子),
+        new Dialog("我靠！她……她真的说话了？嗝。不是我的幻觉？", left),
+        new Dialog("比起会说话……嗝……我更好奇她手里的。那是烟吗？", center),
+        new Dialog("珍子还会抽烟？大大哥，你喝高了！", right),
+        new Dialog("这个是我从电视机里爬出来的时候，看到的烟。这些人，临死前都会点一根…", 贞子),
+        new Dialog("嗝…原来你是在收集…最后的回忆？", left),
+        new Dialog("切，我只是无聊。世界末日了…都市传说也失业了。", 贞子),
+        new Dialog("别急，你闲着也是闲着，给我也来、来一根呗？", right),
+        new Dialog("想得美…我花了很多时间收集的！", 贞子),
+        new Dialog("你知道吗？以前多少人因为我的录像带吓得尖叫，现在…却没人再记得我了……大家都只顾自己逃命。", 贞子),
+        new Dialog("那、那当然。太阳都炸了，谁还有空怕你啊……", center),
+        new Dialog("是啊。所以我一看你们不往外跑，反而朝太阳去，就觉得，有意思。", 贞子),
+        new Dialog("这样。那要不要和我们一起走？嗝，去找我四弟喝酒？", left),
+        new Dialog("哼！你们这是无视我吗？我可是珍子啊！没人能就这么从我面前走过去！", 贞子),
+        new Dialog("嗝……妹妹，别、别挡道。我们还赶着……赶着去喝酒呢。你要是有本事，就，就吓死我们啊！", center),
     });
 
     public static DialogBlock 贞子对话2 = new DialogBlock(DialogType.贞子对话2.ToString(), new List<Dialog>
     {
-        new Dialog("老妹，你刚才仍的都是什么玩意啊", left),
-        new Dialog("都是人家的化妆品哦~", 贞子),
-        new Dialog("鬼要什么化妆品？", left),
-        new Dialog("就是鬼才需要化妆品的啊！不然脸不够白，就吓不到人了！", 贞子),
-        new Dialog("有道理", left),
-        new Dialog("所以说你的怨念就是不够白吗？", center),
-        new Dialog("当然不是了！", 贞子),
-        new Dialog("我的怨念是尖叫啊！，尖叫！", 贞子),
-        new Dialog("这年头大家恐怖电影都看太多了", 贞子),
-        new Dialog("看到我钻出来都不怎么尖叫了", 贞子),
-        new Dialog("反倒是天天想着把我卡到两个电视里面", 贞子),
-        new Dialog("嘛，反正也世界末日了，我就跑出来享受一下世界的尖叫吧~", 贞子),
-        new Dialog("话说，你有没有想过当偶像啊", left),
-        new Dialog("偶像？", 贞子),
-        new Dialog("就是那种，站在舞台上，被大家崇拜的偶像", left),
-        new Dialog("当偶像的尖叫可比你吓人得到的声音大多了", left),
-        new Dialog("欸？，人家有点害羞呢", 贞子),
-        new Dialog("怕什么，一起嗨！", left),
-    new Dialog("有道理，反正也世界末日了，我也下海吧！！", 贞子),
-   new Dialog("这个词不应该是出道吗？", left),
-
-
+        new Dialog("妹妹，你刚才那招挺厉害，可惜…嗝…我们这酒劲上来了，反而什么都不怕了。", left),
+        new Dialog("呜…我的怨念居然对你们没用…", 贞子),
+        new Dialog("那个…你丢的都是什么啊？", left),
+        new Dialog("都是…都是我的化妆品啦…平时吓人用的…", 贞子),
+        new Dialog("鬼还要化妆品？", left),
+        new Dialog("当然要啊！不然脸不够苍白，怎么吓人啊！", 贞子),
+        new Dialog("嗝…所以你变成鬼，就是为了吓人？", center),
+        new Dialog("不全是…其实我生前…就很想引起别人注意…", 贞子),
+        new Dialog("我整天待在电视机后面…却没人看见我…", 贞子),
+        new Dialog("变成鬼后，大家总算注意我了…但他们只会害怕，从来不会欣赏我…", 贞子),
+        new Dialog("这年头大家恐怖片看太多了，看到我钻出电视都不怎么尖叫了…", 贞子),
+        new Dialog("反而只想着玩什么'把我卡在两个电视之间'的恶作剧…", 贞子),
+        new Dialog("所以…你一直想引起别人注意，但从没人真正理解你？", left),
+        new Dialog("嗯…我其实…从小…就想当偶像来着…", 贞子),
+        new Dialog("偶像？", right),
+        new Dialog("就是那种，站在舞台上，被很多人尖叫欢呼的…那种被崇拜的感觉…", 贞子),
+        new Dialog("那你现在不就是？嗝…你吓人时，不也有很多人尖叫吗？", center),
+        new Dialog("那不一样啦！我想要的是…崇拜的尖叫，不是恐惧的尖叫…", 贞子),
+        new Dialog("嗝…说实话，你长得挺合适当偶像的。要不…要不你试试？", left),
+        new Dialog("欸？可是…人家有点害羞呢…", 贞子),
+        new Dialog("害什么羞，世界都末日了，嗝…还有什么不敢的？", left),
+        new Dialog("对！就当是…就当是最后一次狂欢！跟咱们一起嗨！", right),
+        new Dialog("说得对！反正世界都要完蛋了，我也要圆梦！我要，成为偶像！", 贞子),
     });
+
 
 
     public static DialogBlock 贞子对话3 = new DialogBlock(DialogType.贞子对话3.ToString(), new List<Dialog>
     {
-        new Dialog("啊，太嗨了！！", 贞子),
-        new Dialog("说不定我才是天生的偶像", 贞子),
-        new Dialog("米娜桑，接下来是我的绝唱！", 贞子),
-        new Dialog("这个词不应该是压轴戏吗，，", left),
+        new Dialog("哇啊啊！太嗨了！原来被人欢呼的感觉这么爽！", 贞子),
+        new Dialog("我怎么不早点尝试！浪费了好几十年在电视机里爬来爬去！", 贞子),
+        new Dialog("米娜桑～～接下来是我的绝唱表演！", 贞子),
+        new Dialog("嗝……这词不是……不是压轴戏的意思吗？", left),
+        new Dialog("管他呢！反正世界都要完了！我想怎么唱就怎么唱！", 贞子),
     });
 
     public static DialogBlock 贞子对话4 = new DialogBlock(DialogType.贞子对话4.ToString(), new List<Dialog>
     {
-  new Dialog("啊，好爽！！", 贞子),
-        new Dialog("还是第一次有这么多人为我尖叫", 贞子),
-        new Dialog("感觉鬼生无憾了！", 贞子),
-        new Dialog("贞子老妹，爽吧！", left),
-        new Dialog("鬼生短暂，就应该痛痛快快地过", left),
-        new Dialog("你们之后打算干什么？", 贞子),
-        new Dialog("我们要去市中心喝酒，要一起来吗？", left),
-        new Dialog("来！我先去了，我在市中心等你们！", 贞子),   
-        new Dialog("好嘞，到时候见吧！", left),
+        new Dialog("呼～～太爽了！从来没感觉这么活着过！虽然我已经死了……", 贞子),
+        new Dialog("第一次……有人为我欢呼而不是尖叫着逃跑。", 贞子),
+        new Dialog("感觉……圆满了！就算世界毁灭也值了！", 贞子),
+        new Dialog("嗝...爽吧！我就说嘛！", left),
+        new Dialog("人生、本来就短、短暂。活着时怕这怕那，谈过去、想、想未来，死了又有啥用？", center),
+        new Dialog("就像我兄弟。嗝。结了婚就再也没、没出来痛快喝酒过。现在世界末日都来了。", left),
+        new Dialog("鬼生也好，人生也罢。就得痛痛快快地过！", center),
+        new Dialog("说得对！我后悔死后花那么多时间吓人了！", 贞子),
+        new Dialog("你们接下来打算去哪儿？", 贞子),
+        new Dialog("市中心！嗝。找我四弟喝酒！一起来吗？", center),
+        new Dialog("太棒了！我先过去！在那等你们！", 贞子),   
+        new Dialog("好！为了世界末日，干、干杯！", center),
     });
 
 

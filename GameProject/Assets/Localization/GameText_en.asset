@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1773245804544
-    m_Localized: "\u201CRemaining Fuel\u201D"
+    m_Localized: "\u201CFuel\u201D"
     m_Metadata:
       m_Items: []
   - m_Id: 1894721236992
@@ -200,6 +200,330 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 5551011403018241
     m_Localized: Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6307665807552512
+    m_Localized: hic... Isn't that the CEO of Fengchuan Company? End of the world's
+      here... and even the suits are running for their lives...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6307983115038720
+    m_Localized: Ha! Look at him panic! Mr. Fancy Suit... hic... running faster than
+      anyone else!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308053885530112
+    m_Localized: Hey! Get out of my way! I have urgent business!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308116812673024
+    m_Localized: Been in a rush your whole life... hic... what's the hurry now?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308174656319488
+    m_Localized: I'll pay you! Lots of money! Just let me through!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308250942320640
+    m_Localized: Some things... hic... can never be bought... no matter how much
+      money you have...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308314184036352
+    m_Localized: Money... it's like booze... hic... gone in an instant... but at
+      least booze makes you happy when you drink it...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308375487983616
+    m_Localized: I have so much money... why... why do I have to die too?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308472703561728
+    m_Localized: They all left... everyone around me... took my money... but didn't
+      take me with them...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308527586029568
+    m_Localized: '"My jet is still there... engines running hot... but the pilot
+      is nowhere to be found...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308579259854848
+    m_Localized: All my life... bought so many things... but couldn't buy a single
+      person who'd stay...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308660067315712
+    m_Localized: '"If we''re all going to die... why not die together? I''ll make
+      you come with me to the grave!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308680766205952
+    m_Localized: Damn it, James! The apocalypse is here! This old bastard has gone
+      crazy!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308686520791040
+    m_Localized: You're wrong. He's been crazy all along. Some people... hic... are
+      scarier sober than drunk...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308690849312768
+    m_Localized: Woooow! This is amazing! So this is what it feels like to be cheered
+      for!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6308693042933760
+    m_Localized: Why didn't I try this sooner! Wasted decades crawling in and out
+      of TVs!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309160305176576
+    m_Localized: Everyone~~ Now for my final performance!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309244979785728
+    m_Localized: hic... Isn't that term... supposed to mean... the finale?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309299212136448
+    m_Localized: Who cares! The world's ending anyway! I'll sing however I want!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309363213021184
+    m_Localized: Whew~~ That was incredible! I've never felt so alive! Even though
+      I'm dead...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309425582321664
+    m_Localized: First time... people cheered for me instead of screaming and running
+      away.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309475570036736
+    m_Localized: I feel... complete! Worth it even if the world ends!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309527826870272
+    m_Localized: hic... Feels good, right! Told ya so!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309587780251648
+    m_Localized: Life's short anyway. What's the point of all those fears, regrets,
+      and worries about the future when you're dead?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309640360046592
+    m_Localized: Like my brother George. hic. Got married and never came out drinking
+      properly again. And now the world's ending.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309696253341696
+    m_Localized: Ghost life or human life. Gotta live it to the fullest!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309753778221056
+    m_Localized: You're right! I regret spending so much time scaring people after
+      I died!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309807570169856
+    m_Localized: Where are you guys heading next?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309859340464128
+    m_Localized: Downtown! hic. To find my brother George for drinks! Wanna join?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309918928941056
+    m_Localized: Awesome! I'll go ahead! I'll wait for you there!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6309967184408576
+    m_Localized: Great! To the end of the world... ch-cheers!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310030669393920
+    m_Localized: hic... What's that shadow up ahead? Am I too drunk? James?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310402314088448
+    m_Localized: Isn't that... Sadako? I remember her from some urban legend...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310489249427456
+    m_Localized: Hey, you bunch of drunks!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310539505577984
+    m_Localized: It's the end of the world and where are you going? Everyone's running
+      for their lives, but you're heading toward the sun?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310627619516416
+    m_Localized: Holy shit! She... she actually talked? hic Not my hallucination?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310677565288448
+    m_Localized: More than her talking... hic... I'm curious about what's in her
+      hand. Is that a cigarette?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310733894791168
+    m_Localized: Sadako smokes? James, you're wasted!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310791843295232
+    m_Localized: I got these when I crawled out of TVs. People always light one before
+      they die...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310842879586304
+    m_Localized: hic... So you're collecting... final memories?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310892045217792
+    m_Localized: Pfft, I'm just bored. It's the end of the world... urban legends
+      are out of business too.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310941223432192
+    m_Localized: Hey, since you're not busy anyway, how about giving me one too?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6310997309665280
+    m_Localized: Dream on... I spent a lot of time collecting these!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311047179939840
+    m_Localized: You know? People used to scream at my videotapes, but now... no
+      one even remembers me... Everyone's just saving themselves.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311100749590528
+    m_Localized: Well, of course. The sun's exploding, who has time to be scared
+      of you...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311158463213568
+    m_Localized: Yeah. That's why when I saw you guys not running away, but heading
+      toward the sun, I thought, that's interesting.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311208736141312
+    m_Localized: I see. Wanna come with us then? hic We're going to find my brother
+      George for drinks.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311267347345408
+    m_Localized: Hmph! Are you ignoring me? I'm Sadako! No one just walks past me
+      like that!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311315082719232
+    m_Localized: hic... Listen, girl, don't... don't block our way. We're in a hurry...
+      to get those drinks. If you're so scary, then... then try to scare us to death!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311372024590336
+    m_Localized: That was a pretty good move, girl, but unfortunately... hic... we're
+      too drunk to be scared of anything now.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311423585169408
+    m_Localized: Ugh... my curse has no effect on you...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311476794109952
+    m_Localized: "So... what were you throwing at us anyway\uFF1F"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311539175993344
+    m_Localized: Just... just my makeup... I use it to scare people...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311602413514752
+    m_Localized: Ghosts need makeup?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311649943367680
+    m_Localized: Of course! How else would my face be pale enough to scare people?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311698404356096
+    m_Localized: hic... So you became a ghost just to scare people?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311746370416640
+    m_Localized: Not exactly... actually, when I was alive... I always wanted attention...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311804444749824
+    m_Localized: I spent all day behind the TV... but no one saw me...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311853417443328
+    m_Localized: After becoming a ghost, people finally noticed me... but they only
+      fear me, never appreciate me...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311907540742144
+    m_Localized: '"These days people watch too many horror movies. They barely scream
+      when I crawl out of TVs anymore...'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6311960082788352
+    m_Localized: Instead they just play pranks like 'trapping me between two TVs'...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312018899513344
+    m_Localized: So... you've always wanted attention, but no one ever really understood
+      you?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312011307823104
+    m_Localized: Yeah... actually... since I was little... I wanted to be an idol...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312157542232064
+    m_Localized: An idol?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312202463227904
+    m_Localized: You know, standing on stage with crowds screaming and cheering...
+      that feeling of being adored...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312267353305088
+    m_Localized: Isn't that what you are now? hic... When you scare people, don't
+      they scream?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312320599994368
+    m_Localized: That's different! I want... screams of adoration, not terror...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312369555910656
+    m_Localized: hic... Honestly, you've got the looks for an idol. Why don't...
+      why don't you give it a try?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312423935062016
+    m_Localized: Eh? But... I'm a bit shy...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312471469109248
+    m_Localized: Shy about what? It's the end of the world! hic... What's left to
+      be afraid of?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312528134156288
+    m_Localized: Right! Think of it as... as one last party! Come rock with us!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6312584040034304
+    m_Localized: You're right! The world's ending anyway, I'm going to make my dream
+      come true! I'm going to be an idol!
     m_Metadata:
       m_Items: []
   references:
