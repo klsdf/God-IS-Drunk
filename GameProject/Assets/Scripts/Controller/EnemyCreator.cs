@@ -164,8 +164,7 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
 
 
-
-    public void SpanNoramlItems(Sprite[] enemySprites, bool isEnemy)
+    public void SpanNoramlItems(Sprite[] enemySprites)
     {
 
         ISpawnMode spawnMode = new SpawnRandomPosition();
@@ -174,13 +173,15 @@ public class EnemyCreator : Singleton<EnemyCreator>
 
         Vector3[] spawnPositions = spawnMode.SpawnPosition(spawnParameters);
 
-
         Sprite chooseSprite = enemySprites[Random.Range(0, enemySprites.Length)];
         foreach (var spawnPosition in spawnPositions)
         {
             // 在指定位置实例化敌人，并将其设置为当前对象的子节点
 
-            if (isEnemy)
+            float random = Random.Range(0f, 1f); // 生成一个0到1之间的随机数
+
+            // 使用enemySpawnRate作为生成敌人的概率
+            if (random < enemySpawnRate)
             {
                 CreateEnemy(spawnPosition, chooseSprite, movementCommand);
             }

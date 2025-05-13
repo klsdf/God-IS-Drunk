@@ -48,6 +48,11 @@ public class FeverController : Singleton<FeverController>
     public Transform God;
     public Transform Jupiter;
 
+    /// <summary>
+    /// 迪斯科球
+    /// </summary>
+    public Transform DiscoBall;
+
 
     #endregion
 
@@ -68,8 +73,22 @@ public class FeverController : Singleton<FeverController>
         });
 
         YanGF.Event.AddListener<RhythmType>(RhythmEvent.OnRhythm, OnRhythm);
+        HideAllFeverItem();
     }
 
+
+    private void ShowAllFeverItem()
+    {
+        God.gameObject.SetActive(true);
+        Jupiter.gameObject.SetActive(true);
+        DiscoBall.gameObject.SetActive(true);
+    }
+    private void HideAllFeverItem()
+    {
+        God.gameObject.SetActive(false);
+        Jupiter.gameObject.SetActive(false);
+        DiscoBall.gameObject.SetActive(false);
+    }
 
 
     public void LoseFever(float amount)
@@ -110,6 +129,9 @@ public class FeverController : Singleton<FeverController>
         // 切换灯光颜色
         FeverLight.color = rainbowColors[currentColorIndex];
 
+        // 更新DiscoBall颜色
+        DiscoBall.GetComponent<SpriteRenderer>().color = rainbowColors[currentColorIndex];
+
         // 更新索引
         currentColorIndex = (currentColorIndex + 1) % rainbowColors.Length;
     }
@@ -118,8 +140,8 @@ public class FeverController : Singleton<FeverController>
     {
         Debug.Log("触发fever事件");
 
-
-        YanGF.Tween.Tween(God, t => t.position, new Vector3(-39, -7, 109.5f), 3);
+        ShowAllFeverItem();
+        YanGF.Tween.Tween(God, t => t.position, new Vector3(-87, -12, 109.5f), 3);
 
         YanGF.Tween.Tween(Jupiter, t => t.position, new Vector3(70.2f, 46.5f, 122.4f), 3);
     }
@@ -128,6 +150,8 @@ public class FeverController : Singleton<FeverController>
     {
         Debug.Log("触发notfever事件");
         FeverLight.color = Color.white;
+
+        HideAllFeverItem();
 
         YanGF.Tween.Tween(God, t => t.position, new Vector3(-92.2f, -49.8f, 109.5f), 3);
         YanGF.Tween.Tween(Jupiter, t => t.position, new Vector3(121.9f, 52.4f, 122.4f), 3);
