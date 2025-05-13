@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 366306145441145879}
   - component: {fileID: 5975348695269611609}
   - component: {fileID: 3675434650279915696}
+  - component: {fileID: 8948595222961163907}
   m_Layer: 0
   m_Name: "\u697C\u623F"
   m_TagString: Untagged
@@ -428,7 +429,20 @@ MonoBehaviour:
   m_Duration: 6
   m_MaxSpeed: 10
   m_EasingMode: 0
-  m_AlignmentMode: 2
+  m_AlignmentMode: 0
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
+--- !u!114 &8948595222961163907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607210294864804740}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1062aefba1a2ccd41a64f7f44615e598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 0}
