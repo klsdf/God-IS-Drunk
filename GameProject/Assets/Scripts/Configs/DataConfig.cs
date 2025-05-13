@@ -7,7 +7,7 @@ public static class DataConfig{
     /// <summary>
     /// 目标时间
     /// </summary>
-    public static float targetTime = 400;
+    public static float targetTime = 300;
 
     /// <summary>
     /// 每隔多少秒减少一次血量

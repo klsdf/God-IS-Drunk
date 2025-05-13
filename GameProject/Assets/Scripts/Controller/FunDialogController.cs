@@ -38,7 +38,8 @@ public enum DialogType
 
     贞子对话1,
     贞子对话2,
-    贞子对话3
+    贞子对话3,
+    贞子对话4
 }
 public class FunDialogController : Singleton<FunDialogController>
 {
@@ -71,6 +72,7 @@ public class FunDialogController : Singleton<FunDialogController>
         YanGF.Dialog.RegisterDialogBlock(StoryConfig.贞子对话1);
         YanGF.Dialog.RegisterDialogBlock(StoryConfig.贞子对话2);
         YanGF.Dialog.RegisterDialogBlock(StoryConfig.贞子对话3);
+        YanGF.Dialog.RegisterDialogBlock(StoryConfig.贞子对话4);
 
         _showOnCollisionEnemyDialogLimited
         = YanGF.Timer.CreateRateLimitedAction(ShowOnCollisionEnemyDialog, 3f);

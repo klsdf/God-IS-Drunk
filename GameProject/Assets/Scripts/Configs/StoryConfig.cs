@@ -87,7 +87,7 @@ public static class StoryConfig
         new Dialog("7", left),
         new Dialog("8", center),
         new Dialog("我是地雷妹", LandmineGirl),
-        
+
     });
 
     public static DialogBlock smallBossDialogBlock = new DialogBlock(DialogType.SmallBossBattle.ToString(), new List<Dialog>
@@ -114,26 +114,74 @@ public static class StoryConfig
 
     public static DialogBlock 贞子对话1 = new DialogBlock(DialogType.贞子对话1.ToString(), new List<Dialog>
     {
-        new Dialog("1", left),
-        new Dialog("2", 贞子),
-        new Dialog("3", right),
+        new Dialog("卧槽，前面那个是？！", left),
+        new Dialog("卧槽，前面那个是贞子？！", center),
+        new Dialog("喂，你们这群小鬼，", 贞子),
+        new Dialog("吵吵嚷嚷什么，是没见过我吗？", 贞子),
+        new Dialog("原来贞子是会说话的吗？", left),
+        new Dialog("比起这个，我更在意原来鬼也抽烟啊", center),
+        new Dialog("你这烟，是哪里买的？", right),
+        new Dialog("这个啊，我从电视机里面爬出来后，从被害人家里顺的", 贞子),
+        new Dialog("不错哦，下次给我也顺两条", right),
+        new Dialog("好啊，我给你顺两条，，", 贞子),
+        new Dialog("才怪啊！", 贞子),
+        new Dialog("你看到忧伤的美少女居然不来安慰一下吗！", 贞子),
+        new Dialog("你这人，真没情趣", 贞子),
+        new Dialog("那好吧，老妹你少抽点烟，对身体不好", right),
+        new Dialog("？？？", 贞子),
+        new Dialog("就让你们看看我的怨念吧！", 贞子),
+
     });
 
     public static DialogBlock 贞子对话2 = new DialogBlock(DialogType.贞子对话2.ToString(), new List<Dialog>
     {
-        new Dialog("1", 贞子),
-        new Dialog("2", 贞子),
-        new Dialog("3", center),
+        new Dialog("老妹，你刚才仍的都是什么玩意啊", left),
+        new Dialog("都是人家的化妆品哦~", 贞子),
+        new Dialog("鬼要什么化妆品？", left),
+        new Dialog("就是鬼才需要化妆品的啊！不然脸不够白，就吓不到人了！", 贞子),
+        new Dialog("有道理", left),
+        new Dialog("所以说你的怨念就是不够白吗？", center),
+        new Dialog("当然不是了！", 贞子),
+        new Dialog("我的怨念是尖叫啊！，尖叫！", 贞子),
+        new Dialog("这年头大家恐怖电影都看太多了", 贞子),
+        new Dialog("看到我钻出来都不怎么尖叫了", 贞子),
+        new Dialog("反倒是天天想着把我卡到两个电视里面", 贞子),
+        new Dialog("嘛，反正也世界末日了，我就跑出来享受一下世界的尖叫吧~", 贞子),
+        new Dialog("话说，你有没有想过当偶像啊", left),
+        new Dialog("偶像？", 贞子),
+        new Dialog("就是那种，站在舞台上，被大家崇拜的偶像", left),
+        new Dialog("当偶像的尖叫可比你吓人得到的声音大多了", left),
+        new Dialog("欸？，人家有点害羞呢", 贞子),
+        new Dialog("怕什么，一起嗨！", left),
+    new Dialog("有道理，反正也世界末日了，我也下海吧！！", 贞子),
+   new Dialog("这个词不应该是出道吗？", left),
+
+
     });
 
 
     public static DialogBlock 贞子对话3 = new DialogBlock(DialogType.贞子对话3.ToString(), new List<Dialog>
     {
-        new Dialog("1", 贞子),
-        new Dialog("2", 贞子),
-        new Dialog("3", 贞子),
+        new Dialog("啊，太嗨了！！", 贞子),
+        new Dialog("说不定我才是天生的偶像", 贞子),
+        new Dialog("米娜桑，接下来是我的绝唱！", 贞子),
+        new Dialog("这个词不应该是压轴戏吗，，", left),
     });
-    
-    
-    
+
+    public static DialogBlock 贞子对话4 = new DialogBlock(DialogType.贞子对话4.ToString(), new List<Dialog>
+    {
+  new Dialog("啊，好爽！！", 贞子),
+        new Dialog("还是第一次有这么多人为我尖叫", 贞子),
+        new Dialog("感觉鬼生无憾了！", 贞子),
+        new Dialog("贞子老妹，爽吧！", left),
+        new Dialog("鬼生短暂，就应该痛痛快快地过", left),
+        new Dialog("你们之后打算干什么？", 贞子),
+        new Dialog("我们要去市中心喝酒，要一起来吗？", left),
+        new Dialog("来！我先去了，我在市中心等你们！", 贞子),   
+        new Dialog("好嘞，到时候见吧！", left),
+    });
+
+
+
+
 }

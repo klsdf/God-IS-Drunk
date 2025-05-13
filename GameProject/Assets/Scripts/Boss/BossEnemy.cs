@@ -155,6 +155,13 @@ public class BossEnemy : BossBase
         debugStatus = "第三次休息";
         yield return new WaitForSeconds(thirdAttackInterval);
 
+        // 最后的对话
+        debugStatus = "第四次对话";
+        yield return StartCoroutine(FunDialogController.Instance.ShowBossDialogCoroutine(
+            DialogType.贞子对话4,
+            GameManager.Instance.bossEnemy.BossDialogPanel,
+            GameManager.Instance.bossEnemy.BossDialogText));
+
         Die();
     }
 
