@@ -83,7 +83,6 @@ public abstract class BossBase : MonoBehaviour
         isShow = true;
         transform.position = startPosition;
 
-
         isMoveing = true;
         YanGF.Tween.Tween(transform, t => t.position, targetPosition, moveTime, () =>
         {
@@ -95,9 +94,6 @@ public abstract class BossBase : MonoBehaviour
                      .SetLoops(-1, LoopType.Yoyo)
                      .SetEase(Ease.InOutSine);
         });
-
-
-
     }
 
 
@@ -105,10 +101,14 @@ public abstract class BossBase : MonoBehaviour
     public void Hide()
     {
         isShow = false;
+
+        // 停止所有与transform相关的DoTween动画
+        transform.DOKill();
+
         YanGF.Tween.Tween(transform, t => t.position, startPosition, moveTime, () =>
-       {
-           isMoveing = false;
-       });
+        {
+            isMoveing = false;
+        });
     }
 
 
