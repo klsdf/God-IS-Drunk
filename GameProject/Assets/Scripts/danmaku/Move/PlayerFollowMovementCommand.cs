@@ -1,10 +1,10 @@
 using UnityEngine;
 
 /// <summary>
-/// 螺旋运动命令
+/// 跟随运动命令
 /// </summary>
 /// <remarks>
-/// 敌人沿着螺旋路径移动，通常是围绕一个中心点逐渐向外或向内。
+/// 敌人跟随玩家移动，通常是围绕一个中心点逐渐向外或向内。
 /// </remarks>
 public class PlayerFollowMovementCommand : ZMovementCommand
 {

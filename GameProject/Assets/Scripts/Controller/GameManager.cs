@@ -33,7 +33,7 @@ public class NormalState : BaseState
     {
         if (timer >= spawnInterval)
         {
-            LevelCreator.SpanNoramlItems(GameManager.Instance.障碍物们);
+            LevelCreator.SpanNoramlItems();
             timer = 0;
         }
         timer += Time.deltaTime;

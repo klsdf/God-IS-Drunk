@@ -141,7 +141,7 @@ public class FeverController : Singleton<FeverController>
         Debug.Log("触发fever事件");
 
         ShowAllFeverItem();
-        YanGF.Tween.Tween(God, t => t.position, new Vector3(-87, -12, 109.5f), 3);
+        YanGF.Tween.Tween(God, t => t.position, new Vector3(-65.4f, 2.6f, 109.5f), 3);
 
         YanGF.Tween.Tween(Jupiter, t => t.position, new Vector3(70.2f, 46.5f, 122.4f), 3);
     }
@@ -151,9 +151,12 @@ public class FeverController : Singleton<FeverController>
         Debug.Log("触发notfever事件");
         FeverLight.color = Color.white;
 
-        HideAllFeverItem();
+   
 
         YanGF.Tween.Tween(God, t => t.position, new Vector3(-92.2f, -49.8f, 109.5f), 3);
-        YanGF.Tween.Tween(Jupiter, t => t.position, new Vector3(121.9f, 52.4f, 122.4f), 3);
+        YanGF.Tween.Tween(Jupiter, t => t.position, new Vector3(121.9f, 52.4f, 122.4f), 3, () =>
+        {
+            HideAllFeverItem();
+        });
     }
 }
