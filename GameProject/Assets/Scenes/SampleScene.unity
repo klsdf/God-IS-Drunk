@@ -1356,7 +1356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8437541926480388880, guid: bd3044949482a13458bd0f8f2354277e, type: 3}
       propertyPath: m_BlockingMask.m_Bits
-      value: 4294967295
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 8520084783920094628, guid: bd3044949482a13458bd0f8f2354277e, type: 3}
       propertyPath: cursors.Array.data[0].cursorTexture
@@ -3054,7 +3054,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
+  m_TextStyleHashCode: 93368250
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -13763,7 +13763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -832.58435, y: -36.989685}
+  m_AnchoredPosition: {x: 830, y: -174}
   m_SizeDelta: {x: 254.8312, y: 490.0293}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1231867402
@@ -13779,7 +13779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5568628}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -27003,12 +27003,44 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4536953854308993277, guid: 641990ec245b7084981be013269bc40a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536953854308993277, guid: 641990ec245b7084981be013269bc40a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536953854308993277, guid: 641990ec245b7084981be013269bc40a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4536953854308993277, guid: 641990ec245b7084981be013269bc40a, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5582003905767519088, guid: 641990ec245b7084981be013269bc40a, type: 3}
       propertyPath: startMenu
       value: 
       objectReference: {fileID: 29465804}
     - target: {fileID: 5659170528063322695, guid: 641990ec245b7084981be013269bc40a, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5706877798251127972, guid: 641990ec245b7084981be013269bc40a, type: 3}
+      propertyPath: m_text
+      value: "\u95EB\u8FB0\u7965\uFF0CTiefseeMatch\uFF0C\u829D\u58EB\u5C0F\u5B89\uFF0COveHelm\uFF0Cholograven"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5706877798251127972, guid: 641990ec245b7084981be013269bc40a, type: 3}
+      propertyPath: m_fontSize
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5706877798251127972, guid: 641990ec245b7084981be013269bc40a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5706877798251127972, guid: 641990ec245b7084981be013269bc40a, type: 3}
+      propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7189520365679826361, guid: 641990ec245b7084981be013269bc40a, type: 3}
