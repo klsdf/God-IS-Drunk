@@ -65,7 +65,7 @@ public class FunDialogController : Singleton<FunDialogController>
         YanGF.Dialog.RegisterDialogBlock(StoryConfig.startDialogBlock);
         YanGF.Dialog.RegisterDialogBlock(StoryConfig.collisionEnemyDialogBlock);
         YanGF.Dialog.RegisterDialogBlock(StoryConfig.drinkDialogBlock);
-        YanGF.Dialog.RegisterDialogBlock(StoryConfig.bossDialogBlock);
+        // YanGF.Dialog.RegisterDialogBlock(StoryConfig.bossDialogBlock);
 
         YanGF.Dialog.RegisterDialogBlock(StoryConfig.smallBossDialogBlock);
 
