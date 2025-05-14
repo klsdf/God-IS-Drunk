@@ -526,6 +526,59 @@ MonoBehaviour:
       come true! I'm going to be an idol!
     m_Metadata:
       m_Items: []
+  - m_Id: 6462007822921728
+    m_Localized: This game does not promote negative behaviors such as drunk driving
+      or smoking. Minors are prohibited from smoking and drinking alcohol. The game
+      content is entirely fictional, please do not imitate. The game is still under
+      development.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6462007852281856
+    m_Localized: '1.Click on the UI with the mouse to start the game
+
+      2.Use
+      the left joystick of the controller to move the player, otherwise there will
+      be no effect
+
+      3.Using the gyroscope to control the player is recommended'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6464417479929856
+    m_Localized: Turn on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6464417509289984
+    m_Localized: Main Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6464417509289985
+    m_Localized: Music Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6464417509289986
+    m_Localized: Sound Effects Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6464417509289987
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6464417509289988
+    m_Localized: Fullscreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6464417509289989
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6464417509289990
+    m_Localized: Lock at 60 FPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6464418541088768
+    m_Localized: Turn off
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
