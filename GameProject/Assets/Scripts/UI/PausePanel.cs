@@ -3,6 +3,7 @@ using YanGameFrameWork.UISystem;
 using UnityEngine;
 using YanGameFrameWork.GameSetting;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class PausePanel : UIPanelBase
 {
     public Button continueButton;
@@ -39,7 +40,7 @@ public class PausePanel : UIPanelBase
 
     private void OnRestartButtonClick()
     {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void OnSettingButtonClick()
@@ -49,8 +50,9 @@ public class PausePanel : UIPanelBase
 
     private void OnExitButtonClick()
     {
-       YanGF.UI.PopPanel<PausePanel>();
-       Time.timeScale = 1;
+    //    YanGF.UI.PopPanel<PausePanel>();
+    //    Time.timeScale = 1;
+        Application.Quit();
     }
 
     public override void OnPause()
