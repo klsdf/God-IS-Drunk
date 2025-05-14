@@ -14,6 +14,11 @@ public class ProducerMenu : MonoBehaviour
 
     public CircleText2 circleText2;
 
+
+    public GameObject 制作人员名单图片;
+
+    public float rotateSpeed = 30f; // 每秒旋转30度，可在Inspector调整
+
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
@@ -27,6 +32,9 @@ public class ProducerMenu : MonoBehaviour
     void FixedUpdate()
     {
         circleText2.startAngle = (circleText2.startAngle + 1f) % 360;
+
+        // 在本地坐标系下绕Z轴旋转
+        制作人员名单图片.transform.Rotate(0, 0, rotateSpeed * Time.fixedDeltaTime, Space.Self);
     }
 
     public void Close()
