@@ -52,18 +52,18 @@ public static class DataConfig{
     /// <summary>
     /// 碰撞酒时增加的Fever
     /// </summary>
-    public static float gainFever = 2;
+    public static float gainFever = 4;
 
 
     /// <summary>
     /// 碰撞障碍物时损失的血量
     /// </summary>
-    public static float loseHP = 5;
+    public static float loseHP = 3;
 
     /// <summary>
     /// 碰撞酒时增加的血量
     /// </summary>
-    public static float gainHP = 1;
+    public static float gainHP = 4;
 
 
 
